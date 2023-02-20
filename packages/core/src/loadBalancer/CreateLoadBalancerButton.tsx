@@ -39,7 +39,7 @@ export class CreateLoadBalancerButton extends React.Component<ICreateLoadBalance
     if (!this.state.isDisabled) {
       return (
         <div>
-          <button className="btn btn-sm btn-default" disabled={true}>
+          <button className="btn btn-sm btn-default" disabled>
             <span className="glyphicon glyphicon-plus-sign visible-lg-inline" />
             <Tooltip value="Create Load Balancer">
               <span className="glyphicon glyphicon-plus-sign visible-md-inline visible-sm-inline" />
