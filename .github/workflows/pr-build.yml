@@ -1,0 +1,17 @@
+name: Release
+
+on:
+    pull_request:
+        branches:
+            - 'master'
+    
+    #release:
+    #    types: [prereleased, released]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
+  docker:
+    needs: build
+    uses: ./.github/workflows/docker-build.yml
