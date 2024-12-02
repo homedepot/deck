@@ -10,8 +10,8 @@ on:
         type: string
       THD_DECK_VERSION:
         description: Version of THD Deck
-        required: true
-        default: "0.0.0"
+        required: false
+        default: ""
         type: string
 
 jobs:

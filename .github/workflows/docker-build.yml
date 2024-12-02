@@ -5,8 +5,7 @@ on:
     inputs:
       IMAGE_VERSION:
         description: Version to use for image tag
-        required: true
-        default: "0.0.0"
+        required: false
         type: string
       BRANCH:
         description: Git branch to fetch code from
@@ -27,6 +26,16 @@ jobs:
           fetch-depth: 0
           ref: ${{ inputs.BRANCH }}
 
+      - name: Calculate default version if not provided
+        id: set-version
+        run: |
+          if [ -z "${{ inputs.IMAGE_VERSION }}" ]; then
+            version=$(git describe --tags --abbrev=0 --match="v[0-9]*" | cut -c2-)-dev-${{ inputs.BRANCH }}-$(git rev-parse --short HEAD)-$(date --utc +'%Y%m%d%H%M')
+            echo "IMAGE_VERSION=$version" >> $GITHUB_ENV
+          else
+            echo "IMAGE_VERSION=${{ inputs.IMAGE_VERSION }}" >> $GITHUB_ENV
+          fi
+
       - uses: actions/download-artifact@v4
         with:
           name: build
@@ -34,9 +43,7 @@ jobs:
 
       - name: Set release info
         run: |
-          release_version=${{ inputs.IMAGE_VERSION }}
-          echo "RELEASE_VERSION=$release_version" >> $GITHUB_ENV
-          echo "TAGS=${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:$release_version" >> $GITHUB_ENV
+          echo "TAGS=${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}" >> $GITHUB_ENV
 
       - name: Login
         uses: docker/login-action@v3
@@ -71,4 +78,4 @@ jobs:
           tags: ${{ env.TAGS }}
           labels: |
             org.opencontainers.image.source=https://github.com/${{ env.IMAGE_NAME }}
-            org.opencontainers.image.version=${{ env.RELEASE_VERSION }}
+            org.opencontainers.image.version=${{ env.IMAGE_VERSION }}
