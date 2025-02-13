@@ -49,35 +49,6 @@ class AppengineLoadBalancerDetailsController implements IController {
     });
   }
 
-  public deleteLoadBalancer(): void {
-    const taskMonitor = {
-      application: this.app,
-      title: 'Deleting ' + this.loadBalancer.name,
-    };
-
-    const submitMethod = () => {
-      const loadBalancer: ILoadBalancerDeleteCommand = {
-        cloudProvider: this.loadBalancer.cloudProvider,
-        loadBalancerName: this.loadBalancer.name,
-        credentials: this.loadBalancer.account,
-      };
-      return LoadBalancerWriter.deleteLoadBalancer(loadBalancer, this.app);
-    };
-
-    ConfirmationModalService.confirm({
-      header: 'Really delete ' + this.loadBalancer.name + '?',
-      buttonText: 'Delete ' + this.loadBalancer.name,
-      body: this.getConfirmationModalBodyHtml(),
-      account: this.loadBalancer.account,
-      taskMonitorConfig: taskMonitor,
-      submitMethod,
-    });
-  }
-
-  public canDeleteLoadBalancer(): boolean {
-    return this.loadBalancer.name !== 'default';
-  }
-
   private extractLoadBalancer(): void {
     this.loadBalancer = this.app.getDataSource('loadBalancers').data.find((test: ILoadBalancer) => {
       return test.name === this.loadBalancerFromParams.name && test.account === this.loadBalancerFromParams.accountId;

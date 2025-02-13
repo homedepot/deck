@@ -40,23 +40,6 @@ class KubernetesLoadBalancerDetailsController implements IController {
       .catch(() => this.autoClose());
   }
 
-  public deleteLoadBalancer(): void {
-    this.$uibModal.open({
-      templateUrl: require('../../manifest/delete/delete.html'),
-      controller: 'kubernetesV2ManifestDeleteCtrl',
-      controllerAs: 'ctrl',
-      resolve: {
-        coordinates: {
-          name: this.loadBalancer.name,
-          namespace: this.loadBalancer.namespace,
-          account: this.loadBalancer.account,
-        },
-        application: this.app,
-        manifestController: (): string => null,
-      },
-    });
-  }
-
   public editLoadBalancer(): void {
     KubernetesManifestCommandBuilder.buildNewManifestCommand(
       this.app,

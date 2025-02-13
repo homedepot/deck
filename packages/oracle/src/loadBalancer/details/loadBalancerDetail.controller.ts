@@ -124,36 +124,6 @@ export class OracleLoadBalancerDetailController implements IController {
       },
     });
   }
-
-  public deleteLoadBalancer() {
-    if (this.$scope.loadBalancer.instances && this.$scope.loadBalancer.instances.length) {
-      return;
-    }
-
-    const taskMonitor = {
-      application: this.app,
-      title: 'Deleting ' + this.loadBalancer.name,
-    };
-
-    const command = {
-      cloudProvider: 'oracle',
-      loadBalancerName: this.$scope.loadBalancer.name,
-      credentials: this.$scope.loadBalancer.account,
-      region: this.loadBalancer.region,
-      application: this.app.name,
-      loadBalancerId: this.$scope.loadBalancer.id,
-    };
-
-    const submitMethod = () => LoadBalancerWriter.deleteLoadBalancer(command, this.app);
-
-    ConfirmationModalService.confirm({
-      header: 'Really delete ' + this.loadBalancer.name + '?',
-      buttonText: 'Delete ' + this.loadBalancer.name,
-      account: this.loadBalancer.accountId,
-      taskMonitorConfig: taskMonitor,
-      submitMethod: submitMethod,
-    });
-  }
 }
 
 export const ORACLE_LOAD_BALANCER_DETAIL_CONTROLLER = 'spinnaker.oracle.loadBalancerDetail.controller';

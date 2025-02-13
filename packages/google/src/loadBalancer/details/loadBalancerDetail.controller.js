@@ -234,19 +234,6 @@ angular
         });
       };
 
-      this.deleteLoadBalancer = function deleteLoadBalancer() {
-        if (!($scope.loadBalancer.instances && $scope.loadBalancer.instances.length)) {
-          $uibModal.open({
-            controller: 'gceLoadBalancerDeleteModalCtrl as ctrl',
-            templateUrl: require('./deleteModal/deleteModal.html'),
-            resolve: {
-              application: () => application,
-              loadBalancer: () => $scope.loadBalancer,
-            },
-          });
-        }
-      };
-
       this.isHttpLoadBalancer = (lb) => gceHttpLoadBalancerUtils.isHttpLoadBalancer(lb);
 
       this.getNetworkId = function getNetworkId(loadBalancer) {

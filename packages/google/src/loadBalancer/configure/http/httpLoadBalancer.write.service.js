@@ -29,28 +29,5 @@ angular
       });
     }
 
-    function deleteLoadBalancers(loadBalancer, application, params = {}) {
-      const job = {
-        type: 'deleteLoadBalancer',
-        loadBalancerName: loadBalancer.listeners[0].name,
-        regions: [loadBalancer.region || 'global'],
-        region: loadBalancer.region || 'global',
-        loadBalancerType: loadBalancer.loadBalancerType,
-        cloudProvider: loadBalancer.provider,
-        credentials: loadBalancer.account,
-      };
-
-      angular.extend(job, params);
-
-      InfrastructureCaches.clearCache('backendServices');
-      InfrastructureCaches.clearCache('healthChecks');
-
-      return TaskExecutor.executeTask({
-        job: [job],
-        application: application,
-        description: `Delete load balancer: ${loadBalancer.urlMapName} in ${loadBalancer.account}:global`,
-      });
-    }
-
-    return { upsertLoadBalancers, deleteLoadBalancers };
+    return upsertLoadBalancers;
   });
