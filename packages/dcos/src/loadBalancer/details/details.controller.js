@@ -85,34 +85,5 @@ angular.module(DCOS_LOADBALANCER_DETAILS_DETAILS_CONTROLLER, []).controller('dco
         },
       });
     };
-
-    this.deleteLoadBalancer = function deleteLoadBalancer() {
-      if ($scope.loadBalancer.instances && $scope.loadBalancer.instances.length) {
-        return;
-      }
-
-      const taskMonitor = {
-        application: application,
-        title: 'Deleting ' + loadBalancer.name,
-      };
-
-      const command = {
-        cloudProvider: 'dcos',
-        loadBalancerName: $scope.loadBalancer.name,
-        dcosCluster: $scope.loadBalancer.dcosCluster,
-        region: $scope.loadBalancer.region,
-        credentials: $scope.loadBalancer.account,
-      };
-
-      const submitMethod = () => LoadBalancerWriter.deleteLoadBalancer(command, application);
-
-      ConfirmationModalService.confirm({
-        header: 'Really delete ' + loadBalancer.name + '?',
-        buttonText: 'Delete ' + loadBalancer.name,
-        account: loadBalancer.account,
-        taskMonitorConfig: taskMonitor,
-        submitMethod: submitMethod,
-      });
-    };
   },
 ]);

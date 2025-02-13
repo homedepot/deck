@@ -55,8 +55,8 @@
           <li ng-if="ctrl.canDisable()">
             <a href ng-click="ctrl.disableServerGroup()"> Disable </a>
           </li>
-          <li>
-            <a href ng-click="ctrl.deleteServerGroup()"> Delete </a>
+          <li class="disabled">
+            <a> Delete </a>
           </li>
           <render-if-feature feature="entityTags">
             <add-entity-tag-links

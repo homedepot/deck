@@ -66,38 +66,6 @@ export class LoadBalancerActions extends React.Component<ILoadBalancerActionsPro
     LoadBalancerModal.show({ app: application, loadBalancer });
   };
 
-  public deleteLoadBalancer = (): void => {
-    const { app, loadBalancer, loadBalancerFromParams } = this.props;
-
-    if (loadBalancer.instances && loadBalancer.instances.length) {
-      return;
-    }
-
-    const taskMonitor = {
-      application: app,
-      title: 'Deleting ' + loadBalancerFromParams.name,
-    };
-
-    const command: IAmazonLoadBalancerDeleteCommand = {
-      cloudProvider: loadBalancer.cloudProvider,
-      loadBalancerName: loadBalancer.name,
-      loadBalancerType: loadBalancer.loadBalancerType || 'classic',
-      regions: [loadBalancer.region],
-      credentials: loadBalancer.account,
-      vpcId: get(loadBalancer, 'elb.vpcId', null),
-    };
-
-    const submitMethod = () => LoadBalancerWriter.deleteLoadBalancer(command, app);
-
-    ConfirmationModalService.confirm({
-      header: `Really delete ${loadBalancerFromParams.name} in ${loadBalancerFromParams.region}: ${loadBalancerFromParams.accountId}?`,
-      buttonText: `Delete ${loadBalancerFromParams.name}`,
-      account: loadBalancerFromParams.accountId,
-      taskMonitorConfig: taskMonitor,
-      submitMethod,
-    });
-  };
-
   private entityTagUpdate = (): void => {
     this.props.app.loadBalancers.refresh();
   };
@@ -135,11 +103,6 @@ export class LoadBalancerActions extends React.Component<ILoadBalancerActionsPro
                     />
                   </a>
                 </li>
-              )}
-              {allowDeletion && (
-                <ManagedMenuItem resource={loadBalancer} application={app} onClick={this.deleteLoadBalancer}>
-                  Delete Load Balancer
-                </ManagedMenuItem>
               )}
               {!allowDeletion && (
                 <li className="disabled">
