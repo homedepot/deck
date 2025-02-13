@@ -7,7 +7,7 @@ import ANGULAR_UI_BOOTSTRAP from 'angular-ui-bootstrap';
 import { sortBy } from 'lodash';
 
 import type { Application, ISecurityGroup, LoadBalancerReader, SecurityGroupReader } from '@spinnaker/core';
-import { ConfirmationModalService, FirewallLabels, LoadBalancerWriter } from '@spinnaker/core';
+import { FirewallLabels } from '@spinnaker/core';
 
 import { OracleLoadBalancerController } from '../configure/createLoadBalancer.controller';
 import type { ILoadBalancerDetails, IOracleLoadBalancer } from '../../domain/IOracleLoadBalancer';
@@ -17,7 +17,6 @@ export class OracleLoadBalancerDetailController implements IController {
     '$scope',
     '$state',
     '$uibModal',
-    'loadBalancer',
     'app',
     'securityGroupReader',
     'loadBalancerReader',
@@ -27,7 +26,6 @@ export class OracleLoadBalancerDetailController implements IController {
     private $scope: ng.IScope,
     private $state: StateService,
     private $uibModal: IModalService,
-    private loadBalancer: ILoadBalancerDetails,
     private app: Application,
     private securityGroupReader: SecurityGroupReader,
     private loadBalancerReader: LoadBalancerReader,
