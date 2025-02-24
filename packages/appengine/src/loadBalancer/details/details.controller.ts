@@ -75,7 +75,8 @@ class AppengineLoadBalancerDetailsController implements IController {
   }
 
   public canDeleteLoadBalancer(): boolean {
-    return this.loadBalancer.name !== 'default';
+    return false
+/*    return this.loadBalancer.name !== 'default'; */
   }
 
   private extractLoadBalancer(): void {
