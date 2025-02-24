@@ -110,6 +110,8 @@ class AppengineServerGroupDetailsController implements IController {
   }
 
   public canDestroyServerGroup(): boolean {
+    return false;
+    /**
     if (this.serverGroup) {
       if (this.serverGroup.disabled) {
         return true;
@@ -124,6 +126,7 @@ class AppengineServerGroupDetailsController implements IController {
     } else {
       return false;
     }
+  **/
   }
 
   public destroyServerGroup(): void {
