@@ -10,13 +10,14 @@ import type { Application, ISecurityGroup, LoadBalancerReader, SecurityGroupRead
 import { FirewallLabels } from '@spinnaker/core';
 
 import { OracleLoadBalancerController } from '../configure/createLoadBalancer.controller';
-import type { IOracleLoadBalancer } from '../../domain/IOracleLoadBalancer';
+import type { ILoadBalancerDetails, IOracleLoadBalancer } from '../../domain/IOracleLoadBalancer';
 
 export class OracleLoadBalancerDetailController implements IController {
   public static $inject = [
     '$scope',
     '$state',
     '$uibModal',
+    'loadBalancer',
     'app',
     'securityGroupReader',
     'loadBalancerReader',
@@ -26,6 +27,7 @@ export class OracleLoadBalancerDetailController implements IController {
     private $scope: ng.IScope,
     private $state: StateService,
     private $uibModal: IModalService,
+    private loadBalancer: ILoadBalancerDetails,
     private app: Application,
     private securityGroupReader: SecurityGroupReader,
     private loadBalancerReader: LoadBalancerReader,
