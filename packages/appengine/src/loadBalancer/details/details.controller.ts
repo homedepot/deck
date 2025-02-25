@@ -109,8 +109,12 @@ class AppengineLoadBalancerDetailsController implements IController {
 
   private getConfirmationModalBodyHtml(): string {
     const serverGroupNames = this.loadBalancer.serverGroups.map((serverGroup) => serverGroup.name);
+  /**
     const hasAny = serverGroupNames ? serverGroupNames.length > 0 : false;
     const hasMoreThanOne = serverGroupNames ? serverGroupNames.length > 1 : false;
+  **/
+    const hasAny = false;
+    const hasMoreThanOne = false;
 
     // HTML accepted by the confirmationModalService is static (i.e., not managed by angular).
     if (hasAny) {
