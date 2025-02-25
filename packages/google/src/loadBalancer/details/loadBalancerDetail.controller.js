@@ -10,7 +10,6 @@ import { GCE_BACKEND_SERVICE_DETAILS_COMPONENT } from './backendService/backendS
 import { SESSION_AFFINITY_FILTER } from './backendService/sessionAffinity.filter';
 import { GOOGLE_COMMON_XPNNAMING_GCE_SERVICE } from '../../common/xpnNaming.gce.service';
 import { GCE_LOAD_BALANCER_TYPE_TO_WIZARD_CONSTANT } from '../configure/choice/loadBalancerTypeToWizardMap.constant';
-import { DELETE_MODAL_CONTROLLER } from './deleteModal/deleteModal.controller';
 import { GOOGLE_LOADBALANCER_DETAILS_HEALTHCHECK_HEALTHCHECK_COMPONENT } from './healthCheck/healthCheck.component';
 import { GOOGLE_LOADBALANCER_DETAILS_HOSTANDPATHRULES_HOSTANDPATHRULESBUTTON_COMPONENT } from './hostAndPathRules/hostAndPathRulesButton.component';
 import { GCE_HTTP_LOAD_BALANCER_UTILS } from '../httpLoadBalancerUtils.service';
@@ -29,7 +28,6 @@ angular
     GCE_HTTP_LOAD_BALANCER_UTILS,
     GOOGLE_LOADBALANCER_DETAILS_HEALTHCHECK_HEALTHCHECK_COMPONENT,
     GCE_BACKEND_SERVICE_DETAILS_COMPONENT,
-    DELETE_MODAL_CONTROLLER,
     SESSION_AFFINITY_FILTER,
     GCE_LOAD_BALANCER_TYPE_TO_WIZARD_CONSTANT,
   ])
