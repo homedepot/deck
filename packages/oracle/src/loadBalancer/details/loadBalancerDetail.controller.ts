@@ -10,7 +10,7 @@ import type { Application, ISecurityGroup, LoadBalancerReader, SecurityGroupRead
 import { FirewallLabels } from '@spinnaker/core';
 
 import { OracleLoadBalancerController } from '../configure/createLoadBalancer.controller';
-import type { ILoadBalancerDetails, IOracleLoadBalancer } from '../../domain/IOracleLoadBalancer';
+import type { IOracleLoadBalancer } from '../../domain/IOracleLoadBalancer';
 
 export class OracleLoadBalancerDetailController implements IController {
   public static $inject = [

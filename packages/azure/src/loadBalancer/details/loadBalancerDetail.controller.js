@@ -147,5 +147,35 @@ angular
           },
         });
       };
+
+      this.deleteLoadBalancer = function deleteLoadBalancer() {
+        if ($scope.loadBalancer.instances && $scope.loadBalancer.instances.length) {
+          return;
+        }
+
+        const taskMonitor = {
+          application: app,
+          title: 'Deleting ' + loadBalancer.name,
+        };
+
+        const command = {
+          cloudProvider: 'azure',
+          loadBalancerName: $scope.loadBalancer.name,
+          loadBalancerType: $scope.loadBalancer.loadBalancerType,
+          credentials: $scope.loadBalancer.account,
+          region: loadBalancer.region,
+          appName: app.name,
+        };
+
+        const submitMethod = () => LoadBalancerWriter.deleteLoadBalancer(command, app);
+
+        ConfirmationModalService.confirm({
+          header: 'Really delete ' + loadBalancer.name + '?',
+          buttonText: 'Delete ' + loadBalancer.name,
+          account: loadBalancer.accountId,
+          taskMonitorConfig: taskMonitor,
+          submitMethod: submitMethod,
+        });
+      };
     },
   ]);

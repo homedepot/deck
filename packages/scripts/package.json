@@ -4,10 +4,9 @@
   "description": "Spinnaker scripts",
   "main": "index.js",
   "bin": {
-    "spinnaker-scripts": "./index.js",
-    "read-write-json": "./read-write-json.js"
+    "read-write-json": "./read-write-json.js",
+    "spinnaker-scripts": "./index.js"
   },
-  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",

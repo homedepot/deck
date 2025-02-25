@@ -29,5 +29,5 @@ angular
       });
     }
 
-    return upsertLoadBalancers;
+    return { upsertLoadBalancers };
   });

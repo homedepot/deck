@@ -109,62 +109,6 @@ class AppengineServerGroupDetailsController implements IController {
     }
   }
 
-  public canDestroyServerGroup(): boolean {
-    if (this.serverGroup) {
-      if (this.serverGroup.disabled) {
-        return true;
-      }
-
-      const expectedAllocations = this.expectedAllocationsAfterDisableOperation(this.serverGroup, this.app);
-      if (expectedAllocations) {
-        return Object.keys(expectedAllocations).length > 0;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
-
-  public destroyServerGroup(): void {
-    const stateParams = {
-      name: this.serverGroup.name,
-      accountId: this.serverGroup.account,
-      region: this.serverGroup.region,
-    };
-
-    const taskMonitor = {
-      application: this.app,
-      title: 'Destroying ' + this.serverGroup.name,
-      onTaskComplete: () => {
-        if (this.$state.includes('**.serverGroup', stateParams)) {
-          this.$state.go('^');
-        }
-      },
-    };
-
-    const submitMethod = (params: any) => this.serverGroupWriter.destroyServerGroup(this.serverGroup, this.app, params);
-
-    const confirmationModalParams = {
-      header: 'Really destroy ' + this.serverGroup.name + '?',
-      buttonText: 'Destroy ' + this.serverGroup.name,
-      account: this.serverGroup.account,
-      taskMonitorConfig: taskMonitor,
-      submitMethod,
-      askForReason: true,
-      platformHealthOnlyShowOverride: this.app.attributes.platformHealthOnlyShowOverride,
-      platformHealthType: AppengineHealth.PLATFORM,
-      body: this.getBodyTemplate(this.serverGroup, this.app),
-      interestingHealthProviderNames: [] as string[],
-    };
-
-    if (this.app.attributes.platformHealthOnlyShowOverride && this.app.attributes.platformHealthOnly) {
-      confirmationModalParams.interestingHealthProviderNames = [AppengineHealth.PLATFORM];
-    }
-
-    ConfirmationModalService.confirm(confirmationModalParams);
-  }
-
   public enableServerGroup(): void {
     const taskMonitor: ITaskMonitorConfig = {
       application: this.app,

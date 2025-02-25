@@ -93,37 +93,6 @@ module(ORACLE_SERVERGROUP_DETAILS_SERVERGROUPDETAILS_CONTROLLER, [
     // Actions. Triggered by server group details dropdown menu
     ////////////////////////////////////////////////////////////
 
-    this.destroyServerGroup = function destroyServerGroup() {
-      const serverGroup = this.serverGroup;
-      const taskMonitor = {
-        application: app,
-        title: 'Destroying ' + serverGroup.name,
-        onTaskComplete: function () {
-          if ($state.includes('**.serverGroup', stateParams)) {
-            $state.go('^');
-          }
-        },
-      };
-
-      const submitMethod = function () {
-        return serverGroupWriter.destroyServerGroup(serverGroup, app);
-      };
-
-      const stateParams = {
-        name: serverGroup.name,
-        account: serverGroup.account,
-        region: serverGroup.region,
-      };
-
-      ConfirmationModalService.confirm({
-        header: 'Really destroy ' + serverGroup.name + '?',
-        buttonText: 'Destroy ' + serverGroup.name,
-        account: serverGroup.account,
-        taskMonitorConfig: taskMonitor,
-        submitMethod: submitMethod,
-      });
-    };
-
     this.resizeServerGroup = () => {
       $uibModal.open({
         templateUrl: require('./resize/resizeServerGroup.html'),

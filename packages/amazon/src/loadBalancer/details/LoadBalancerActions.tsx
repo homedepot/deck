@@ -1,4 +1,4 @@
-import { get, values } from 'lodash';
+import { values } from 'lodash';
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 
@@ -6,16 +6,14 @@ import type { Application } from '@spinnaker/core';
 import {
   AddEntityTagLinks,
   ApplicationReader,
-  ConfirmationModalService,
   HelpField,
-  LoadBalancerWriter,
   ManagedMenuItem,
   SETTINGS,
 } from '@spinnaker/core';
 
 import { AWSProviderSettings } from '../../aws.settings';
 import { LoadBalancerTypes } from '../configure/LoadBalancerTypes';
-import type { IAmazonLoadBalancer, IAmazonLoadBalancerDeleteCommand } from '../../domain';
+import type { IAmazonLoadBalancer } from '../../domain';
 import type { ILoadBalancerFromStateParams } from './loadBalancerDetails.controller';
 
 export interface ILoadBalancerActionsProps {
