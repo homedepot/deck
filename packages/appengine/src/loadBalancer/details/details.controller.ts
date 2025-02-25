@@ -50,6 +50,8 @@ class AppengineLoadBalancerDetailsController implements IController {
   }
 
   public deleteLoadBalancer(): void {
+    return null;
+  /**
     const taskMonitor = {
       application: this.app,
       title: 'Deleting ' + this.loadBalancer.name,
@@ -72,6 +74,7 @@ class AppengineLoadBalancerDetailsController implements IController {
       taskMonitorConfig: taskMonitor,
       submitMethod,
     });
+  **/
   }
 
   public canDeleteLoadBalancer(): boolean {
