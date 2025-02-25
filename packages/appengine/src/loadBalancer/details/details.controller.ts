@@ -50,7 +50,7 @@ class AppengineLoadBalancerDetailsController implements IController {
   }
 
   public deleteLoadBalancer(): void {
-    return null;
+    return;
   /**
     const taskMonitor = {
       application: this.app,
