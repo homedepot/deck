@@ -52,7 +52,8 @@ class KubernetesManifestDeleteController implements IController {
   }
 
   public isValid(): boolean {
-    return this.verification.verified;
+    return false;
+    /* return this.verification.verified; */
   }
 
   public cancel(): void {
