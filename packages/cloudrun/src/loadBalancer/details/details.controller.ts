@@ -4,7 +4,8 @@ import { module } from 'angular';
 import type { IModalService } from 'angular-ui-bootstrap';
 import { cloneDeep } from 'lodash';
 
-import type { Application, ILoadBalancer } from '@spinnaker/core';
+import type { Application, ILoadBalancer, ILoadBalancerDeleteCommand } from '@spinnaker/core';
+import { ConfirmationModalService, LoadBalancerWriter } from '@spinnaker/core';
 import type { ICloudrunLoadBalancer } from '../../common/domain/index';
 
 interface ILoadBalancerFromStateParams {
@@ -59,6 +60,66 @@ class CloudrunLoadBalancerDetailsController implements IController {
       this.app.getDataSource('loadBalancers').onRefresh(this.$scope, () => this.extractLoadBalancer());
     } else {
       this.autoClose();
+    }
+  }
+
+  public deleteLoadBalancer(): void {
+    const taskMonitor = {
+      application: this.app,
+      title: 'Deleting ' + this.loadBalancer.name,
+    };
+
+    const submitMethod = () => {
+      const loadBalancer: ILoadBalancerDeleteCommand = {
+        cloudProvider: this.loadBalancer.cloudProvider,
+        loadBalancerName: this.loadBalancer.name,
+        credentials: this.loadBalancer.account,
+      };
+      return LoadBalancerWriter.deleteLoadBalancer(loadBalancer, this.app);
+    };
+
+    ConfirmationModalService.confirm({
+      header: 'Really delete ' + this.loadBalancer.name + '?',
+      buttonText: 'Delete ' + this.loadBalancer.name,
+      body: this.getConfirmationModalBodyHtml(),
+      account: this.loadBalancer.account,
+      taskMonitorConfig: taskMonitor,
+      submitMethod,
+    });
+  }
+
+  public canDeleteLoadBalancer(): boolean {
+    return this.loadBalancer.name !== 'default';
+  }
+
+  private getConfirmationModalBodyHtml(): string {
+    const serverGroupNames = this.loadBalancer.serverGroups.map((serverGroup) => serverGroup.name);
+    const hasAny = serverGroupNames ? serverGroupNames.length > 0 : false;
+    const hasMoreThanOne = serverGroupNames ? serverGroupNames.length > 1 : false;
+
+    // HTML accepted by the confirmationModalService is static (i.e., not managed by angular).
+    if (hasAny) {
+      if (hasMoreThanOne) {
+        const listOfServerGroupNames = serverGroupNames.map((name) => `<li>${name}</li>`).join('');
+        return `<div class="alert alert-warning">
+            <p>
+              Deleting <b>${this.loadBalancer.name}</b> will destroy the following server groups:
+              <ul>
+                ${listOfServerGroupNames}
+              </ul>
+            </p>
+          </div>
+        `;
+      } else {
+        return `<div class="alert alert-warning">
+            <p>
+              Deleting <b>${this.loadBalancer.name}</b> will destroy <b>${serverGroupNames[0]}</b>.
+            </p>
+          </div>
+        `;
+      }
+    } else {
+      return null;
     }
   }
 

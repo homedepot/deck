@@ -1,7 +1,8 @@
 import type { IController, IScope } from 'angular';
 import { module } from 'angular';
-import type { Application, ILoadBalancer, IServerGroup } from '@spinnaker/core';
-import { SERVER_GROUP_WRITER, ServerGroupReader } from '@spinnaker/core';
+import type { Application, ILoadBalancer, IServerGroup, ServerGroupWriter } from '@spinnaker/core';
+import { ConfirmationModalService, SERVER_GROUP_WRITER, ServerGroupReader } from '@spinnaker/core';
+import { CloudrunHealth } from '../../common/cloudrunHealth';
 import type { ICloudrunServerGroup } from '../../interfaces';
 
 interface IServerGroupFromStateParams {
@@ -14,12 +15,13 @@ class CloudrunServerGroupDetailsController implements IController {
   public state = { loading: true };
   public serverGroup: ICloudrunServerGroup;
 
-  public static $inject = ['$state', '$scope', 'serverGroup', 'app'];
+  public static $inject = ['$state', '$scope', 'serverGroup', 'app', 'serverGroupWriter'];
   constructor(
     private $state: any,
     private $scope: IScope,
     serverGroup: IServerGroupFromStateParams,
     public app: Application,
+    private serverGroupWriter: ServerGroupWriter,
   ) {
     this.extractServerGroup(serverGroup)
       .then(() => {
@@ -28,6 +30,61 @@ class CloudrunServerGroupDetailsController implements IController {
         }
       })
       .catch(() => this.autoClose());
+  }
+
+  // destroy existing server group
+  public canDestroyServerGroup(): boolean {
+    if (this.serverGroup) {
+      const isCurrentRevision = this.serverGroup.tags.isLatest;
+      if (isCurrentRevision) {
+        return false;
+      } else if (this.serverGroup.disabled) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  public destroyServerGroup(): void {
+    const stateParams = {
+      name: this.serverGroup.name,
+      accountId: this.serverGroup.account,
+      region: this.serverGroup.region,
+    };
+
+    const taskMonitor = {
+      application: this.app,
+      title: 'Destroying ' + this.serverGroup.name,
+      onTaskComplete: () => {
+        if (this.$state.includes('**.serverGroup', stateParams)) {
+          this.$state.go('^');
+        }
+      },
+    };
+
+    const submitMethod = (params: any) => this.serverGroupWriter.destroyServerGroup(this.serverGroup, this.app, params);
+
+    const confirmationModalParams = {
+      header: 'Really destroy ' + this.serverGroup.name + '?',
+      buttonText: 'Destroy ' + this.serverGroup.name,
+      account: this.serverGroup.account,
+      taskMonitorConfig: taskMonitor,
+      submitMethod,
+      askForReason: true,
+      platformHealthOnlyShowOverride: this.app.attributes.platformHealthOnlyShowOverride,
+      platformHealthType: CloudrunHealth.PLATFORM,
+
+      interestingHealthProviderNames: [] as string[],
+    };
+
+    if (this.app.attributes.platformHealthOnlyShowOverride && this.app.attributes.platformHealthOnly) {
+      confirmationModalParams.interestingHealthProviderNames = [CloudrunHealth.PLATFORM];
+    }
+
+    ConfirmationModalService.confirm(confirmationModalParams);
   }
 
   private autoClose(): void {

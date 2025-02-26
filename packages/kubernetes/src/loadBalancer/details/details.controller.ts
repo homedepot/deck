@@ -1,6 +1,7 @@
 import type { StateService } from '@uirouter/angularjs';
 import type { IController, IScope } from 'angular';
 import { module } from 'angular';
+import type { IModalService } from 'angular-ui-bootstrap';
 
 import type { Application, ILoadBalancer, IManifest } from '@spinnaker/core';
 import { ManifestReader, SETTINGS } from '@spinnaker/core';
@@ -20,8 +21,9 @@ class KubernetesLoadBalancerDetailsController implements IController {
   public manifest: IManifest;
   public loadBalancer: IKubernetesLoadBalancer;
 
-  public static $inject = ['$state', '$scope', 'loadBalancer', 'app'];
+  public static $inject = ['$uibModal', '$state', '$scope', 'loadBalancer', 'app'];
   constructor(
+    private $uibModal: IModalService,
     private $state: StateService,
     private $scope: IScope,
     loadBalancer: ILoadBalancerFromStateParams,
@@ -36,6 +38,23 @@ class KubernetesLoadBalancerDetailsController implements IController {
         dataSource.onRefresh(this.$scope, () => this.extractLoadBalancer(loadBalancer));
       })
       .catch(() => this.autoClose());
+  }
+
+  public deleteLoadBalancer(): void {
+    this.$uibModal.open({
+      templateUrl: require('../../manifest/delete/delete.html'),
+      controller: 'kubernetesV2ManifestDeleteCtrl',
+      controllerAs: 'ctrl',
+      resolve: {
+        coordinates: {
+          name: this.loadBalancer.name,
+          namespace: this.loadBalancer.namespace,
+          account: this.loadBalancer.account,
+        },
+        application: this.app,
+        manifestController: (): string => null,
+      },
+    });
   }
 
   public editLoadBalancer(): void {

@@ -323,6 +323,46 @@ angular
         }
       });
 
+      this.destroyServerGroup = () => {
+        const serverGroup = this.serverGroup;
+
+        const taskMonitor = {
+          application: app,
+          title: 'Destroying ' + serverGroup.name,
+          onTaskComplete: () => {
+            if ($state.includes('**.serverGroup', stateParams)) {
+              $state.go('^');
+            }
+          },
+        };
+
+        const submitMethod = (params) => serverGroupWriter.destroyServerGroup(serverGroup, app, params);
+
+        const stateParams = {
+          name: serverGroup.name,
+          accountId: serverGroup.account,
+          region: serverGroup.region,
+        };
+
+        const confirmationModalParams = {
+          header: 'Really destroy ' + serverGroup.name + '?',
+          buttonText: 'Destroy ' + serverGroup.name,
+          account: serverGroup.account,
+          taskMonitorConfig: taskMonitor,
+          submitMethod: submitMethod,
+          askForReason: true,
+          platformHealthOnlyShowOverride: app.attributes.platformHealthOnlyShowOverride,
+          platformHealthType: 'Google',
+        };
+
+        ServerGroupWarningMessageService.addDestroyWarningMessage(app, serverGroup, confirmationModalParams);
+
+        if (app.attributes.platformHealthOnlyShowOverride && app.attributes.platformHealthOnly) {
+          confirmationModalParams.interestingHealthProviderNames = ['Google'];
+        }
+
+        ConfirmationModalService.confirm(confirmationModalParams);
+      };
 
       this.disableServerGroup = () => {
         const serverGroup = this.serverGroup;

@@ -35,6 +35,26 @@
           <li ng-if="ctrl.serverGroup.disabled">
             <a href ng-click="ctrl.enableServerGroup()"> Enable </a>
           </li>
+          <li ng-if="!ctrl.serverGroup.disabled && ctrl.canDisableServerGroup()">
+            <a href ng-click="ctrl.disableServerGroup()"> Disable </a>
+          </li>
+          <li
+            ng-if="!ctrl.serverGroup.disabled && !ctrl.canDisableServerGroup()"
+            uib-tooltip="You cannot disable a server group if it is the
+                           only server group receiving traffic from a load balancer."
+            class="disabled"
+          >
+            <a href> Disable </a>
+          </li>
+          <li class="disabled"><a>Destroy</a></li>
+          <li
+            uib-tooltip="It is not possible to clone an App Engine server group's full
+                           launch configuration. However, clicking this button will allow
+                           you to deploy into this server group's cluster."
+            class="disabled"
+          >
+            <a>Clone</a>
+          </li>
         </ul>
       </div>
     </div>

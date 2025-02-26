@@ -5,6 +5,7 @@ import { cloneDeep, map, mapValues, reduce } from 'lodash';
 
 import type {
   Application,
+  IConfirmationModalParams,
   ILoadBalancer,
   IServerGroup,
   ITaskMonitorConfig,
@@ -14,6 +15,7 @@ import {
   ConfirmationModalService,
   SERVER_GROUP_WRITER,
   ServerGroupReader,
+  ServerGroupWarningMessageService,
 } from '@spinnaker/core';
 
 import { AppengineHealth } from '../../common/appengineHealth';
@@ -105,6 +107,62 @@ class AppengineServerGroupDetailsController implements IController {
     } else {
       return false;
     }
+  }
+
+  public canDestroyServerGroup(): boolean {
+    if (this.serverGroup) {
+      if (this.serverGroup.disabled) {
+        return true;
+      }
+
+      const expectedAllocations = this.expectedAllocationsAfterDisableOperation(this.serverGroup, this.app);
+      if (expectedAllocations) {
+        return Object.keys(expectedAllocations).length > 0;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  public destroyServerGroup(): void {
+    const stateParams = {
+      name: this.serverGroup.name,
+      accountId: this.serverGroup.account,
+      region: this.serverGroup.region,
+    };
+
+    const taskMonitor = {
+      application: this.app,
+      title: 'Destroying ' + this.serverGroup.name,
+      onTaskComplete: () => {
+        if (this.$state.includes('**.serverGroup', stateParams)) {
+          this.$state.go('^');
+        }
+      },
+    };
+
+    const submitMethod = (params: any) => this.serverGroupWriter.destroyServerGroup(this.serverGroup, this.app, params);
+
+    const confirmationModalParams = {
+      header: 'Really destroy ' + this.serverGroup.name + '?',
+      buttonText: 'Destroy ' + this.serverGroup.name,
+      account: this.serverGroup.account,
+      taskMonitorConfig: taskMonitor,
+      submitMethod,
+      askForReason: true,
+      platformHealthOnlyShowOverride: this.app.attributes.platformHealthOnlyShowOverride,
+      platformHealthType: AppengineHealth.PLATFORM,
+      body: this.getBodyTemplate(this.serverGroup, this.app),
+      interestingHealthProviderNames: [] as string[],
+    };
+
+    if (this.app.attributes.platformHealthOnlyShowOverride && this.app.attributes.platformHealthOnly) {
+      confirmationModalParams.interestingHealthProviderNames = [AppengineHealth.PLATFORM];
+    }
+
+    ConfirmationModalService.confirm(confirmationModalParams);
   }
 
   public enableServerGroup(): void {
@@ -286,6 +344,43 @@ class AppengineServerGroupDetailsController implements IController {
   private canStartOrStopServerGroup(): boolean {
     const isFlex = this.serverGroup.env === 'FLEXIBLE';
     return isFlex || ['MANUAL', 'BASIC'].includes(this.serverGroup.scalingPolicy?.type);
+  }
+
+  private getBodyTemplate(serverGroup: IAppengineServerGroup, app: Application): string {
+    let template = '';
+    const params: IConfirmationModalParams = {};
+    ServerGroupWarningMessageService.addDestroyWarningMessage(app, serverGroup, params);
+    if (params.body) {
+      template += params.body;
+    }
+
+    if (!serverGroup.disabled) {
+      const expectedAllocations = this.expectedAllocationsAfterDisableOperation(serverGroup, app);
+
+      template += `
+        <div class="well well-sm">
+          <p>
+            A destroy operation will first disable this server group.
+          </p>
+          <p>
+            For App Engine, a disable operation sets this server group's allocation
+            to 0% and sets the other enabled server groups' allocations to their relative proportions
+            before the disable operation. The approximate allocations that will result from this operation are shown below.
+          </p>
+          <p>
+            If you would like more fine-grained control over your server groups' allocations,
+            edit <b>${serverGroup.loadBalancers[0]}</b> under the <b>Load Balancers</b> tab.
+          </p>
+          <div class="row">
+            <div class="col-md-12">
+              ${AppengineServerGroupDetailsController.buildExpectedAllocationsTable(expectedAllocations)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    return template;
   }
 
   private expectedAllocationsAfterDisableOperation(
