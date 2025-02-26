@@ -118,6 +118,8 @@ class KubernetesServerGroupDetailsController implements IController {
   }
 
   public deleteServerGroup(): void {
+    /* add eturn */
+    return;
     this.$uibModal.open({
       templateUrl: require('../../manifest/delete/delete.html'),
       controller: 'kubernetesV2ManifestDeleteCtrl',
