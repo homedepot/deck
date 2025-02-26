@@ -1,6 +1,6 @@
 import type { IController, IScope } from 'angular';
 import { module } from 'angular';
-import type { Application, ILoadBalancer, IServerGroup, ServerGroupWriter } from '@spinnaker/core';
+import type { Application, ILoadBalancer, IServerGroup } from '@spinnaker/core';
 import { SERVER_GROUP_WRITER, ServerGroupReader } from '@spinnaker/core';
 import type { ICloudrunServerGroup } from '../../interfaces';
 
