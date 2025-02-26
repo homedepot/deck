@@ -1,7 +1,6 @@
 import type { StateService } from '@uirouter/angularjs';
 import type { IController, IScope } from 'angular';
 import { module } from 'angular';
-import type { IModalService } from 'angular-ui-bootstrap';
 
 import type { Application, ILoadBalancer, IManifest } from '@spinnaker/core';
 import { ManifestReader, SETTINGS } from '@spinnaker/core';
