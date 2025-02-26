@@ -290,43 +290,6 @@ class AppengineServerGroupDetailsController implements IController {
     return isFlex || ['MANUAL', 'BASIC'].includes(this.serverGroup.scalingPolicy?.type);
   }
 
-  private getBodyTemplate(serverGroup: IAppengineServerGroup, app: Application): string {
-    let template = '';
-    const params: IConfirmationModalParams = {};
-    ServerGroupWarningMessageService.addDestroyWarningMessage(app, serverGroup, params);
-    if (params.body) {
-      template += params.body;
-    }
-
-    if (!serverGroup.disabled) {
-      const expectedAllocations = this.expectedAllocationsAfterDisableOperation(serverGroup, app);
-
-      template += `
-        <div class="well well-sm">
-          <p>
-            A destroy operation will first disable this server group.
-          </p>
-          <p>
-            For App Engine, a disable operation sets this server group's allocation
-            to 0% and sets the other enabled server groups' allocations to their relative proportions
-            before the disable operation. The approximate allocations that will result from this operation are shown below.
-          </p>
-          <p>
-            If you would like more fine-grained control over your server groups' allocations,
-            edit <b>${serverGroup.loadBalancers[0]}</b> under the <b>Load Balancers</b> tab.
-          </p>
-          <div class="row">
-            <div class="col-md-12">
-              ${AppengineServerGroupDetailsController.buildExpectedAllocationsTable(expectedAllocations)}
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    return template;
-  }
-
   private expectedAllocationsAfterDisableOperation(
     serverGroup: IServerGroup,
     app: Application,
