@@ -7,7 +7,7 @@ import ANGULAR_UI_BOOTSTRAP from 'angular-ui-bootstrap';
 import { sortBy } from 'lodash';
 
 import type { Application, ISecurityGroup, LoadBalancerReader, SecurityGroupReader } from '@spinnaker/core';
-import { FirewallLabels } from '@spinnaker/core';
+import { ConfirmationModalService, FirewallLabels, LoadBalancerWriter } from '@spinnaker/core';
 
 import { OracleLoadBalancerController } from '../configure/createLoadBalancer.controller';
 import type { ILoadBalancerDetails, IOracleLoadBalancer } from '../../domain/IOracleLoadBalancer';
@@ -122,6 +122,37 @@ export class OracleLoadBalancerDetailController implements IController {
           return false;
         },
       },
+    });
+  }
+
+
+  public deleteLoadBalancer() {
+    if (this.$scope.loadBalancer.instances && this.$scope.loadBalancer.instances.length) {
+      return;
+    }
+
+    const taskMonitor = {
+      application: this.app,
+      title: 'Deleting ' + this.loadBalancer.name,
+    };
+
+    const command = {
+      cloudProvider: 'oracle',
+      loadBalancerName: this.$scope.loadBalancer.name,
+      credentials: this.$scope.loadBalancer.account,
+      region: this.loadBalancer.region,
+      application: this.app.name,
+      loadBalancerId: this.$scope.loadBalancer.id,
+    };
+
+    const submitMethod = () => LoadBalancerWriter.deleteLoadBalancer(command, this.app);
+
+    ConfirmationModalService.confirm({
+      header: 'Really delete ' + this.loadBalancer.name + '?',
+      buttonText: 'Delete ' + this.loadBalancer.name,
+      account: this.loadBalancer.accountId,
+      taskMonitorConfig: taskMonitor,
+      submitMethod: submitMethod,
     });
   }
 }
