@@ -66,6 +66,51 @@ export class CloudFoundryServerGroupActions extends React.Component<ICloudFoundr
     return this.props.serverGroup.isDisabled || get(this.props.serverGroup, 'instanceCounts.outOfService', 0) > 0;
   }
 
+  private destroyServerGroup = (): void => {
+    const { app, serverGroup } = this.props;
+
+    const stateParams = {
+      name: serverGroup.name,
+      accountId: serverGroup.account,
+      region: serverGroup.region,
+    };
+
+    const taskMonitor = {
+      application: app,
+      title: 'Destroying ' + serverGroup.name,
+      onTaskComplete: () => {
+        if (ReactInjector.$state.includes('**.serverGroup', stateParams)) {
+          ReactInjector.$state.go('^');
+        }
+      },
+    };
+
+    const submitMethod = (params: ICloudFoundryServerGroupJob) => {
+      params.serverGroupName = serverGroup.name;
+      return ReactInjector.serverGroupWriter.destroyServerGroup(serverGroup, app, params);
+    };
+
+    const confirmationModalParams = {
+      header: 'Really destroy ' + serverGroup.name + '?',
+      buttonText: 'Destroy ' + serverGroup.name,
+      account: serverGroup.account,
+      taskMonitorConfig: taskMonitor,
+      interestingHealthProviderNames: undefined as string[],
+      submitMethod,
+      askForReason: true,
+      platformHealthOnlyShowOverride: app.attributes.platformHealthOnlyShowOverride,
+      platformHealthType: 'Cloud Foundry',
+    };
+
+    ServerGroupWarningMessageService.addDestroyWarningMessage(app, serverGroup, confirmationModalParams);
+
+    if (app.attributes.platformHealthOnlyShowOverride && app.attributes.platformHealthOnly) {
+      confirmationModalParams.interestingHealthProviderNames = ['Cloud Foundry'];
+    }
+
+    ConfirmationModalService.confirm(confirmationModalParams);
+  };
+
   private disableServerGroup = (): void => {
     const { app, serverGroup } = this.props;
     const taskMonitor = {
@@ -280,6 +325,11 @@ export class CloudFoundryServerGroupActions extends React.Component<ICloudFoundr
               </Tooltip>
             </li>
           )}
+          <li>
+            <a className="clickable" onClick={this.destroyServerGroup}>
+              Destroy
+            </a>
+          </li>
           <li>
             <a className="clickable" onClick={this.cloneServerGroup}>
               Clone
