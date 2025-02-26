@@ -5,7 +5,6 @@ import { cloneDeep, map, mapValues, reduce } from 'lodash';
 
 import type {
   Application,
-  IConfirmationModalParams,
   ILoadBalancer,
   IServerGroup,
   ITaskMonitorConfig,
@@ -15,7 +14,6 @@ import {
   ConfirmationModalService,
   SERVER_GROUP_WRITER,
   ServerGroupReader,
-  ServerGroupWarningMessageService,
 } from '@spinnaker/core';
 
 import { AppengineHealth } from '../../common/appengineHealth';
