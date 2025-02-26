@@ -125,7 +125,6 @@ export class OracleLoadBalancerDetailController implements IController {
     });
   }
 
-
   public deleteLoadBalancer() {
     if (this.$scope.loadBalancer.instances && this.$scope.loadBalancer.instances.length) {
       return;
