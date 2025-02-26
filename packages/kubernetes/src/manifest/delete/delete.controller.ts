@@ -52,8 +52,8 @@ class KubernetesManifestDeleteController implements IController {
   }
 
   public isValid(): boolean {
-    return false;
-    /* return this.verification.verified; */
+    /* return false; */
+    return this.verification.verified;
   }
 
   public cancel(): void {
@@ -61,6 +61,8 @@ class KubernetesManifestDeleteController implements IController {
   }
 
   public delete(): void {
+    return;
+    /* added return */
     this.taskMonitor.submit(() => {
       const payload = copy(this.command) as any;
       payload.cloudProvider = 'kubernetes';
