@@ -13,10 +13,16 @@
           {{ctrl.instance.kind | robotToHuman}} Actions <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-          <li class="disabled">
+          <li
+            class="disabled"
+            uib-tooltip="Deleting an instance through Spinnaker is currently not supported."
+          >
             <a>Delete</a>
           </li>
-          <li class="disabled">
+          <li
+            class="disabled"
+            uib-tooltip="Editing an instance through Spinnaker is currently not supported."
+          >
             <a>Edit</a>
           </li>
         </ul>
