@@ -44,10 +44,10 @@
         </button>
         <ul class="dropdown-menu" uib-dropdown-menu role="menu">
           <li
-            class="disabled"
             uib-tooltip="Editing a server group through Spinnaker is currently not supported."
+            class="disabled"
           >
-            <a>Edit</a>
+            <a href> Edit </a>
           </li>
           <li ng-if="ctrl.canScaleServerGroup()">
             <a href ng-click="ctrl.scaleServerGroup()"> Scale </a>
@@ -59,10 +59,10 @@
             <a href ng-click="ctrl.disableServerGroup()"> Disable </a>
           </li>
           <li
-            class="disabled"
             uib-tooltip="Deleting a server group through Spinnaker is currently not supported."
+            class="disabled"
           >
-            <a>Delete</a>
+            <a href> Delete </a>
           </li>
           <render-if-feature feature="entityTags">
             <add-entity-tag-links
