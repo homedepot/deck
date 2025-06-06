@@ -147,8 +147,8 @@ function joinPaths(...paths: IPrimitive[]) {
   return paths
     .filter((path) => !isNil(path) && path !== '')
     .map((path) => path.toString())
-    .map((path) => path.replace(/^\/+/, '')) // strip leading slashes
-    .map((path) => path.replace(/\/+$/, '')) // strip trailing slashes
+    .map((path) => (path || '').trim().replace(/^\/+/, '')) // strip leading slashes
+    .map((path) => (path || '').trim().replace(/\/+$/, '')) // strip trailing slashes
     .join('/');
 }
 
