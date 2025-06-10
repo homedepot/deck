@@ -44,7 +44,7 @@ const helpContents = [
         resources:
         limits:
         cpu: 1000m
-        memory: 256Mi
+        memory: 256Mi  
 </pre>
     `,
   },
