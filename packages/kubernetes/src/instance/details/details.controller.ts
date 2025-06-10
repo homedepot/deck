@@ -176,6 +176,16 @@ class KubernetesInstanceDetailsController implements IController {
       this.$state.go('^', null, { location: 'replace' });
     }
   }
+  public canEditInstance(): boolean {
+    return !this.instance.name.endsWith('-pr');
+  }
+  
+  public canDeleteInstance(): boolean {
+    return !this.instance.name.endsWith('-pr');
+  }
+  
+
+
 }
 
 export const KUBERNETES_INSTANCE_DETAILS_CTRL = 'spinnaker.kubernetes.instanceDetails.controller';
