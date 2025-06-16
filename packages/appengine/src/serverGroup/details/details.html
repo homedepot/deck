@@ -46,10 +46,20 @@
           >
             <a href> Disable </a>
           </li>
-          <li uib-tooltip="Destroying a server group through Spinnaker is disabled due to THD policy." class="disabled">
+          <li ng-if="ctrl.canEditServerGroup()">
+            <a href ng-click="ctrl.cloneServerGroup()">Clone</a>
+          </li>
+          <li ng-if="!ctrl.canEditServerGroup()" class="disabled" uib-tooltip="Editing this server group is restricted.">
+            <a href>Clone</a>
+          </li>
+
+          <!-- Destroy (Delete) Server Group -->
+          <li ng-if="ctrl.canDeleteServerGroup()">
+            <a href ng-click="ctrl.destroyServerGroup()">Destroy</a>
+          </li>
+          <li ng-if="!ctrl.canDeleteServerGroup()" class="disabled" uib-tooltip="Deleting this server group is restricted.">
             <a href>Destroy</a>
           </li>
-          <li uib-tooltip="Cloning a server group through Spinnaker is disabled due to THD policy." class="disabled">
             <a href>Clone</a>
           </li>
         </ul>

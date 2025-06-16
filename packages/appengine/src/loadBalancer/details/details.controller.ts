@@ -73,10 +73,7 @@ class AppengineLoadBalancerDetailsController implements IController {
       submitMethod,
     });
   }
-
-  public canDeleteLoadBalancer(): boolean {
-    return this.loadBalancer.name !== 'default';
-  }
+ 
 
   private extractLoadBalancer(): void {
     this.loadBalancer = this.app.getDataSource('loadBalancers').data.find((test: ILoadBalancer) => {
@@ -142,6 +139,17 @@ class AppengineLoadBalancerDetailsController implements IController {
       this.$state.go('^', null, { location: 'replace' });
     }
   }
+
+  public canDeleteLoadBalancer(): boolean {
+    const name = this.loadBalancer?.name || '';
+    return !name.endsWith('-pr');
+  }
+
+  public canEditLoadBalancer(): boolean {
+    const name = this.loadBalancer?.name || '';
+    return !name.endsWith('-pr');
+  }
+
 }
 
 export const APPENGINE_LOAD_BALANCER_DETAILS_CTRL = 'spinnaker.appengine.loadBalancerDetails.controller';
