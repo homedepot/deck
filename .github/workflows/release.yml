@@ -8,45 +8,106 @@ on:
         required: true
         default: main
         type: string
-      THD_DECK_VERSION:
-        description: Version of THD Deck
+      IMAGE_VERSION:
+        description: Version to use for image tag
         required: true
         default: "0.0.0"
         type: string
+
+env:
+  NODE_VERSION: 14.21.3
+  CONTAINER_REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/thd-${{ github.event.repository.name }}
 
 jobs:
   validate-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate THD_DECK_VERSION value
-        id: check_special
+      - name: Set release info
         run: |
-          if [[ "${{ inputs.THD_DECK_VERSION }}" == "0.0.0" || "${{ inputs.THD_DECK_VERSION }}" == "dev" ]]; then
-            echo "special=true" >> $GITHUB_OUTPUT
-          else
-            echo "special=false" >> $GITHUB_OUTPUT
+          release_version=${{ inputs.IMAGE_VERSION }}
+          echo "RELEASE_VERSION=$release_version" >> $GITHUB_ENV
+          echo "IMAGE_FULL_NAME=${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:$release_version" >> $GITHUB_ENV
+
+      - name: Check if image tag already exists
+        run: |
+          if [[ "$RELEASE_VERSION" != "0.0.0" && "$RELEASE_VERSION" != "dev" ]]; then
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              https://ghcr.io/v2/${{ env.IMAGE_NAME }}/manifests/$RELEASE_VERSION)
+            if [[ "$CODE" -eq 200 ]]; then
+              echo "Error: Image tag '$RELEASE_VERSION' already exists in GHCR."
+              exit 1
+            fi
           fi
 
-      - name: Fetch existing tags and releases
-        if: steps.check_special.outputs.special == 'false'
-        run: |
-          TAG_EXISTS=$(git ls-remote --tags origin refs/tags/${{ inputs.THD_DECK_VERSION }} | wc -l)
-          RELEASE_EXISTS=$(gh release view ${{ inputs.THD_DECK_VERSION }} > /dev/null 2>&1 && echo 1 || echo 0)
-
-          if [[ "$TAG_EXISTS" -gt 0 || "$RELEASE_EXISTS" -gt 0 ]]; then
-            echo "Error: Version '${{ inputs.THD_DECK_VERSION }}' already exists as a tag or release."
-            exit 1
-          fi
-
-  build:
+  build-and-push:
+    runs-on: ubuntu-latest
     needs: validate-version
-    uses: ./.github/workflows/build.yml
-    with:
-      BRANCH: ${{ inputs.BRANCH }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.BRANCH }}
 
-  docker:
-    needs: build
-    uses: ./.github/workflows/docker-build.yml
-    with:
-      BRANCH: ${{ inputs.BRANCH }}
-      IMAGE_VERSION: ${{ inputs.THD_DECK_VERSION }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Get yarn cache
+        id: yarn-cache
+        run: |
+          echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Run install
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: install
+
+      - name: Run modules
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: modules
+
+      - name: Run build
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build/webpack
+
+      - name: Login
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.CONTAINER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up docker buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          file: ./Dockerfile.ubuntu
+          platforms: linux/amd64
+          tags: ${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ inputs.IMAGE_VERSION }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ env.IMAGE_NAME }}
+            org.opencontainers.image.version=${{ inputs.IMAGE_VERSION }}
