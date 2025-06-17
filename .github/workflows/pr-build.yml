@@ -23,17 +23,23 @@ jobs:
   validate-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if image tag already exists
+      - name: Check if image tag already exists in ghcr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          IMAGE_FULL_NAME="${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}"
           RELEASE_VERSION="${{ inputs.IMAGE_VERSION }}"
 
           if [[ "$RELEASE_VERSION" != "0.0.0" && "$RELEASE_VERSION" != "dev" ]]; then
-            CODE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-              https://ghcr.io/v2/${IMAGE_FULL_NAME}/manifests/${RELEASE_VERSION})
-            if [[ "$CODE" -eq 200 ]]; then
+            echo "Checking if tag '$RELEASE_VERSION' exists in GHCR..."
+
+            EXIST=$(gh api "/orgs/homedepot/packages/container/thd-${{ github.event.repository.name }}/versions" --jq \
+              ".[] | select(.metadata.container.tags[]? == \"$RELEASE_VERSION\") | .id" || true)
+
+            if [[ -n "$EXIST" ]]; then
               echo "Error: Image tag '$RELEASE_VERSION' already exists in GHCR."
               exit 1
+            else
+              echo "Tag '$RELEASE_VERSION' does not exist. Proceeding."
             fi
           else
             echo "Skipping tag check for version '$RELEASE_VERSION'"
