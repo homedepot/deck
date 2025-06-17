@@ -34,6 +34,7 @@ export interface IFeatures {
   executionMarkerInformationModal?: boolean;
   fiatEnabled?: boolean;
   iapRefresherEnabled?: boolean;
+  lambdaAdditionalStages?: boolean;
   managedDelivery?: boolean;
   mdGitIntegration?: boolean;
   managedServiceAccounts?: boolean;
@@ -139,6 +140,7 @@ export interface ISpinnakerSettings {
   };
   stashTriggerInfo?: string;
   pollSchedule: number;
+  tasksViewLimitPerPage: number;
   providers?: {
     [key: string]: IProviderSettings; // allows custom providers not typed in here (good for testing too)
   };
