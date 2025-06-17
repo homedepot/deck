@@ -23,21 +23,20 @@ jobs:
   validate-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Set release info
-        run: |
-          release_version=${{ inputs.IMAGE_VERSION }}
-          echo "RELEASE_VERSION=$release_version" >> $GITHUB_ENV
-          echo "IMAGE_FULL_NAME=${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:$release_version" >> $GITHUB_ENV
-
       - name: Check if image tag already exists
         run: |
+          IMAGE_FULL_NAME="${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}"
+          RELEASE_VERSION="${{ inputs.IMAGE_VERSION }}"
+
           if [[ "$RELEASE_VERSION" != "0.0.0" && "$RELEASE_VERSION" != "dev" ]]; then
             CODE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-              https://ghcr.io/v2/${{ env.IMAGE_NAME }}/manifests/$RELEASE_VERSION)
+              https://ghcr.io/v2/${IMAGE_FULL_NAME}/manifests/${RELEASE_VERSION})
             if [[ "$CODE" -eq 200 ]]; then
               echo "Error: Image tag '$RELEASE_VERSION' already exists in GHCR."
               exit 1
             fi
+          else
+            echo "Skipping tag check for version '$RELEASE_VERSION'"
           fi
 
   build-and-push:
