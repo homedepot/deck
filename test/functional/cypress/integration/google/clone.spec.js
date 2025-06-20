@@ -14,9 +14,7 @@ describe('google: Clone Modal Build custom instance type', () => {
     cy.visit('#/applications/compute/clusters');
 
     // click v000 cluster
-    cy.get('.sub-group:contains("compute-engine")')
-      .find('.server-group:contains("v000")')
-      .click({ force: true });
+    cy.get('.sub-group:contains("compute-engine")').find('.server-group:contains("v000")').click({ force: true });
 
     // clone dialog
     cy.get('button:contains("Server Group Actions")').click();
@@ -35,8 +33,8 @@ describe('google: Clone Modal Build custom instance type', () => {
     // open 'cores' dropdown and assert some values
     const coresDropdown = ReactSelect('v2-wizard-page[key="instance-type"] div.row:contains("Cores")');
     coresDropdown.toggleDropdown();
-    coresDropdown.getOptions().then(options => {
-      const cores = Array.from(options).map(o => o.innerHTML);
+    coresDropdown.getOptions().then((options) => {
+      const cores = Array.from(options).map((o) => o.innerHTML);
       expect(cores).to.include('1');
       expect(cores).to.include('4');
       expect(cores).to.include('16');
@@ -49,8 +47,8 @@ describe('google: Clone Modal Build custom instance type', () => {
     // open 'memory' dropdown and assert some values
     const memoryDropdown = ReactSelect('v2-wizard-page[key="instance-type"] div.row:contains("Memory")');
     memoryDropdown.toggleDropdown();
-    memoryDropdown.getOptions().then(options => {
-      const memory = Array.from(options).map(o => o.innerHTML);
+    memoryDropdown.getOptions().then((options) => {
+      const memory = Array.from(options).map((o) => o.innerHTML);
       expect(memory).to.include('1');
       expect(memory).to.include('1.25');
       expect(memory).to.include('4.5');

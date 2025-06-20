@@ -16,7 +16,7 @@ on:
       IMAGE_VERSION:
         description: Version to use for image tag
         required: true
-        default: "0.0.0"
+        default: dev
         type: string
 
 env:

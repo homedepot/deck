@@ -60,7 +60,7 @@
       "ecs": ["ecs/src"],
       "@spinnaker/cloudrun": ["cloudrun/src"],
       "cloudrun/*": ["cloudrun/src/*"],
-      "cloudrun": ["cloudrun/src"],
+      "cloudrun": ["cloudrun/src"]
     },
     "pretty": true,
     "removeComments": false,

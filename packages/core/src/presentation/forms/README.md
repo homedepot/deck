@@ -15,21 +15,21 @@ It has a submit button which is disabled when the form is invalid or being submi
 <Formik
   initialValues={{ name: '', email: '' }}
   onSubmit={(_values, formik) => setTimeout(() => formik.setSubmitting(false), 2000)}
-  render={formik => {
+  render={(formik) => {
     return (
       <Form>
         <FormikFormField
           name="name"
           label="Your Name"
-          input={props => <TextInput {...props} />}
-          validate={value => (!value ? 'Please enter your name' : undefined)}
+          input={(props) => <TextInput {...props} />}
+          validate={(value) => (!value ? 'Please enter your name' : undefined)}
         />
 
         <FormikFormField
           name="email"
           label="Your Email"
-          input={props => <TextInput {...props} />}
-          validate={value => {
+          input={(props) => <TextInput {...props} />}
+          validate={(value) => {
             if (!value) return 'Please enter your email';
             if (!/[^@]+@[^@]+/.exec(value)) return 'Please enter a valid email';
           }}
@@ -65,19 +65,19 @@ import { FormValidator } from 'core/presentation';
 
 <Formik
   initialValues={{ email: '' }}
-  validate={values => {
+  validate={(values) => {
     const emailRegexp = /[^@]+@[^@]+/;
     const formValidator = new FormValidator(values);
     formValidator
       .field('email')
       .required()
-      .withValidators(value => (emailRegexp.exec(value) ? null : 'Please enter a valid email'));
+      .withValidators((value) => (emailRegexp.exec(value) ? null : 'Please enter a valid email'));
     return formValidator.result();
   }}
-  render={formik => {
+  render={(formik) => {
     return (
       <Form>
-        <FormikFormField name="email" label="Your Email" input={props => <TextInput {...props} />} />
+        <FormikFormField name="email" label="Your Email" input={(props) => <TextInput {...props} />} />
       </Form>
     );
   }}
@@ -106,18 +106,18 @@ It has a submit button which is disabled when the form is being submitted.
   <FormField
     name="name"
     label="your name"
-    input={props => <TextInput {...props} />}
+    input={(props) => <TextInput {...props} />}
     value={this.state.name}
-    onChange={evt => this.setState({ name: evt.target.value })}
-    validate={val => !val && <span>Please enter your name</span>}
+    onChange={(evt) => this.setState({ name: evt.target.value })}
+    validate={(val) => !val && <span>Please enter your name</span>}
   />
   <FormField
     name="email"
     label="email address"
-    input={props => <TextInput {...props} />}
+    input={(props) => <TextInput {...props} />}
     value={this.state.email}
-    onChange={evt => this.setState({ email: evt.target.value })}
-    validate={val => val && val.indexOf('@') === -1 && <span>Please enter a valid email</span>}
+    onChange={(evt) => this.setState({ email: evt.target.value })}
+    validate={(val) => val && val.indexOf('@') === -1 && <span>Please enter a valid email</span>}
   />
   <button disabled={this.state.isSubmitting} className={`pull-right primary`}>
     {this.state.isSubmitting ? 'Submitting...' : 'Submit Form'}
@@ -147,8 +147,8 @@ This example uses an input which is defined inline:
   label="email address"
   input={({ field, validation }) => <input type="text" className={!!validation.error && 'error'} {...field} />}
   value={this.state.email}
-  onChange={evt => this.setState({ email: evt.target.value })}
-  validate={val => val && val.indexOf('@') === -1 && <span>Please enter a valid email</span>}
+  onChange={(evt) => this.setState({ email: evt.target.value })}
+  validate={(val) => val && val.indexOf('@') === -1 && <span>Please enter a valid email</span>}
 />
 ```
 
@@ -160,7 +160,7 @@ This example uses a custom layout to render the error above the input
 <FormField
   name="email"
   label="email address"
-  input={props => <TextInput {...props} />}
+  input={(props) => <TextInput {...props} />}
   layout={({ error, input }) => (
     <div>
       <div style={{ background: 'red' }}>{error}</div>
@@ -168,8 +168,8 @@ This example uses a custom layout to render the error above the input
     </div>
   )}
   value={this.state.email}
-  onChange={evt => this.setState({ email: evt.target.value })}
-  validate={val => val && val.indexOf('@') === -1 && <span>Please enter a valid email</span>}
+  onChange={(evt) => this.setState({ email: evt.target.value })}
+  validate={(val) => val && val.indexOf('@') === -1 && <span>Please enter a valid email</span>}
 />
 ```
 
