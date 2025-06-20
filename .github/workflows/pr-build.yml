@@ -109,3 +109,13 @@ jobs:
           labels: |
             org.opencontainers.image.source=https://github.com/${{ env.IMAGE_NAME }}
             org.opencontainers.image.version=${{ inputs.IMAGE_VERSION }}
+
+      - name: Create GitHub release
+        if: ${{ inputs.IMAGE_VERSION != '0.0.0' && inputs.IMAGE_VERSION != 'dev' }}
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ inputs.IMAGE_VERSION }}
+          tag_name: ${{ inputs.IMAGE_VERSION }}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
