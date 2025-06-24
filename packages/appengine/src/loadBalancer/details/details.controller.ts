@@ -73,7 +73,6 @@ class AppengineLoadBalancerDetailsController implements IController {
       submitMethod,
     });
   }
- 
 
   private extractLoadBalancer(): void {
     this.loadBalancer = this.app.getDataSource('loadBalancers').data.find((test: ILoadBalancer) => {
@@ -149,7 +148,6 @@ class AppengineLoadBalancerDetailsController implements IController {
     const name = this.loadBalancer?.name || '';
     return !name.endsWith('-pr');
   }
-
 }
 
 export const APPENGINE_LOAD_BALANCER_DETAILS_CTRL = 'spinnaker.appengine.loadBalancerDetails.controller';

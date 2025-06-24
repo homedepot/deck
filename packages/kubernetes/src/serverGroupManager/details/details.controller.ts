@@ -185,7 +185,7 @@ class KubernetesServerGroupManagerDetailsController implements IController {
   public canEditServerGroupManager(): boolean {
     return !this.serverGroupManager.name.endsWith('-pr');
   }
-  
+
   public canDeleteServerGroupManager(): boolean {
     return !this.serverGroupManager.name.endsWith('-pr');
   }

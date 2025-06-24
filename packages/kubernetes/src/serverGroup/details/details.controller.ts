@@ -102,7 +102,6 @@ class KubernetesServerGroupDetailsController implements IController {
     });
   }
 
-
   public editServerGroup(): void {
     KubernetesManifestCommandBuilder.buildNewManifestCommand(
       this.app,
@@ -198,7 +197,7 @@ class KubernetesServerGroupDetailsController implements IController {
   public canEditServerGroup(): boolean {
     return this.manifestController() === null && !this.serverGroup.name.endsWith('-pr');
   }
-  
+
   public canDeleteServerGroup(): boolean {
     return !this.serverGroup.name.endsWith('-pr');
   }

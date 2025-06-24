@@ -43,14 +43,22 @@
             <li ng-if="ctrl.canDeleteLoadBalancer()">
               <a href ng-click="ctrl.deleteLoadBalancer()">Delete</a>
             </li>
-            <li ng-if="!ctrl.canDeleteLoadBalancer()" class="disabled" uib-tooltip="Deleting a load balancer is restricted.">
-             <a href>Delete</a>
+            <li
+              ng-if="!ctrl.canDeleteLoadBalancer()"
+              class="disabled"
+              uib-tooltip="Deleting a load balancer is restricted."
+            >
+              <a href>Delete</a>
             </li>
 
             <li ng-if="ctrl.canEditLoadBalancer()">
               <a href ng-click="ctrl.editLoadBalancer()">Edit</a>
             </li>
-            <li ng-if="!ctrl.canEditLoadBalancer()" class="disabled" uib-tooltip="Editing a load balancer is restricted.">
+            <li
+              ng-if="!ctrl.canEditLoadBalancer()"
+              class="disabled"
+              uib-tooltip="Editing a load balancer is restricted."
+            >
               <a href>Edit</a>
             </li>
             <render-if-feature feature="entityTags">

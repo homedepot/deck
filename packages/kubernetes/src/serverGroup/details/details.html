@@ -46,11 +46,7 @@
           <li ng-if="ctrl.canEditServerGroup()">
             <a href ng-click="ctrl.editServerGroup()"> Edit </a>
           </li>
-          <li
-            ng-if="!ctrl.canEditServerGroup()"
-            class="disabled"
-            uib-tooltip="Editing a server group is restricted."
-          >
+          <li ng-if="!ctrl.canEditServerGroup()" class="disabled" uib-tooltip="Editing a server group is restricted.">
             <a href> Edit </a>
           </li>
           <li ng-if="ctrl.canScaleServerGroup()">

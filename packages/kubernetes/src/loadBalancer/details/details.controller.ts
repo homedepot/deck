@@ -92,15 +92,14 @@ class KubernetesLoadBalancerDetailsController implements IController {
       this.$state.go('^', null, { location: 'replace' });
     }
   }
-  
+
   public canEditLoadBalancer(): boolean {
     return !this.loadBalancer.name.endsWith('-pr');
   }
-  
+
   public canDeleteLoadBalancer(): boolean {
     return !this.loadBalancer.name.endsWith('-pr');
   }
-
 }
 
 export const KUBERNETES_LOAD_BALANCER_DETAILS_CTRL = 'spinnaker.kubernetes.loadBalancerDetails.controller';

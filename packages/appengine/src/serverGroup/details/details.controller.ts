@@ -455,7 +455,7 @@ class AppengineServerGroupDetailsController implements IController {
   }
 
   public canEditServerGroup(): boolean {
-   return this.serverGroup?.name && !this.serverGroup.name.endsWith('-pr');
+    return this.serverGroup?.name && !this.serverGroup.name.endsWith('-pr');
   }
 
   public canDeleteServerGroup(): boolean {
