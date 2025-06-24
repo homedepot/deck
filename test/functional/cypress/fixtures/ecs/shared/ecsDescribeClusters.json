@@ -5,10 +5,7 @@
     "defaultCapacityProviderStrategy": []
   },
   {
-    "capacityProviders": [
-      "FARGATE_SPOT",
-      "FARGATE"
-    ],
+    "capacityProviders": ["FARGATE_SPOT", "FARGATE"],
     "clusterName": "example-app-test-Cluster-NSnYsTXmCfV2",
     "defaultCapacityProviderStrategy": [
       {
@@ -19,10 +16,7 @@
     ]
   },
   {
-    "capacityProviders": [
-      "FARGATE_SPOT",
-      "FARGATE"
-    ],
+    "capacityProviders": ["FARGATE_SPOT", "FARGATE"],
     "clusterName": "TestCluster",
     "defaultCapacityProviderStrategy": []
   }

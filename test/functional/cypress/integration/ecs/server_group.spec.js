@@ -206,7 +206,9 @@ describe('amazon ecs: ECSApp Server Group', () => {
     cy.get('[data-test-id="ServerGroupWizard.submitButton"]').click();
     cy.get('.glyphicon-edit').click();
 
-    cy.get('[data-test-id="ServerGroup.customCapacityProvider.name.0"]').find('.Select-value-label').should('have.text', 'FARGATE_SPOT');
+    cy.get('[data-test-id="ServerGroup.customCapacityProvider.name.0"]')
+      .find('.Select-value-label')
+      .should('have.text', 'FARGATE_SPOT');
     cy.get('[data-test-id="ServerGroup.capacityProvider.base.0"]').should('have.value', '1');
     cy.get('[data-test-id="ServerGroup.capacityProvider.weight.0"]').should('have.value', '2');
 
@@ -226,13 +228,12 @@ describe('amazon ecs: ECSApp Server Group', () => {
     cy.get('[data-test-id="ServerGroup.clusterName"]').type('example-app-test-Cluster-NSnYsTXmCfV2');
     cy.get('span:contains("example-app-test-Cluster-NSnYsTXmCfV2")').click();
 
-
-    cy.get('task-definition-react .evaluateTaskDef [type="checkbox"]').check()
+    cy.get('task-definition-react .evaluateTaskDef [type="checkbox"]').check();
 
     cy.get('[data-test-id="ServerGroupWizard.submitButton"]').click();
     cy.get('.glyphicon-edit').click();
 
-    cy.get('.evaluateTaskDef [type="checkbox"]').check({force: true}).should('be.checked');
+    cy.get('.evaluateTaskDef [type="checkbox"]').check({ force: true }).should('be.checked');
 
     cy.get('[data-test-id="ServerGroupWizard.submitButton"]').click();
     cy.get('[data-test-id="Pipeline.revertChanges"]').click();

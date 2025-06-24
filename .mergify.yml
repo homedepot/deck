@@ -8,54 +8,54 @@ pull_request_rules:
     conditions:
       - base=master
       - status-success=build
-      - "label=ready to merge"
-      - "approved-reviews-by=@oss-approvers"
+      - 'label=ready to merge'
+      - 'approved-reviews-by=@oss-approvers'
     actions:
       queue:
         method: squash
         name: default
       label:
-        add: ["auto merged"]
+        add: ['auto merged']
   - name: Automatically merge release branch changes on CI success and release manager review
     conditions:
       - base~=^release-
       - status-success=build
-      - "label=ready to merge"
-      - "approved-reviews-by=@release-managers"
+      - 'label=ready to merge'
+      - 'approved-reviews-by=@release-managers'
     actions:
       queue:
         method: squash
         name: default
       label:
-        add: ["auto merged"]
+        add: ['auto merged']
   - name: Automatically self merge on CI success
     conditions:
       - base=master
       - status-success=build
-      - "label=ready to merge"
-      - "label=self merge"
+      - 'label=ready to merge'
+      - 'label=self merge'
     actions:
       queue:
         method: squash
         name: default
       label:
-        add: ["auto merged"]
+        add: ['auto merged']
   - name: Automatically rebase and merge on CI success and review
     conditions:
       - base=master
       - status-success=build
-      - "label=ready to rebase"
-      - "approved-reviews-by=@oss-approvers"
+      - 'label=ready to rebase'
+      - 'approved-reviews-by=@oss-approvers'
     actions:
       queue:
         method: rebase
         name: default
       label:
-        add: ["auto merged"]
+        add: ['auto merged']
   - name: Automatically rebase and self merge on CI success
     conditions:
-      - "label=ready to rebase"
-      - "label=self merge"
+      - 'label=ready to rebase'
+      - 'label=self merge'
       - base=master
       - status-success=build
     actions:
@@ -63,25 +63,25 @@ pull_request_rules:
         method: rebase
         name: default
       label:
-        add: ["auto merged"]
+        add: ['auto merged']
   - name: Automatically merge autobump PRs on CI success
     conditions:
       - base~=^(master|release-)
       - status-success=build
-      - "label~=autobump-*"
-      - "author:spinnakerbot"
+      - 'label~=autobump-*'
+      - 'author:spinnakerbot'
     actions:
       queue:
         method: squash
         name: default
       label:
-        add: ["auto merged"]
+        add: ['auto merged']
   - name: Request reviews for autobump PRs on CI failure
     conditions:
       - base~=^(master|release-)
       - status-failure=build
-      - "label~=autobump-*"
+      - 'label~=autobump-*'
       - base=master
     actions:
       request_reviews:
-        teams: ["oss-approvers"]
+        teams: ['oss-approvers']

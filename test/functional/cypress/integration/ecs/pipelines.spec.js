@@ -20,9 +20,7 @@ describe('amazon ecs: ECSApp Pipeline', () => {
 
     cy.get('.execution-group').should('have.length', 1);
 
-    cy.get('.account-tag')
-      .first()
-      .should('contain.text', 'ecs');
+    cy.get('.account-tag').first().should('contain.text', 'ecs');
   });
 
   it('configures stored ECSApp pipeline and deletes server group', () => {
@@ -32,13 +30,9 @@ describe('amazon ecs: ECSApp Pipeline', () => {
 
     cy.get('a:contains("Deploy")').click({ force: true });
 
-    cy.get('.glyphicon-duplicate')
-      .eq(1)
-      .click({ force: true });
+    cy.get('.glyphicon-duplicate').eq(1).click({ force: true });
 
-    cy.get('.glyphicon-trash')
-      .eq(1)
-      .click({ force: true });
+    cy.get('.glyphicon-trash').eq(1).click({ force: true });
 
     cy.get('.account-tag').should('have.length', 1);
 
@@ -56,19 +50,13 @@ describe('amazon ecs: ECSApp Pipeline', () => {
 
     cy.get('a:contains("Deploy")').click({ force: true });
 
-    cy.get('.glyphicon-duplicate')
-      .eq(1)
-      .click({ force: true });
+    cy.get('.glyphicon-duplicate').eq(1).click({ force: true });
 
     cy.get('.account-tag').should('have.length', 2);
 
-    cy.get('.account-tag')
-      .eq(0)
-      .should('contain.text', 'ecs-my-aws-devel-acct');
+    cy.get('.account-tag').eq(0).should('contain.text', 'ecs-my-aws-devel-acct');
 
-    cy.get('.account-tag')
-      .eq(1)
-      .should('contain.text', 'ecs-my-aws-devel-acct');
+    cy.get('.account-tag').eq(1).should('contain.text', 'ecs-my-aws-devel-acct');
 
     cy.get('td:contains("ecsapp-prod-ecsdemo")').should('have.length', 2);
 

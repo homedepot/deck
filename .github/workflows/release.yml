@@ -1,0 +1,121 @@
+name: Release
+
+permissions:
+  contents: write
+  packages: write
+  actions: read
+
+on:
+  workflow_dispatch:
+    inputs:
+      BRANCH:
+        description: Git branch to fetch code from
+        required: true
+        default: main
+        type: string
+      IMAGE_VERSION:
+        description: Version to use for image tag
+        required: true
+        default: dev
+        type: string
+
+env:
+  NODE_VERSION: 14.21.3
+  GRADLE_OPTS: -Dorg.gradle.daemon=false -Xmx2g -Xms2g
+  CONTAINER_REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/thd-${{ github.event.repository.name }}
+
+jobs:
+  validate-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if image tag already exists in ghcr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RELEASE_VERSION="${{ inputs.IMAGE_VERSION }}"
+
+          if [[ "$RELEASE_VERSION" != "0.0.0" && "$RELEASE_VERSION" != "dev" ]]; then
+            echo "Checking if tag '$RELEASE_VERSION' exists in GHCR..."
+
+            EXIST=$(gh api "/orgs/homedepot/packages/container/thd-${{ github.event.repository.name }}/versions" --jq \
+              ".[] | select(.metadata.container.tags[]? == \"$RELEASE_VERSION\") | .id" || true)
+
+            if [[ -n "$EXIST" ]]; then
+              echo "Error: Image tag '$RELEASE_VERSION' already exists in GHCR."
+              exit 1
+            else
+              echo "Tag '$RELEASE_VERSION' does not exist. Proceeding."
+            fi
+          else
+            echo "Skipping tag check for version '$RELEASE_VERSION'"
+          fi
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: validate-version
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.BRANCH }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION  }}
+
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'zulu'
+          cache: 'gradle'
+
+      - name: Build
+        run: ./gradlew --info build
+
+      - name: Login
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.CONTAINER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          file: ./Dockerfile.ubuntu
+          platforms: linux/amd64
+          tags: ${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ inputs.IMAGE_VERSION }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ env.IMAGE_NAME }}
+            org.opencontainers.image.version=${{ inputs.IMAGE_VERSION }}
+
+      - name: Create GitHub release
+        if: ${{ inputs.IMAGE_VERSION != '0.0.0' && inputs.IMAGE_VERSION != 'dev' }}
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ inputs.IMAGE_VERSION }}
+          tag_name: ${{ inputs.IMAGE_VERSION }}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}

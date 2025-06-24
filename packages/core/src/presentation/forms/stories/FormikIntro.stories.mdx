@@ -1,7 +1,7 @@
 import { ArgsTable, Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 
 import { FormikFormField } from '../';
-import {URLComponent} from './SpinFormikStoriesHelper'
+import { URLComponent } from './SpinFormikStoriesHelper';
 
 <Meta
   title="Forms/Intro"
@@ -67,6 +67,7 @@ This component handles the communication with formik and provides the necessary 
 Here's a simple form with all supported input fields
 
 <!-- Simple Form Example -->
+
 <Canvas>
   <Story id="forms-spinformik--simple-form" />
 </Canvas>
@@ -78,6 +79,7 @@ The former method is used when validation of a field depends on the values of ot
 The latter is used when validation only depends on the value of the individual field and the `validate` function is expected to return an error message.
 
 <!-- Validation Example -->
+
 <Canvas>
   <Story id="forms-spinformik--validation" />
 </Canvas>
@@ -101,7 +103,7 @@ interface IURLComponentInputProps {
   onBlur?: (e: React.ChangeEvent) => void;
   onChange?: (e: React.ChangeEvent) => void;
 }
-export const URLComponentInput = ({name, value, onBlur, onChange}: IURLComponentInputProps) => {
+export const URLComponentInput = ({ name, value, onBlur, onChange }: IURLComponentInputProps) => {
   const handleChange = (url: string) => onChange(createFakeReactSyntheticEvent({ name, value: url }));
   const handleBlur = () => onBlur(createFakeReactSyntheticEvent({ name, value }));
   return <URLComponent value={value} onBlur={handleBlur} onChange={handleChange} />;
@@ -111,6 +113,7 @@ export const URLComponentInput = ({name, value, onBlur, onChange}: IURLComponent
 Now the component can be used like any other standard input field as shown below.
 
 <!-- Custom Input Field Example -->
+
 <Canvas>
   <Story id="forms-spinformik--custom-input-field" />
 </Canvas>

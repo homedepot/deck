@@ -15,8 +15,6 @@ describe('appengine: Pipelines', () => {
   it('shows stored appengine pipelines with their account tag', () => {
     cy.visit('#/applications/gae/executions');
     cy.get('.execution-group').should('have.length', 4);
-    cy.get('.account-tag')
-      .first()
-      .should('contain.text', 'gae');
+    cy.get('.account-tag').first().should('contain.text', 'gae');
   });
 });
