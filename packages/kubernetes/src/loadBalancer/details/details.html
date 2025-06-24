@@ -47,17 +47,23 @@
           <li ng-if="ctrl.canDeleteServerGroupManager()">
             <a href ng-click="ctrl.deleteServerGroupManager()">Delete</a>
           </li>
-          <li ng-if="!ctrl.canDeleteServerGroupManager()" class="disabled" uib-tooltip="Deleting a server group manager is restricted.">
+          <li
+            ng-if="!ctrl.canDeleteServerGroupManager()"
+            class="disabled"
+            uib-tooltip="Deleting a server group manager is restricted."
+          >
             <a href>Delete</a>
           </li>
-
           <li ng-if="ctrl.canEditServerGroupManager()">
             <a href ng-click="ctrl.editServerGroupManager()">Edit</a>
           </li>
-          <li ng-if="!ctrl.canEditServerGroupManager()" class="disabled" uib-tooltip="Editing a server group manager is restricted.">
+          <li
+            ng-if="!ctrl.canEditServerGroupManager()"
+            class="disabled"
+            uib-tooltip="Editing a server group manager is restricted."
+          >
             <a href>Edit</a>
           </li>
-        </ul>
           <render-if-feature feature="entityTags">
             <add-entity-tag-links
               component="ctrl.loadBalancer"
