@@ -248,12 +248,12 @@ angular
       };
 
       this.canDeleteLoadBalancer = function canDeleteLoadBalancer() {
-        const name = $scope.loadBalancer?.name || '';
+        const name = $scope.loadBalancer.name || '';
         return !name.endsWith('-pr');
       };
 
       this.canEditLoadBalancer = function canEditLoadBalancer() {
-        const name = $scope.loadBalancer?.name || '';
+        const name = $scope.loadBalancer.name || '';
         return !name.endsWith('-pr');
       };
 
