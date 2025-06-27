@@ -102,10 +102,6 @@ class KubernetesServerGroupDetailsController implements IController {
     });
   }
 
-  public canEditServerGroup(): boolean {
-    return this.manifestController() === null;
-  }
-
   public editServerGroup(): void {
     KubernetesManifestCommandBuilder.buildNewManifestCommand(
       this.app,
@@ -196,6 +192,14 @@ class KubernetesServerGroupDetailsController implements IController {
 
   private configureEntityTagTargets(): IOwnerOption[] {
     return ClusterTargetBuilder.buildClusterTargets(this.serverGroup);
+  }
+
+  public canEditServerGroup(): boolean {
+    return this.manifestController() === null && !this.serverGroup.name.endsWith('-pr');
+  }
+
+  public canDeleteServerGroup(): boolean {
+    return !this.serverGroup.name.endsWith('-pr');
   }
 }
 
