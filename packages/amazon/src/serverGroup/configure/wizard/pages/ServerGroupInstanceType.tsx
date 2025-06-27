@@ -20,8 +20,7 @@ export interface IServerGroupInstanceTypeState {
 
 export class ServerGroupInstanceType
   extends React.Component<IServerGroupInstanceTypeProps, IServerGroupInstanceTypeState>
-  implements IWizardPageComponent<IAmazonServerGroupCommand>
-{
+  implements IWizardPageComponent<IAmazonServerGroupCommand> {
   public state: IServerGroupInstanceTypeState = {
     instanceTypeDetails: [],
   };

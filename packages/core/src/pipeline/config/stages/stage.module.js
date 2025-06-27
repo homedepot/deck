@@ -89,8 +89,8 @@ module(CORE_PIPELINE_CONFIG_STAGES_STAGE_MODULE, [
         return stage.available
           ? 'Available'
           : requisiteStageRefIds.includes(stage.refId)
-            ? null
-            : 'Downstream dependencies (unavailable)';
+          ? null
+          : 'Downstream dependencies (unavailable)';
       };
 
       $scope.stageProducesArtifacts = function () {

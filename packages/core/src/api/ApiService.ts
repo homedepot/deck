@@ -98,10 +98,7 @@ export interface IHttpClientImplementation {
 export class InvalidAPIResponse extends Error {
   public data: { message: string };
 
-  constructor(
-    message: string,
-    public originalResult: any,
-  ) {
+  constructor(message: string, public originalResult: any) {
     super(message);
     this.data = { message };
   }

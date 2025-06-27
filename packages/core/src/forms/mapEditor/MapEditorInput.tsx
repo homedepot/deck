@@ -91,12 +91,12 @@ export function MapEditorInput({
   // Register/unregister validator, if a validation prop was supplied
   React.useEffect(() => {
     if (validation && isFunction(validation.addValidator)) {
-      validation.addValidator(validator.current as any as IValidator);
+      validation.addValidator((validator.current as any) as IValidator);
     }
 
     return () => {
       if (validation && isFunction(validation.removeValidator)) {
-        validation.removeValidator(validator.current as any as IValidator);
+        validation.removeValidator((validator.current as any) as IValidator);
       }
     };
   }, []);

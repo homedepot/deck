@@ -24,11 +24,7 @@ class PageNavigatorController implements IController {
   }
 
   public static $inject = ['$element', '$state', '$stateParams'];
-  public constructor(
-    private $element: JQuery,
-    private $state: StateService,
-    private $stateParams: StateParams,
-  ) {}
+  public constructor(private $element: JQuery, private $state: StateService, private $stateParams: StateParams) {}
 
   public $onInit(): void {
     this.id = UUIDGenerator.generateUuid();

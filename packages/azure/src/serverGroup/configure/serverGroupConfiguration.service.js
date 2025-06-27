@@ -163,8 +163,9 @@ angular
         if (!command.region) {
           return result;
         }
-        let { regionsSupportZones, availabilityZones } =
-          command.backingData.credentialsKeyedByAccount[command.credentials];
+        let { regionsSupportZones, availabilityZones } = command.backingData.credentialsKeyedByAccount[
+          command.credentials
+        ];
         regionsSupportZones = regionsSupportZones || [];
         availabilityZones = availabilityZones || [];
         filteredData.zones = regionsSupportZones.includes(command.region) ? availabilityZones : [];

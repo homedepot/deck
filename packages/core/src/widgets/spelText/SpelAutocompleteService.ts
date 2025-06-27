@@ -110,10 +110,7 @@ export class SpelAutocompleteService {
     },
   ];
 
-  constructor(
-    private $q: IQService,
-    private executionService: ExecutionService,
-  ) {
+  constructor(private $q: IQService, private executionService: ExecutionService) {
     'ngInject';
   }
 

@@ -26,8 +26,7 @@ const stringToOption = (value: string): Option<string> => {
 
 export class ServerGroupLoadBalancers
   extends React.Component<IServerGroupLoadBalancersProps, IServerGroupLoadBalancersState>
-  implements IWizardPageComponent<IAmazonServerGroupCommand>
-{
+  implements IWizardPageComponent<IAmazonServerGroupCommand> {
   public state = {
     refreshing: false,
     refreshed: false,

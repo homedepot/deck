@@ -19,25 +19,23 @@ describe('Controller: gceResizeServerGroupCtrl', function () {
   );
 
   beforeEach(
-    window.inject(
-      function (
-        _$controller_,
-        _$q_,
-        _$compile_,
-        _$templateCache_,
-        $rootScope,
-        _gceAutoscalingPolicyWriter_,
-        _serverGroupWriter_,
-      ) {
-        scope = $rootScope.$new();
-        gceAutoscalingPolicyWriter = _gceAutoscalingPolicyWriter_;
-        serverGroupWriter = _serverGroupWriter_;
-        $controller = _$controller_;
-        $compile = _$compile_;
-        $templateCache = _$templateCache_;
-        $q = _$q_;
-      },
-    ),
+    window.inject(function (
+      _$controller_,
+      _$q_,
+      _$compile_,
+      _$templateCache_,
+      $rootScope,
+      _gceAutoscalingPolicyWriter_,
+      _serverGroupWriter_,
+    ) {
+      scope = $rootScope.$new();
+      gceAutoscalingPolicyWriter = _gceAutoscalingPolicyWriter_;
+      serverGroupWriter = _serverGroupWriter_;
+      $controller = _$controller_;
+      $compile = _$compile_;
+      $templateCache = _$templateCache_;
+      $q = _$q_;
+    }),
   );
 
   it('should instantiate the controller', function () {

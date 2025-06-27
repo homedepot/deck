@@ -7,10 +7,7 @@ import type { IPluginMetaData } from './plugin.registry';
 import { PluginRegistry } from './plugin.registry';
 import { Registry } from '../registry';
 
-const fakePromise =
-  (result: any = undefined) =>
-  () =>
-    new Promise((resolve) => resolve(result));
+const fakePromise = (result: any = undefined) => () => new Promise((resolve) => resolve(result));
 
 describe('PluginRegistry', () => {
   let pluginRegistry: PluginRegistry;
@@ -57,7 +54,7 @@ describe('PluginRegistry', () => {
     beforeEach(() => {
       pluginModule = {
         plugin: {
-          stages: [{ id: 'mystage' } as any as IStageTypeConfig],
+          stages: [({ id: 'mystage' } as any) as IStageTypeConfig],
           initialize: () => {},
         },
       };

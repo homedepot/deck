@@ -13,8 +13,7 @@ export interface IServerGroupAdvancedSettingsProps {
 
 export class ServerGroupAdvancedSettings
   extends React.Component<IServerGroupAdvancedSettingsProps>
-  implements IWizardPageComponent<IAmazonServerGroupCommand>
-{
+  implements IWizardPageComponent<IAmazonServerGroupCommand> {
   private ref: any = React.createRef();
 
   public validate(values: IAmazonServerGroupCommand) {

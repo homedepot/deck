@@ -51,8 +51,7 @@ export interface ILoadBalancerLocationState {
 
 export class LoadBalancerLocation
   extends React.Component<ILoadBalancerLocationProps, ILoadBalancerLocationState>
-  implements IWizardPageComponent<IAmazonLoadBalancerUpsertCommand>
-{
+  implements IWizardPageComponent<IAmazonLoadBalancerUpsertCommand> {
   public state: ILoadBalancerLocationState = {
     accounts: undefined,
     availabilityZones: [],

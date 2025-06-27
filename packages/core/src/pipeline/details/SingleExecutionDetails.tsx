@@ -90,11 +90,10 @@ export function SingleExecutionDetails(props: ISingleExecutionDetailsProps) {
   };
 
   // responsible for getting execution whenever executionId (route param) changes
-  const {
-    result: execution,
-    status: getExecutionStatus,
-    refresh: refreshExecution,
-  } = useLatestPromise(() => getAndTransformExecution(executionId, app), [executionId]);
+  const { result: execution, status: getExecutionStatus, refresh: refreshExecution } = useLatestPromise(
+    () => getAndTransformExecution(executionId, app),
+    [executionId],
+  );
 
   const lineage = traverseLineage(execution);
   const transitioningToAncestor = lineage.includes(executionId) && executionId !== execution?.id ? executionId : '';

@@ -14,8 +14,9 @@ module(GOOGLE_INSTANCE_CUSTOM_CUSTOMINSTANCE_FILTER, [GOOGLE_INSTANCE_CUSTOM_CUS
     function (gceCustomInstanceBuilderService) {
       return function (instanceTypeString) {
         if (_.includes(instanceTypeString, 'custom-')) {
-          const { instanceFamily, vCpuCount, memory } =
-            gceCustomInstanceBuilderService.parseInstanceTypeString(instanceTypeString);
+          const { instanceFamily, vCpuCount, memory } = gceCustomInstanceBuilderService.parseInstanceTypeString(
+            instanceTypeString,
+          );
           return `${instanceFamily} ${vCpuCount} vCPU / ${memory} GB RAM`;
         }
         return instanceTypeString;

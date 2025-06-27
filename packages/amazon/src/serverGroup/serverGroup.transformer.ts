@@ -88,7 +88,7 @@ export class AwsServerGroupTransformer {
   public convertServerGroupCommandToDeployConfiguration(
     base: IAmazonServerGroupCommand,
   ): IAmazonServerGroupDeployConfiguration {
-    const deployConfig = { ...base } as any as IAmazonServerGroupDeployConfiguration;
+    const deployConfig = ({ ...base } as any) as IAmazonServerGroupDeployConfiguration;
 
     deployConfig.cloudProvider = 'aws';
     deployConfig.availabilityZones = { [deployConfig.region]: base.availabilityZones };

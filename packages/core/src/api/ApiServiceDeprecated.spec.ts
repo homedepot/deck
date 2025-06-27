@@ -324,7 +324,7 @@ describe('API Service', function () {
     });
 
     it('should set cache to cache object if explicitly set', function () {
-      const cacheObj = { count: 1 } as unknown as ICache;
+      const cacheObj = ({ count: 1 } as unknown) as ICache;
       const result = API.one('foo').useCache(cacheObj);
       expect(result.config.cache).toBe(cacheObj as any);
     });

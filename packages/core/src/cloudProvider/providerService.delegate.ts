@@ -8,10 +8,7 @@ import IInjectorService = angular.auto.IInjectorService;
 
 export class ProviderServiceDelegate {
   public static $inject = ['$injector', '$q'];
-  constructor(
-    private $injector: IInjectorService,
-    private $q: IQService,
-  ) {}
+  constructor(private $injector: IInjectorService, private $q: IQService) {}
 
   public hasDelegate(provider: string, serviceKey: string): boolean {
     const service: string = CloudProviderRegistry.getValue(provider, serviceKey);

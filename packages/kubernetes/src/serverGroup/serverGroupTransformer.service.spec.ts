@@ -12,12 +12,12 @@ describe('KubernetesV2ServerGroupTransformer', function () {
     const KIND = 'daemonSet';
 
     const sgMgrRef = { account: ACCOUNT, location: LOCATION, name: SG_MANAGER };
-    const sgAccount = {
+    const sgAccount = ({
       account: ACCOUNT,
       name: 'myservergroup',
       region: LOCATION,
       serverGroupManagers: [sgMgrRef],
-    } as unknown as IKubernetesServerGroup;
+    } as unknown) as IKubernetesServerGroup;
 
     const data = [{ name: `${KIND} ${SG_MANAGER}`, region: LOCATION, account: ACCOUNT, kind: KIND }];
     const app = new Application('test', null, []);
@@ -43,12 +43,12 @@ describe('KubernetesV2ServerGroupTransformer', function () {
     const KIND = 'daemonSet';
 
     const sgMgrRef = { account: ACCOUNT, location: LOCATION, name: SG_MANAGER };
-    const sgAccount: IKubernetesServerGroup = {
+    const sgAccount: IKubernetesServerGroup = ({
       account: ACCOUNT,
       name: 'myservergroup',
       region: LOCATION,
       serverGroupManagers: [sgMgrRef],
-    } as unknown as IKubernetesServerGroup;
+    } as unknown) as IKubernetesServerGroup;
 
     const data = [{ name: `${KIND} ${SG_MANAGER}`, region: LOCATION, account: ACCOUNT2, kind: KIND }];
     const app = new Application('test', null, []);

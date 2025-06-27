@@ -43,9 +43,9 @@ describe('<BakeHelmfileConfigForm />', () => {
   );
 
   it('renders the helmfile file path element when the template artifact is from an account that handles git/repo artifacts', async () => {
-    const stage = {
+    const stage = ({
       inputArtifacts: [{ account: 'gitrepo' }],
-    } as unknown as IStage;
+    } as unknown) as IStage;
 
     const props = getProps();
 
@@ -65,9 +65,9 @@ describe('<BakeHelmfileConfigForm />', () => {
   });
 
   it('does not render the helmfile file path element when the template artifact is from an account that does not handle git/repo artifacts', async () => {
-    const stage = {
+    const stage = ({
       inputArtifacts: [{ account: 'notgitrepo' }],
-    } as unknown as IStage;
+    } as unknown) as IStage;
 
     const props = getProps();
 
@@ -106,9 +106,9 @@ describe('<BakeHelmfileConfigForm />', () => {
       useDefaultArtifact: false,
       usePriorArtifact: false,
     };
-    const stage = {
+    const stage = ({
       inputArtifacts: [{ id: expectedArtifactId }],
-    } as unknown as IStage;
+    } as unknown) as IStage;
 
     spyOn(ExpectedArtifactService, 'getExpectedArtifactsAvailableToStage').and.returnValue([expectedGitArtifact]);
 

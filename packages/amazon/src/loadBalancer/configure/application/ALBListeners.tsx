@@ -60,8 +60,7 @@ export interface IALBListenersProps {
 
 export class ALBListeners
   extends React.Component<IALBListenersProps, IALBListenersState>
-  implements IWizardPageComponent<IAmazonApplicationLoadBalancerUpsertCommand>
-{
+  implements IWizardPageComponent<IAmazonApplicationLoadBalancerUpsertCommand> {
   public protocols = ['HTTP', 'HTTPS'];
 
   private initialActionsWithAuth: Set<IListenerAction[]> = new Set();

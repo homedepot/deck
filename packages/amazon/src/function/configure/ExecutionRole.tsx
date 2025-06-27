@@ -15,8 +15,7 @@ export interface IExecutionRoleProps {
 
 export class ExecutionRole
   extends React.Component<IExecutionRoleProps>
-  implements IWizardPageComponent<IAmazonFunctionUpsertCommand>
-{
+  implements IWizardPageComponent<IAmazonFunctionUpsertCommand> {
   constructor(props: IExecutionRoleProps) {
     super(props);
   }

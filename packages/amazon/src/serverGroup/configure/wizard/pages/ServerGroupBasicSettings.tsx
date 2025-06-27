@@ -44,8 +44,7 @@ export interface IServerGroupBasicSettingsState {
 
 export class ServerGroupBasicSettings
   extends React.Component<IServerGroupBasicSettingsProps, IServerGroupBasicSettingsState>
-  implements IWizardPageComponent<IAmazonServerGroupCommand>
-{
+  implements IWizardPageComponent<IAmazonServerGroupCommand> {
   constructor(props: IServerGroupBasicSettingsProps) {
     super(props);
     const {

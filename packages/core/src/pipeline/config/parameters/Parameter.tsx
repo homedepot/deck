@@ -81,8 +81,18 @@ export class Parameter extends React.Component<IParameterProps> {
   };
 
   public render(): JSX.Element {
-    const { name, label, required, pinned, description, hasOptions, options, isMultiple, removeParameter, inherited } =
-      this.props;
+    const {
+      name,
+      label,
+      required,
+      pinned,
+      description,
+      hasOptions,
+      options,
+      isMultiple,
+      removeParameter,
+      inherited,
+    } = this.props;
 
     const {
       addOption,

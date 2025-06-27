@@ -9,20 +9,17 @@ import type { ReceivedRequest } from './receivedRequest';
 function parseParams(queryString: string): Record<string, string | string[]> {
   const paramTuples = queryString.split('&').map((param) => param.split('=')) as Array<[string, string]>;
 
-  return paramTuples.reduce(
-    (paramsObj, [key, value]) => {
-      const currentValue = paramsObj[key];
-      if (typeof currentValue === 'string') {
-        paramsObj[key] = [currentValue, value];
-      } else if (Array.isArray(currentValue)) {
-        paramsObj[key] = paramsObj[key].concat(value);
-      } else {
-        paramsObj[key] = value;
-      }
-      return paramsObj;
-    },
-    {} as Record<string, string | string[]>,
-  );
+  return paramTuples.reduce((paramsObj, [key, value]) => {
+    const currentValue = paramsObj[key];
+    if (typeof currentValue === 'string') {
+      paramsObj[key] = [currentValue, value];
+    } else if (Array.isArray(currentValue)) {
+      paramsObj[key] = paramsObj[key].concat(value);
+    } else {
+      paramsObj[key] = value;
+    }
+    return paramsObj;
+  }, {} as Record<string, string | string[]>);
 }
 
 /**

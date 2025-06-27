@@ -11,8 +11,9 @@ export interface ICpuCreditsToggleProps {
 
 export function CpuCreditsToggle(props: ICpuCreditsToggleProps) {
   const { selectedInstanceTypes, currentProfile } = props;
-  const isBurstingSupportedForAllTypes =
-    AwsReactInjector.awsInstanceTypeService.isBurstingSupportedForAllTypes(selectedInstanceTypes);
+  const isBurstingSupportedForAllTypes = AwsReactInjector.awsInstanceTypeService.isBurstingSupportedForAllTypes(
+    selectedInstanceTypes,
+  );
   const isAtleastOneTypeInProfile = AwsReactInjector.awsInstanceTypeService.getInstanceTypesInCategory(
     selectedInstanceTypes,
     currentProfile,

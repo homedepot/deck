@@ -43,10 +43,7 @@ export class StateConfigProvider implements IServiceProvider {
   };
 
   public static $inject = ['$urlRouterProvider', 'stateHelperProvider'];
-  constructor(
-    private $urlRouterProvider: UrlRouterProvider,
-    private stateHelperProvider: StateHelper,
-  ) {}
+  constructor(private $urlRouterProvider: UrlRouterProvider, private stateHelperProvider: StateHelper) {}
 
   /**
    * Adds a root state, e.g. /applications, /projects, /infrastructure

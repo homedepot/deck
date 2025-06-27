@@ -131,45 +131,45 @@ angular
       };
 
       this.addCluster = function () {
-        ProviderSelectionService.selectProvider($scope.application, 'serverGroup', providerFilterFn).then(
-          function (selectedProvider) {
-            const config = CloudProviderRegistry.getValue(selectedProvider, 'serverGroup');
+        ProviderSelectionService.selectProvider($scope.application, 'serverGroup', providerFilterFn).then(function (
+          selectedProvider,
+        ) {
+          const config = CloudProviderRegistry.getValue(selectedProvider, 'serverGroup');
 
-            const handleResult = function (command) {
-              // If we don't set the provider, the serverGroupTransformer won't know which provider to delegate to.
-              command.provider = selectedProvider;
-              const stageCluster = serverGroupTransformer.convertServerGroupCommandToDeployConfiguration(command);
-              delete stageCluster.credentials;
-              $scope.stage.clusters.push(stageCluster);
-            };
+          const handleResult = function (command) {
+            // If we don't set the provider, the serverGroupTransformer won't know which provider to delegate to.
+            command.provider = selectedProvider;
+            const stageCluster = serverGroupTransformer.convertServerGroupCommandToDeployConfiguration(command);
+            delete stageCluster.credentials;
+            $scope.stage.clusters.push(stageCluster);
+          };
 
-            const title = 'Configure Deployment Cluster';
-            const application = $scope.application;
-            serverGroupCommandBuilder
-              .buildNewServerGroupCommandForPipeline(selectedProvider, $scope.stage, $scope.$parent.pipeline)
-              .then((command) => {
-                if (config.CloneServerGroupModal) {
-                  // react
-                  return config.CloneServerGroupModal.show({ title, application, command });
-                } else {
-                  // angular
-                  return $uibModal.open({
-                    templateUrl: config.cloneServerGroupTemplateUrl,
-                    controller: `${config.cloneServerGroupController} as ctrl`,
-                    size: 'lg',
-                    windowClass: 'modal-z-index',
-                    resolve: {
-                      title: () => title,
-                      application: () => application,
-                      serverGroupCommand: () => command,
-                    },
-                  }).result;
-                }
-              })
-              .then(handleResult)
-              .catch(() => {});
-          },
-        );
+          const title = 'Configure Deployment Cluster';
+          const application = $scope.application;
+          serverGroupCommandBuilder
+            .buildNewServerGroupCommandForPipeline(selectedProvider, $scope.stage, $scope.$parent.pipeline)
+            .then((command) => {
+              if (config.CloneServerGroupModal) {
+                // react
+                return config.CloneServerGroupModal.show({ title, application, command });
+              } else {
+                // angular
+                return $uibModal.open({
+                  templateUrl: config.cloneServerGroupTemplateUrl,
+                  controller: `${config.cloneServerGroupController} as ctrl`,
+                  size: 'lg',
+                  windowClass: 'modal-z-index',
+                  resolve: {
+                    title: () => title,
+                    application: () => application,
+                    serverGroupCommand: () => command,
+                  },
+                }).result;
+              }
+            })
+            .then(handleResult)
+            .catch(() => {});
+        });
       };
 
       this.editCluster = function (cluster, index) {

@@ -93,8 +93,8 @@ export function InstanceTypeRow(props: IRowProps) {
           isRowSelected
             ? 'Click to unselect instance type'
             : disableRow
-              ? 'This instance type is not available for the selected configuration'
-              : 'Click to select instance type'
+            ? 'This instance type is not available for the selected configuration'
+            : 'Click to select instance type'
         }
         onClick={(e) => {
           if (!$(e.target).is('input')) {

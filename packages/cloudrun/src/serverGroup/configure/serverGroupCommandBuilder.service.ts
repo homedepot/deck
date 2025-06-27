@@ -209,8 +209,8 @@ export class CloudrunServerGroupCommandBuilder {
       const account = accounts.some((a) => a.name === sourceAccount)
         ? accounts.find((a) => a.name === sourceAccount).name
         : accounts.length
-          ? accounts[0].name
-          : null;
+        ? accounts[0].name
+        : null;
       const viewState: IViewState = {
         mode,
         submitButtonLabel: getSubmitButtonLabel(mode),

@@ -11,7 +11,9 @@ export interface ICloudFoundryCloneServerGroupProps {
   source: ICloudFoundrySource;
 }
 
-export class CloudFoundryServerGroupConstantArtifactSettings extends React.Component<ICloudFoundryCloneServerGroupProps> {
+export class CloudFoundryServerGroupConstantArtifactSettings extends React.Component<
+  ICloudFoundryCloneServerGroupProps
+> {
   constructor(props: ICloudFoundryCloneServerGroupProps) {
     super(props);
     const { source } = props;

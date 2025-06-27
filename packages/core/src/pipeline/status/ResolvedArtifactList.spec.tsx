@@ -26,7 +26,7 @@ describe('<ResolvedArtifactList/>', () => {
 
   it('renders null when 0 artifacts are passed in', function () {
     const artifacts: IArtifact[] = [];
-    const resolvedExpectedArtifacts = artifacts.map((a) => ({ boundArtifact: a }) as IExpectedArtifact);
+    const resolvedExpectedArtifacts = artifacts.map((a) => ({ boundArtifact: a } as IExpectedArtifact));
     component = shallow(
       <ResolvedArtifactList
         artifacts={artifacts}
@@ -45,7 +45,7 @@ describe('<ResolvedArtifactList/>', () => {
         name: ARTIFACT_NAME,
       },
     ];
-    const resolvedExpectedArtifacts = artifacts.map((a) => ({ boundArtifact: a }) as IExpectedArtifact);
+    const resolvedExpectedArtifacts = artifacts.map((a) => ({ boundArtifact: a } as IExpectedArtifact));
     component = shallow(
       <ResolvedArtifactList
         artifacts={artifacts}
@@ -70,7 +70,7 @@ describe('<ResolvedArtifactList/>', () => {
       },
     ];
 
-    const resolvedExpectedArtifacts = artifacts.map((a) => ({ boundArtifact: a }) as IExpectedArtifact);
+    const resolvedExpectedArtifacts = artifacts.map((a) => ({ boundArtifact: a } as IExpectedArtifact));
     component = shallow(
       <ResolvedArtifactList
         artifacts={artifacts}
@@ -89,7 +89,7 @@ describe('<ResolvedArtifactList/>', () => {
         id: 'abcd',
       },
     ];
-    const resolvedExpectedArtifacts = singleArtifact.map((a) => ({ boundArtifact: a }) as IExpectedArtifact);
+    const resolvedExpectedArtifacts = singleArtifact.map((a) => ({ boundArtifact: a } as IExpectedArtifact));
     component = shallow(
       <ResolvedArtifactList
         artifacts={singleArtifact}
@@ -111,7 +111,7 @@ describe('<ResolvedArtifactList/>', () => {
         name: ARTIFACT_NAME,
       },
     ];
-    const resolvedExpectedArtifacts = artifacts.map((a) => ({ boundArtifact: a }) as IExpectedArtifact);
+    const resolvedExpectedArtifacts = artifacts.map((a) => ({ boundArtifact: a } as IExpectedArtifact));
     component = shallow(
       <ResolvedArtifactList
         artifacts={artifacts}

@@ -245,44 +245,41 @@ export const later = (function () {
       return later.dc.end(later.date.prev(later.Y.val(month), later.M.val(month), 1 + 7 * (val - 1)));
     },
   };
-  later.dayOfWeek =
-    later.dw =
-    later.d =
-      {
-        name: 'day of week',
-        range: 86400,
-        val: function (d) {
-          return d.dw || (d.dw = later.date.getDay.call(d) + 1);
-        },
-        isValid: function (d, val) {
-          return later.dw.val(d) === (val || 7);
-        },
-        extent: function () {
-          return [1, 7];
-        },
-        start: function (d) {
-          return later.D.start(d);
-        },
-        end: function (d) {
-          return later.D.end(d);
-        },
-        next: function (d, val) {
-          val = val > 7 ? 1 : val || 7;
-          return later.date.next(
-            later.Y.val(d),
-            later.M.val(d),
-            later.D.val(d) + (val - later.dw.val(d)) + (val <= later.dw.val(d) ? 7 : 0),
-          );
-        },
-        prev: function (d, val) {
-          val = val > 7 ? 7 : val || 7;
-          return later.date.prev(
-            later.Y.val(d),
-            later.M.val(d),
-            later.D.val(d) + (val - later.dw.val(d)) + (val >= later.dw.val(d) ? -7 : 0),
-          );
-        },
-      };
+  later.dayOfWeek = later.dw = later.d = {
+    name: 'day of week',
+    range: 86400,
+    val: function (d) {
+      return d.dw || (d.dw = later.date.getDay.call(d) + 1);
+    },
+    isValid: function (d, val) {
+      return later.dw.val(d) === (val || 7);
+    },
+    extent: function () {
+      return [1, 7];
+    },
+    start: function (d) {
+      return later.D.start(d);
+    },
+    end: function (d) {
+      return later.D.end(d);
+    },
+    next: function (d, val) {
+      val = val > 7 ? 1 : val || 7;
+      return later.date.next(
+        later.Y.val(d),
+        later.M.val(d),
+        later.D.val(d) + (val - later.dw.val(d)) + (val <= later.dw.val(d) ? 7 : 0),
+      );
+    },
+    prev: function (d, val) {
+      val = val > 7 ? 7 : val || 7;
+      return later.date.prev(
+        later.Y.val(d),
+        later.M.val(d),
+        later.D.val(d) + (val - later.dw.val(d)) + (val >= later.dw.val(d) ? -7 : 0),
+      );
+    },
+  };
   later.dayOfYear = later.dy = {
     name: 'day of year',
     range: 86400,
@@ -1488,8 +1485,7 @@ export const later = (function () {
       rank: /^((\d\d\d\d)|([2-5]?1(st)?|[2-5]?2(nd)?|[2-5]?3(rd)?|(0|[1-5]?[4-9]|[1-5]0|1[1-3])(th)?))\b/,
       time: /^((([0]?[1-9]|1[0-2]):[0-5]\d(\s)?(am|pm))|(([0]?\d|1\d|2[0-3]):[0-5]\d))\b/,
       dayName: /^((sun|mon|tue(s)?|wed(nes)?|thu(r(s)?)?|fri|sat(ur)?)(day)?)\b/,
-      monthName:
-        /^(jan(uary)?|feb(ruary)?|ma((r(ch)?)?|y)|apr(il)?|ju(ly|ne)|aug(ust)?|oct(ober)?|(sept|nov|dec)(ember)?)\b/,
+      monthName: /^(jan(uary)?|feb(ruary)?|ma((r(ch)?)?|y)|apr(il)?|ju(ly|ne)|aug(ust)?|oct(ober)?|(sept|nov|dec)(ember)?)\b/,
       yearIndex: /^(\d\d\d\d)\b/,
       every: /^every\b/,
       after: /^after\b/,

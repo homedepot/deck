@@ -16,8 +16,8 @@ export const ScalingPolicySummary = ({ application, policy, serverGroup }: IScal
   const scalingPolicyType = policy.policyType
     ? policy.policyType
     : policy.targetTrackingConfiguration
-      ? 'TargetTrackingScaling'
-      : 'StepScaling';
+    ? 'TargetTrackingScaling'
+    : 'StepScaling';
 
   if (scalingPolicyType === 'TargetTrackingScaling') {
     return (

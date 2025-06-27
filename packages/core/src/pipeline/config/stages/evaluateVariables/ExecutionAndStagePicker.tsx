@@ -76,7 +76,11 @@ export function ExecutionAndStagePicker(props: IExecutionAndStagePickerProps) {
             clearable={false}
             isLoading={fetchExecutions.status === 'PENDING'}
             optionRenderer={(option) => (
-              <ExecutionStatus execution={option.value as any as IExecution} showingDetails={true} standalone={true} />
+              <ExecutionStatus
+                execution={(option.value as any) as IExecution}
+                showingDetails={true}
+                standalone={true}
+              />
             )}
             valueRenderer={(value) => <span>{executionLabel(value as any)}</span>}
           />

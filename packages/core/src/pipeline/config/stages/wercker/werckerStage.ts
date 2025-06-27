@@ -40,11 +40,7 @@ export class WerckerStage implements IController {
   public job: string;
 
   public static $inject = ['stage', '$scope', '$uibModal'];
-  constructor(
-    public stage: any,
-    $scope: IScope,
-    private $uibModal: IModalService,
-  ) {
+  constructor(public stage: any, $scope: IScope, private $uibModal: IModalService) {
     this.stage.failPipeline = this.stage.failPipeline === undefined ? true : this.stage.failPipeline;
     this.stage.continuePipeline = this.stage.continuePipeline === undefined ? false : this.stage.continuePipeline;
     this.viewState = {

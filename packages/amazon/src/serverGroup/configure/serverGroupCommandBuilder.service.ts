@@ -82,84 +82,83 @@ angular
           defaultRegion,
         );
 
-        return $q.all([preferredZonesLoader, credentialsLoader]).then(function ([
-          preferredZones,
-          credentialsKeyedByAccount,
-        ]) {
-          const credentials = credentialsKeyedByAccount[defaultCredentials];
-          const keyPair = credentials ? credentials.defaultKeyPair : null;
-          const applicationAwsSettings = application.attributes?.providerSettings?.aws ?? {};
+        return $q
+          .all([preferredZonesLoader, credentialsLoader])
+          .then(function ([preferredZones, credentialsKeyedByAccount]) {
+            const credentials = credentialsKeyedByAccount[defaultCredentials];
+            const keyPair = credentials ? credentials.defaultKeyPair : null;
+            const applicationAwsSettings = application.attributes?.providerSettings?.aws ?? {};
 
-          let defaultIamRole = AWSProviderSettings.defaults.iamRole || 'BaseIAMRole';
-          defaultIamRole = defaultIamRole.replace('{{application}}', application.name);
+            let defaultIamRole = AWSProviderSettings.defaults.iamRole || 'BaseIAMRole';
+            defaultIamRole = defaultIamRole.replace('{{application}}', application.name);
 
-          const useAmiBlockDeviceMappings = applicationAwsSettings.useAmiBlockDeviceMappings || false;
+            const useAmiBlockDeviceMappings = applicationAwsSettings.useAmiBlockDeviceMappings || false;
 
-          const command: Partial<IAmazonServerGroupCommand> = {
-            application: application.name,
-            credentials: defaultCredentials,
-            region: defaultRegion,
-            strategy: '',
-            capacity: {
-              min: 1,
-              max: 1,
-              desired: 1,
-            },
-            targetHealthyDeployPercentage: 100,
-            cooldown: 10,
-            enabledMetrics: [],
-            healthCheckType: 'EC2',
-            healthCheckGracePeriod: 600,
-            instanceMonitoring: false,
-            ebsOptimized: false,
-            selectedProvider: 'aws',
-            iamRole: defaultIamRole,
-            terminationPolicies: ['Default'],
-            vpcId: null,
-            subnetType: defaultSubnet,
-            availabilityZones: preferredZones,
-            keyPair: keyPair,
-            suspendedProcesses: [],
-            securityGroups: [],
-            stack: '',
-            freeFormDetails: '',
-            spotPrice: '',
-            tags: {},
-            useAmiBlockDeviceMappings: useAmiBlockDeviceMappings,
-            copySourceCustomBlockDeviceMappings: false, // default to using block device mappings from current instance type
-            viewState: {
-              instanceProfile: 'custom',
-              useSimpleInstanceTypeSelector: true,
-              useAllImageSelection: false,
-              useSimpleCapacity: true,
-              usePreferredZones: true,
-              mode: defaults.mode || 'create',
-              disableStrategySelection: true,
-              dirty: {},
-              submitButtonLabel: getSubmitButtonLabel(defaults.mode || 'create'),
-            } as IAmazonServerGroupCommandViewState,
-          };
+            const command: Partial<IAmazonServerGroupCommand> = {
+              application: application.name,
+              credentials: defaultCredentials,
+              region: defaultRegion,
+              strategy: '',
+              capacity: {
+                min: 1,
+                max: 1,
+                desired: 1,
+              },
+              targetHealthyDeployPercentage: 100,
+              cooldown: 10,
+              enabledMetrics: [],
+              healthCheckType: 'EC2',
+              healthCheckGracePeriod: 600,
+              instanceMonitoring: false,
+              ebsOptimized: false,
+              selectedProvider: 'aws',
+              iamRole: defaultIamRole,
+              terminationPolicies: ['Default'],
+              vpcId: null,
+              subnetType: defaultSubnet,
+              availabilityZones: preferredZones,
+              keyPair: keyPair,
+              suspendedProcesses: [],
+              securityGroups: [],
+              stack: '',
+              freeFormDetails: '',
+              spotPrice: '',
+              tags: {},
+              useAmiBlockDeviceMappings: useAmiBlockDeviceMappings,
+              copySourceCustomBlockDeviceMappings: false, // default to using block device mappings from current instance type
+              viewState: {
+                instanceProfile: 'custom',
+                useSimpleInstanceTypeSelector: true,
+                useAllImageSelection: false,
+                useSimpleCapacity: true,
+                usePreferredZones: true,
+                mode: defaults.mode || 'create',
+                disableStrategySelection: true,
+                dirty: {},
+                submitButtonLabel: getSubmitButtonLabel(defaults.mode || 'create'),
+              } as IAmazonServerGroupCommandViewState,
+            };
 
-          if (application.attributes?.platformHealthOnlyShowOverride && application.attributes?.platformHealthOnly) {
-            command.interestingHealthProviderNames = ['Amazon'];
-          }
+            if (application.attributes?.platformHealthOnlyShowOverride && application.attributes?.platformHealthOnly) {
+              command.interestingHealthProviderNames = ['Amazon'];
+            }
 
-          if (defaultCredentials === 'test' && AWSProviderSettings.serverGroups?.enableIPv6) {
-            command.associateIPv6Address = true;
-          }
+            if (defaultCredentials === 'test' && AWSProviderSettings.serverGroups?.enableIPv6) {
+              command.associateIPv6Address = true;
+            }
 
-          if (AWSProviderSettings.serverGroups?.enableIMDSv2) {
-            /**
-             * Older SDKs do not support IMDSv2. A timestamp can be optionally configured at which any apps created after can safely default to using IMDSv2.
-             */
-            const appAgeRequirement = AWSProviderSettings.serverGroups.defaultIMDSv2AppAgeLimit;
-            const creationDate = application.attributes?.createTs;
+            if (AWSProviderSettings.serverGroups?.enableIMDSv2) {
+              /**
+               * Older SDKs do not support IMDSv2. A timestamp can be optionally configured at which any apps created after can safely default to using IMDSv2.
+               */
+              const appAgeRequirement = AWSProviderSettings.serverGroups.defaultIMDSv2AppAgeLimit;
+              const creationDate = application.attributes?.createTs;
 
-            command.requireIMDSv2 = appAgeRequirement && creationDate && Number(creationDate) > appAgeRequirement;
-          }
+              command.requireIMDSv2 = appAgeRequirement && creationDate && Number(creationDate) > appAgeRequirement;
+            }
 
-          return command;
-        });
+            return command;
+          });
       }
 
       function buildServerGroupCommandFromPipeline(
@@ -239,7 +238,7 @@ angular
       }
 
       function buildUpdateServerGroupCommand(serverGroup: IAmazonServerGroup) {
-        const command = {
+        const command = ({
           type: 'modifyAsg',
           asgs: [{ asgName: serverGroup.name, region: serverGroup.region }],
           cooldown: serverGroup.asg.defaultCooldown,
@@ -249,7 +248,7 @@ angular
           terminationPolicies: angular.copy(serverGroup.asg.terminationPolicies),
           credentials: serverGroup.account,
           capacityRebalance: serverGroup.asg.capacityRebalance,
-        } as Partial<IAmazonServerGroupCommand> as IAmazonServerGroupCommand;
+        } as Partial<IAmazonServerGroupCommand>) as IAmazonServerGroupCommand;
         awsServerGroupConfigurationService.configureUpdateCommand(command);
         return command;
       }

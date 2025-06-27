@@ -9,8 +9,7 @@ import { Registry } from '../registry';
 
 export class NgAppengineConfigArtifactDelegate
   extends ExpectedArtifactSelectorViewControllerAngularDelegate<IArtifactSource<IStage | IPipeline>>
-  implements IExpectedArtifactSelectorViewControllerDelegate
-{
+  implements IExpectedArtifactSelectorViewControllerDelegate {
   public expectedArtifacts: IExpectedArtifact[];
   public requestingNew = false;
 

@@ -70,8 +70,8 @@ export class CloudrunManifestCommandBuilder {
         const account = accounts.some((a) => a.name === sourceAccount)
           ? accounts.find((a) => a.name === sourceAccount).name
           : accounts.length
-            ? accounts[0].name
-            : null;
+          ? accounts[0].name
+          : null;
 
         let manifestArtifactAccount: string = null;
         const [artifactAccountData] = artifactAccounts;
@@ -98,8 +98,8 @@ export class CloudrunManifestCommandBuilder {
             manifests: Array.isArray(sourceManifest)
               ? sourceManifest
               : sourceManifest != null
-                ? [sourceManifest]
-                : null,
+              ? [sourceManifest]
+              : null,
             relationships,
             moniker,
             account,

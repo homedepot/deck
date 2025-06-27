@@ -30,7 +30,7 @@ export const ViewChangesLink = ({ changeConfig, linkText, nameItem, viewType }: 
       return ReactInjector.executionService.getExecution(changeConfigValue.executionId);
     }
     /** A noop promise so `useData` can be utilized */
-    return Promise.resolve({}) as unknown as PromiseLike<IExecution>;
+    return (Promise.resolve({}) as unknown) as PromiseLike<IExecution>;
   };
 
   const { result: executionDetails, status } = useData(fetchExecution, {} as IExecution, [

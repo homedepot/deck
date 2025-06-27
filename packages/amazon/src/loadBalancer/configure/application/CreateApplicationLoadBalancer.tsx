@@ -60,8 +60,8 @@ export class CreateApplicationLoadBalancer extends React.Component<
     const loadBalancerCommand = props.command
       ? (props.command as IAmazonApplicationLoadBalancerUpsertCommand) // ejecting from a wizard
       : props.loadBalancer
-        ? AwsLoadBalancerTransformer.convertApplicationLoadBalancerForEditing(props.loadBalancer)
-        : AwsLoadBalancerTransformer.constructNewApplicationLoadBalancerTemplate(props.app);
+      ? AwsLoadBalancerTransformer.convertApplicationLoadBalancerForEditing(props.loadBalancer)
+      : AwsLoadBalancerTransformer.constructNewApplicationLoadBalancerTemplate(props.app);
 
     this.state = {
       includeSecurityGroups: !!loadBalancerCommand.vpcId,

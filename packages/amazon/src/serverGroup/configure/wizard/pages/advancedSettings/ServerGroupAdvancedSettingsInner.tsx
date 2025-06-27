@@ -11,8 +11,7 @@ import type { IAmazonServerGroupCommand } from '../../../serverGroupConfiguratio
 @Overridable('aws.serverGroup.advancedSettings')
 export class ServerGroupAdvancedSettingsInner
   extends React.Component<IServerGroupAdvancedSettingsProps>
-  implements IWizardPageComponent<IAmazonServerGroupCommand>
-{
+  implements IWizardPageComponent<IAmazonServerGroupCommand> {
   private validators = new Map();
 
   public validate = (values: IAmazonServerGroupCommand) => {

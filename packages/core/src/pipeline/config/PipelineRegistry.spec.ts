@@ -323,10 +323,10 @@ describe('PipelineRegistry: API', function () {
       const pipelineRegistry = new PipelineRegistry();
       slimmaker.forEach((stage) => pipelineRegistry.registerStage(stage));
 
-      expect(pipelineRegistry.getStageConfig({ type: 'd', cloudProvider: 'titus' } as unknown as IStage)).toEqual(
+      expect(pipelineRegistry.getStageConfig(({ type: 'd', cloudProvider: 'titus' } as unknown) as IStage)).toEqual(
         titusStage,
       );
-      expect(pipelineRegistry.getStageConfig({ type: 'd', cloudProvider: 'aws' } as unknown as IStage)).toEqual(
+      expect(pipelineRegistry.getStageConfig(({ type: 'd', cloudProvider: 'aws' } as unknown) as IStage)).toEqual(
         awsStage,
       );
       expect(pipelineRegistry.getStageConfig({ type: 'd' } as IStage)).toEqual(awsStage);

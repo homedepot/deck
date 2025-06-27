@@ -38,8 +38,7 @@ export interface INLBCertificateSelectorProps {
 
 export class NLBListeners
   extends React.Component<INLBListenersProps, INLBListenersState>
-  implements IWizardPageComponent<IAmazonNetworkLoadBalancerUpsertCommand>
-{
+  implements IWizardPageComponent<IAmazonNetworkLoadBalancerUpsertCommand> {
   public protocols = ['TCP', 'UDP', 'TLS'];
   private removedAuthActions: Map<IListenerDescription, { [key: number]: IListenerAction }> = new Map();
 

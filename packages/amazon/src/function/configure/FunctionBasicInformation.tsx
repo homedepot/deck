@@ -57,8 +57,7 @@ export interface IFunctionState {
 
 export class FunctionBasicInformation
   extends React.Component<IFunctionProps, IFunctionState>
-  implements IWizardPageComponent<IAmazonFunctionUpsertCommand>
-{
+  implements IWizardPageComponent<IAmazonFunctionUpsertCommand> {
   public state: IFunctionState = {
     accounts: [],
     existingFunctionNames: [],

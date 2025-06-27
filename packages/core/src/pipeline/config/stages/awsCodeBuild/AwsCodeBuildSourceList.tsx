@@ -21,7 +21,9 @@ export interface IAwsCodeBuildSecondarySourceVersionListProps extends IFormInput
   pipeline: IPipeline;
 }
 
-export class AwsCodeBuildSecondarySourcesVersionList extends React.Component<IAwsCodeBuildSecondarySourceVersionListProps> {
+export class AwsCodeBuildSecondarySourcesVersionList extends React.Component<
+  IAwsCodeBuildSecondarySourceVersionListProps
+> {
   constructor(props: IAwsCodeBuildSecondarySourceVersionListProps) {
     super(props);
   }

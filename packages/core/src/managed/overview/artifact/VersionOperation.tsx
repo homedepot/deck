@@ -7,7 +7,7 @@ import './VersionOperationIcon.less';
 
 type AllStatuses = QueryConstraint['status'] | QueryArtifactVersionTaskStatus;
 export const ACTION_DISPLAY_NAMES = ['passed', 'overridden', 'pending', 'failed'] as const;
-export type ActionDisplayName = (typeof ACTION_DISPLAY_NAMES)[number];
+export type ActionDisplayName = typeof ACTION_DISPLAY_NAMES[number];
 
 const DEFAULT_ICON_CLASSNAME = 'far fa-hourglass md-icon-pending';
 

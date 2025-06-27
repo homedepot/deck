@@ -18,8 +18,7 @@ interface IProjectAttributesState {
 
 export class ProjectAttributes
   extends React.Component<IProjectAttributesProps, IProjectAttributesState>
-  implements IWizardPageComponent<IProject>
-{
+  implements IWizardPageComponent<IProject> {
   public state = {
     showProjectDeleteForm: false,
     projectNameForDeletion: null as string,

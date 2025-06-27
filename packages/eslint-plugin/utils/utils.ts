@@ -13,10 +13,7 @@ import type {
 import * as _ from 'lodash/fp';
 
 export const getNodeType = (obj: Node) => obj?.type;
-export const isType =
-  <T extends Node>(type: string) =>
-  (obj: Node): obj is T =>
-    getNodeType(obj) === type;
+export const isType = <T extends Node>(type: string) => (obj: Node): obj is T => getNodeType(obj) === type;
 export const isIdentifier = isType<Identifier>('Identifier');
 export const isCallExpression = isType<CallExpression>('CallExpression');
 export const isMemberExpression = isType<MemberExpression>('MemberExpression');

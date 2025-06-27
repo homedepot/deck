@@ -29,9 +29,9 @@ describe('<CloudFoundryCreateServiceBindingsStageConfigForm/>', function () {
   };
 
   it('loads component correctly with 2 serviceBindingRequests', function () {
-    const stage = {
+    const stage = ({
       serviceBindingRequests: [{ serviceInstanceName: 'service1' }, { serviceInstanceName: 'service2' }],
-    } as unknown as IStage;
+    } as unknown) as IStage;
 
     const props = getProps();
     const component = mount(

@@ -107,12 +107,12 @@ export class StageArtifactSelector extends React.Component<IStageArtifactSelecto
     const expectedArtifact = expectedArtifactId
       ? expectedArtifacts.find((a) => a.id === expectedArtifactId)
       : artifact
-        ? {
-            id: DEFINE_NEW_ARTIFACT,
-            displayName: 'Artifact from execution context',
-            defaultArtifact: artifact,
-          }
-        : undefined;
+      ? {
+          id: DEFINE_NEW_ARTIFACT,
+          displayName: 'Artifact from execution context',
+          defaultArtifact: artifact,
+        }
+      : undefined;
 
     const options = [
       this.defineNewArtifactOption,

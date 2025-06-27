@@ -13,8 +13,7 @@ export interface IServerGroupSecurityGroupsProps {
 
 export class ServerGroupSecurityGroups
   extends React.Component<IServerGroupSecurityGroupsProps>
-  implements IWizardPageComponent<IAmazonServerGroupCommand>
-{
+  implements IWizardPageComponent<IAmazonServerGroupCommand> {
   public validate(values: IAmazonServerGroupCommand) {
     const errors = {} as any;
 

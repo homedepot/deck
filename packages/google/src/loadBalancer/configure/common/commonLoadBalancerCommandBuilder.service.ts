@@ -58,7 +58,9 @@ export class GceCommonLoadBalancerCommandBuilder {
     return this.$q.all(promises);
   }
 
-  public groupHealthChecksByAccountAndType(healthChecks: IGceHealthCheck[]): {
+  public groupHealthChecksByAccountAndType(
+    healthChecks: IGceHealthCheck[],
+  ): {
     [account: string]: { [healthCheckType: string]: IGceHealthCheck[] };
   } {
     return _.chain(healthChecks)

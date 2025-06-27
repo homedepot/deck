@@ -20,8 +20,9 @@ class HealthCheckCreateCtrl implements IController {
   public $onInit(): void {
     if (this.healthCheck.name) {
       this.healthCheckPlaceholder = this.healthCheck;
-      this.existingHealthChecksForProtocol =
-        this.healthChecksByAccountAndType[this.credentials][this.healthCheck.healthCheckType];
+      this.existingHealthChecksForProtocol = this.healthChecksByAccountAndType[this.credentials][
+        this.healthCheck.healthCheckType
+      ];
       this.editExisting = true;
     } else {
       this.existingHealthChecksForProtocol = this.healthChecksByAccountAndType[this.credentials]['TCP'];

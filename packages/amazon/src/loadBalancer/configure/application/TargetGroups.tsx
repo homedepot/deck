@@ -32,8 +32,7 @@ export interface ITargetGroupsState {
 
 export class TargetGroups
   extends React.Component<ITargetGroupsProps, ITargetGroupsState>
-  implements IWizardPageComponent<IAmazonApplicationLoadBalancerUpsertCommand>
-{
+  implements IWizardPageComponent<IAmazonApplicationLoadBalancerUpsertCommand> {
   public protocols = ['HTTP', 'HTTPS'];
   public targetTypes = ['instance', 'ip', 'lambda'];
   private destroy$ = new Subject();

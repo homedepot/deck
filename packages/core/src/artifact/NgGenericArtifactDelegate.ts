@@ -12,8 +12,7 @@ export const defaultExcludedArtifactTypes = [ArtifactTypePatterns.KUBERNETES, Ar
 
 export class NgGenericArtifactDelegate
   extends ExpectedArtifactSelectorViewControllerAngularDelegate<IArtifactSource<IStage | IPipeline>>
-  implements IExpectedArtifactSelectorViewControllerDelegate
-{
+  implements IExpectedArtifactSelectorViewControllerDelegate {
   constructor(
     protected $scope: IScope,
     private tag: string,

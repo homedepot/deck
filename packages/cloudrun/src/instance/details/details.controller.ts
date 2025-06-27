@@ -28,11 +28,7 @@ class CloudrunInstanceDetailsController implements IController {
 
   public static $inject = ['$q', 'app', 'instance'];
 
-  constructor(
-    private $q: IQService,
-    private app: Application,
-    instance: InstanceFromStateParams,
-  ) {
+  constructor(private $q: IQService, private app: Application, instance: InstanceFromStateParams) {
     this.app
       .ready()
       .then(() => this.retrieveInstance(instance))

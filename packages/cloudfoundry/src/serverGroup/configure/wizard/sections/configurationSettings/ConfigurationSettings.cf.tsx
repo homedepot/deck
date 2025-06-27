@@ -27,8 +27,7 @@ export interface ICloudFoundryServerGroupConfigurationSettingsProps {
 
 export class CloudFoundryServerGroupConfigurationSettings
   extends React.Component<ICloudFoundryServerGroupConfigurationSettingsProps>
-  implements IWizardPageComponent<ICloudFoundryServerGroupConfigurationSettingsProps>
-{
+  implements IWizardPageComponent<ICloudFoundryServerGroupConfigurationSettingsProps> {
   public static LABEL = 'Configuration';
 
   private defaultDirectManifest: ICloudFoundryManifest = {

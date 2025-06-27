@@ -9,12 +9,8 @@ import { Registry } from '../registry';
 
 export class NgAppEngineDeployArtifactDelegate
   extends ExpectedArtifactSelectorViewControllerAngularDelegate<IArtifactSource<IStage | IPipeline>>
-  implements IExpectedArtifactSelectorViewControllerDelegate
-{
-  constructor(
-    protected $scope: IScope,
-    protected offeredArtifactTypes: RegExp[] = null,
-  ) {
+  implements IExpectedArtifactSelectorViewControllerDelegate {
+  constructor(protected $scope: IScope, protected offeredArtifactTypes: RegExp[] = null) {
     super($scope);
     const { viewState } = $scope.command;
     this.sources = ExpectedArtifactService.sourcesForPipelineStage(() => viewState.pipeline, viewState.stage);

@@ -47,10 +47,8 @@ export class ServerGroupManager extends React.Component<IServerGroupManagerProps
 
   private buildHealthCounts = (): IInstanceCounts => {
     const { serverGroups } = this.props;
-    const pick =
-      (key: keyof IInstanceCounts) =>
-      (total: number, serverGroup: IServerGroup): number =>
-        total + serverGroup.instanceCounts[key];
+    const pick = (key: keyof IInstanceCounts) => (total: number, serverGroup: IServerGroup): number =>
+      total + serverGroup.instanceCounts[key];
 
     return {
       up: serverGroups.reduce(pick('up'), 0),
