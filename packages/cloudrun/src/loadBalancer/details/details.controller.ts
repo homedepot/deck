@@ -88,10 +88,6 @@ class CloudrunLoadBalancerDetailsController implements IController {
     });
   }
 
-  public canDeleteLoadBalancer(): boolean {
-    return this.loadBalancer.name !== 'default';
-  }
-
   private getConfirmationModalBodyHtml(): string {
     const serverGroupNames = this.loadBalancer.serverGroups.map((serverGroup) => serverGroup.name);
     const hasAny = serverGroupNames ? serverGroupNames.length > 0 : false;
@@ -130,6 +126,14 @@ class CloudrunLoadBalancerDetailsController implements IController {
       this.$state.params.allowModalToStayOpen = true;
       this.$state.go('^', null, { location: 'replace' });
     }
+  }
+
+  public canDeleteLoadBalancer(): boolean {
+    return this.loadBalancer.name !== 'default' && !this.loadBalancer.name.endsWith('-pr');
+  }
+
+  public canEditLoadBalancer(): boolean {
+    return !this.loadBalancer.name.endsWith('-pr');
   }
 }
 
