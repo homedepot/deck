@@ -120,7 +120,7 @@ export const UpsertScalingPolicyModal = ({
             <AlarmConfigurer
               alarm={command.alarm}
               multipleAlarms={Boolean(policy?.alarms?.length > 1)}
-              serverGroup={(serverGroup as unknown) as IAmazonServerGroup}
+              serverGroup={serverGroup as unknown as IAmazonServerGroup}
               stepAdjustments={command.step.stepAdjustments}
               stepsChanged={stepsChanged}
               updateAlarm={(alarm: IScalingPolicyAlarm) =>

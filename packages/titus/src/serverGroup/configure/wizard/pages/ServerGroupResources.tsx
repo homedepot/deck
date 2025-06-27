@@ -20,7 +20,8 @@ export interface IServerGroupResourcesProps {
 
 export class ServerGroupResources
   extends React.Component<IServerGroupResourcesProps>
-  implements IWizardPageComponent<ITitusServerGroupCommand> {
+  implements IWizardPageComponent<ITitusServerGroupCommand>
+{
   public validate(values: ITitusServerGroupCommand) {
     const errors = {} as any;
 

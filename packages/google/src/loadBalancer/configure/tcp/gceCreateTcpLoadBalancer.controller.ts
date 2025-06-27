@@ -132,10 +132,11 @@ class TcpLoadBalancerCtrl extends CommonGceLoadBalancerCtrl implements ng.ICompo
 
         // We don't count the load balancer's health check in the existing health checks list.
         const healthCheckNamesToOmit = this.isNew ? [] : [this.loadBalancer.backendService.healthCheck.name];
-        this.existingHealthCheckNamesByAccount = this.gceCommonLoadBalancerCommandBuilder.groupHealthCheckNamesByAccount(
-          backingData.healthChecks as IGceHealthCheck[],
-          healthCheckNamesToOmit,
-        );
+        this.existingHealthCheckNamesByAccount =
+          this.gceCommonLoadBalancerCommandBuilder.groupHealthCheckNamesByAccount(
+            backingData.healthChecks as IGceHealthCheck[],
+            healthCheckNamesToOmit,
+          );
 
         this.accountUpdated();
 

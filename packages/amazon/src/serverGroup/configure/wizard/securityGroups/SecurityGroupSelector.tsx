@@ -36,10 +36,12 @@ export class SecurityGroupSelector extends React.Component<ISecurityGroupSelecto
     if (this.props.refresh) {
       this.props.refresh().then(() => this.setState({ refreshing: false }));
     } else {
-      (ReactInjector.providerServiceDelegate.getDelegate(
-        this.props.command.selectedProvider,
-        'serverGroup.configurationService',
-      ) as any)
+      (
+        ReactInjector.providerServiceDelegate.getDelegate(
+          this.props.command.selectedProvider,
+          'serverGroup.configurationService',
+        ) as any
+      )
         .refreshSecurityGroups(this.props.command)
         .then(() => {
           this.setState({

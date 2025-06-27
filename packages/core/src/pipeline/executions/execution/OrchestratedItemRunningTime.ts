@@ -5,7 +5,10 @@ const runningStatuses = ['RUNNING', 'SUSPENDED'];
 export class OrchestratedItemRunningTime {
   private updateInterval: any;
 
-  constructor(private item: IOrchestratedItem, private updateCallback: (time: number) => void) {
+  constructor(
+    private item: IOrchestratedItem,
+    private updateCallback: (time: number) => void,
+  ) {
     this.checkStatus();
   }
 

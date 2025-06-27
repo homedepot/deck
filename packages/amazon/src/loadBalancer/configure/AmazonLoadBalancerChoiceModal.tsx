@@ -62,9 +62,8 @@ export class AmazonLoadBalancerChoiceModal extends React.Component<
 
   private getIncompatibility(choice: IAmazonLoadBalancerConfig, cloudProvider: string): ILoadBalancerIncompatibility {
     const { loadBalancer = {} } = CloudProviderRegistry.getProvider(cloudProvider);
-    const {
-      incompatibleLoadBalancerTypes = [],
-    }: { incompatibleLoadBalancerTypes: ILoadBalancerIncompatibility[] } = loadBalancer;
+    const { incompatibleLoadBalancerTypes = [] }: { incompatibleLoadBalancerTypes: ILoadBalancerIncompatibility[] } =
+      loadBalancer;
 
     return incompatibleLoadBalancerTypes.find((lb) => lb.type === choice.type);
   }

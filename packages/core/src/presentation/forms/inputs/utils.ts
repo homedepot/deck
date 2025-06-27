@@ -20,6 +20,6 @@ export const createFakeReactSyntheticEvent = (target: { name?: string; value?: a
     stopPropagation: noop,
     preventDefault: noop,
     target,
-  } as React.ChangeEvent<any>);
+  }) as React.ChangeEvent<any>;
 
 export const isStringArray = (opts: readonly any[]): opts is string[] => opts && opts.length && opts.every(isString);

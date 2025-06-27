@@ -44,18 +44,14 @@ const ConstraintContent = ({ constraint, versionProps }: IConstraintContentProps
     type: constraint.type,
   };
 
-  const [
-    updateConstraint,
-    { loading: isUpdatingConstraint, error: updateConstraintError },
-  ] = useUpdateConstraintMutation({ refetchQueries });
+  const [updateConstraint, { loading: isUpdatingConstraint, error: updateConstraintError }] =
+    useUpdateConstraintMutation({ refetchQueries });
 
-  const [
-    restartConstraint,
-    { loading: isRestartingConstraint, error: restartConstraintError },
-  ] = useRestartConstraintEvaluationMutation({
-    variables: { payload: baseRequestProps },
-    refetchQueries,
-  });
+  const [restartConstraint, { loading: isRestartingConstraint, error: restartConstraintError }] =
+    useRestartConstraintEvaluationMutation({
+      variables: { payload: baseRequestProps },
+      refetchQueries,
+    });
 
   useNotifyOnError({
     key: 'updateConstraintError',

@@ -15,7 +15,8 @@ export interface IFunctionDebugAndErrorHandlingProps {
 
 export class FunctionDebugAndErrorHandling
   extends React.Component<IFunctionDebugAndErrorHandlingProps>
-  implements IWizardPageComponent<IAmazonFunctionUpsertCommand> {
+  implements IWizardPageComponent<IAmazonFunctionUpsertCommand>
+{
   constructor(props: IFunctionDebugAndErrorHandlingProps) {
     super(props);
   }

@@ -45,10 +45,13 @@ function ServiceJobProcessesInput(props: IFormInputProps) {
 
   // Map to an Object, but include all known processes (input -> formik)
   const mapFromInputValue = (value: string[]): Record<string, boolean> =>
-    allProcesses.reduce((acc, process) => {
-      acc[process] = value.includes(process);
-      return acc;
-    }, {} as Record<string, boolean>);
+    allProcesses.reduce(
+      (acc, process) => {
+        acc[process] = value.includes(process);
+        return acc;
+      },
+      {} as Record<string, boolean>,
+    );
 
   const mappedProps = useFormInputValueMapper(props, mapToInputValue, mapFromInputValue);
 
@@ -89,7 +92,8 @@ const IamInstanceProfileInput = (props: IFormInputProps & { awsAccount: string; 
 
 export class ServerGroupParameters
   extends React.Component<IServerGroupParametersProps>
-  implements IWizardPageComponent<ITitusServerGroupCommand> {
+  implements IWizardPageComponent<ITitusServerGroupCommand>
+{
   constructor(props: IServerGroupParametersProps) {
     super(props);
   }

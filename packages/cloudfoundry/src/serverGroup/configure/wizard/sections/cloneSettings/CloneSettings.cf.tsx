@@ -22,7 +22,8 @@ export interface ICloudFoundryCloneSettingsState {
 
 export class CloudFoundryServerGroupCloneSettings
   extends React.Component<ICloudFoundryCloneSettingsProps, ICloudFoundryCloneSettingsState>
-  implements IWizardPageComponent<ICloudFoundryCreateServerGroupCommand> {
+  implements IWizardPageComponent<ICloudFoundryCreateServerGroupCommand>
+{
   private destroy$ = new Subject();
   public state: ICloudFoundryCloneSettingsState = {
     accounts: [],

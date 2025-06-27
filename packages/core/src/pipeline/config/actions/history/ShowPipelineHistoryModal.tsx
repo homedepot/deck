@@ -45,7 +45,11 @@ export function ShowPipelineHistoryModal(props: IShowHistoryModalProps) {
   const [version, setVersion] = React.useState<number>(0);
   const { closeModal, currentConfig, dismissModal, isStrategy, pipelineConfigId } = props;
 
-  const { result: history, status, error } = useData(
+  const {
+    result: history,
+    status,
+    error,
+  } = useData(
     () => {
       return PipelineConfigService.getHistory(pipelineConfigId, isStrategy, 100).then(historyLoaded);
     },

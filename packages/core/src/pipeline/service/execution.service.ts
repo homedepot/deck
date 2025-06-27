@@ -40,7 +40,11 @@ export class ExecutionService {
     '$$hashKey',
   ];
 
-  constructor(private $q: IQService, private $state: StateService, private $timeout: ITimeoutService) {}
+  constructor(
+    private $q: IQService,
+    private $state: StateService,
+    private $timeout: ITimeoutService,
+  ) {}
 
   public getRunningExecutions(applicationName: string): PromiseLike<IExecution[]> {
     return this.getFilteredExecutions(applicationName, this.activeStatuses, this.runningLimit, null, true);
@@ -251,10 +255,9 @@ export class ExecutionService {
   }
 
   private waitUntilPipelineIsCancelled(application: Application, executionId: string): PromiseLike<any> {
-    return this.waitUntilExecutionMatches(
-      executionId,
-      (execution: IExecution) => execution.status === 'CANCELED',
-    ).then(() => application.executions.refresh());
+    return this.waitUntilExecutionMatches(executionId, (execution: IExecution) => execution.status === 'CANCELED').then(
+      () => application.executions.refresh(),
+    );
   }
 
   private waitUntilPipelineIsDeleted(application: Application, executionId: string): PromiseLike<any> {

@@ -18,19 +18,17 @@ export class TargetGroup extends React.Component<ITargetGroupProps> {
   public render(): React.ReactElement<TargetGroup> {
     const { targetGroup, showInstances, showServerGroups, loadBalancer } = this.props;
 
-    const ServerGroups = orderBy(
-      targetGroup.serverGroups,
-      ['isDisabled', 'name'],
-      ['asc', 'desc'],
-    ).map((serverGroup) => (
-      <LoadBalancerServerGroup
-        key={serverGroup.name}
-        account={serverGroup.account}
-        region={serverGroup.region}
-        serverGroup={serverGroup}
-        showInstances={showInstances}
-      />
-    ));
+    const ServerGroups = orderBy(targetGroup.serverGroups, ['isDisabled', 'name'], ['asc', 'desc']).map(
+      (serverGroup) => (
+        <LoadBalancerServerGroup
+          key={serverGroup.name}
+          account={serverGroup.account}
+          region={serverGroup.region}
+          serverGroup={serverGroup}
+          showInstances={showInstances}
+        />
+      ),
+    );
 
     const params = {
       loadBalancerName: loadBalancer.name,

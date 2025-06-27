@@ -182,9 +182,8 @@ angular
             persistentDisks.length !== instanceTypeDetails.storage.count;
 
           if (overrideStorageDescription) {
-            command.viewState.overriddenStorageDescription = calculatePersistentDiskOverriddenStorageDescription(
-              command,
-            );
+            command.viewState.overriddenStorageDescription =
+              calculatePersistentDiskOverriddenStorageDescription(command);
           }
         }
       }

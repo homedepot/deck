@@ -15,7 +15,8 @@ export interface ICloudFoundryCreateServerGroupArtifactSettingsProps {
 
 export class CloudFoundryServerGroupArtifactSettings
   extends React.Component<ICloudFoundryCreateServerGroupArtifactSettingsProps>
-  implements IWizardPageComponent<ICloudFoundryCreateServerGroupCommand> {
+  implements IWizardPageComponent<ICloudFoundryCreateServerGroupCommand>
+{
   public static get LABEL() {
     return 'Artifact';
   }

@@ -362,7 +362,10 @@ export class ApplicationDataSource<T = any> implements IDataSourceConfig<T> {
     this.debug(`status: ${fetchStatus.status}`);
   }
 
-  constructor(config: IDataSourceConfig<T>, private application: Application) {
+  constructor(
+    config: IDataSourceConfig<T>,
+    private application: Application,
+  ) {
     Object.assign(this, config);
 
     if (!config.hasOwnProperty('defaultData')) {

@@ -52,7 +52,10 @@ export class WebhookStage implements IController {
   public parameters: IWebhookParameter[] = [];
 
   public static $inject = ['stage', '$uibModal'];
-  constructor(public stage: any, private $uibModal: IModalService) {
+  constructor(
+    public stage: any,
+    private $uibModal: IModalService,
+  ) {
     this.methods = ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE'];
 
     this.viewState = {

@@ -14,7 +14,8 @@ export interface IFunctionSettingsProps {
 
 export class FunctionSettings
   extends React.Component<IFunctionSettingsProps>
-  implements IWizardPageComponent<IAmazonFunctionUpsertCommand> {
+  implements IWizardPageComponent<IAmazonFunctionUpsertCommand>
+{
   public validate = () => {
     const errors = {} as any;
     return errors;

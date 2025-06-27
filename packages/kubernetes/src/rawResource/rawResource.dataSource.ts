@@ -13,8 +13,10 @@ type ApiK8sResource = any;
 const fetchK8sResources = (application: Application): PromiseLike<ApiK8sResource> =>
   REST('applications').path(application.name, 'rawResources').get();
 
-const formatK8sResources = ($q: IQService) => (_: Application, result: ApiK8sResource): PromiseLike<ApiK8sResource> =>
-  $q.resolve(result);
+const formatK8sResources =
+  ($q: IQService) =>
+  (_: Application, result: ApiK8sResource): PromiseLike<ApiK8sResource> =>
+    $q.resolve(result);
 
 module(KUBERNETS_RAW_RESOURCE_DATA_SOURCE, []).run([
   '$q',

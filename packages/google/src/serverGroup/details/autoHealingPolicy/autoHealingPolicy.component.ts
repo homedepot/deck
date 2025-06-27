@@ -11,7 +11,10 @@ class GceAutoHealingPolicyDetailsCtrl implements IController {
   public application: Application;
 
   public static $inject = ['$uibModal', 'gceAutoscalingPolicyWriter'];
-  constructor(private $uibModal: IModalService, private gceAutoscalingPolicyWriter: any) {}
+  constructor(
+    private $uibModal: IModalService,
+    private gceAutoscalingPolicyWriter: any,
+  ) {}
 
   public editPolicy(): void {
     this.$uibModal.open({

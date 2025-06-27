@@ -128,11 +128,12 @@ angular
                     ipIngressRule.portRanges,
                   );
 
-                  ipIngressRules[ipIngressRule.protocol] = _.uniqBy(ipIngressRules[ipIngressRule.protocol], function (
-                    portRange,
-                  ) {
-                    return portRange.startPort + '->' + portRange.endPort;
-                  });
+                  ipIngressRules[ipIngressRule.protocol] = _.uniqBy(
+                    ipIngressRules[ipIngressRule.protocol],
+                    function (portRange) {
+                      return portRange.startPort + '->' + portRange.endPort;
+                    },
+                  );
                 } else {
                   ipIngressRules[ipIngressRule.protocol] = ipIngressRule.portRanges;
                 }

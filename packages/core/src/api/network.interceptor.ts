@@ -63,12 +63,15 @@ export class NetworkInterceptor implements IHttpInterceptor {
     if (status === -1 && retryCount < this.MAX_RETRIES) {
       this.retryQueue[config.url] = retryCount + 1;
       return this.networkAvailable.promise.then(() => {
-        return this.$timeout(() => {
-          return this.$q.resolve(this.$injector.get('$http')(config)).then((result: any) => {
-            this.removeFromQueue(config);
-            return result;
-          });
-        }, (retryCount + 1 + Math.random()) * 1000);
+        return this.$timeout(
+          () => {
+            return this.$q.resolve(this.$injector.get('$http')(config)).then((result: any) => {
+              this.removeFromQueue(config);
+              return result;
+            });
+          },
+          (retryCount + 1 + Math.random()) * 1000,
+        );
       });
     }
     return this.$q.reject(response).finally(() => this.removeFromQueue(config));

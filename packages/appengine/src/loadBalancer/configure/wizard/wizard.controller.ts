@@ -54,13 +54,11 @@ class AppengineLoadBalancerWizardController implements IController {
       this.appengineLoadBalancerTransformer
         .convertLoadBalancerForEditing(loadBalancer, application)
         .then((convertedLoadBalancer) => {
-          this.loadBalancer = this.appengineLoadBalancerTransformer.convertLoadBalancerToUpsertDescription(
-            convertedLoadBalancer,
-          );
+          this.loadBalancer =
+            this.appengineLoadBalancerTransformer.convertLoadBalancerToUpsertDescription(convertedLoadBalancer);
           if (loadBalancer.split && !this.loadBalancer.splitDescription) {
-            this.loadBalancer.splitDescription = AppengineLoadBalancerUpsertDescription.convertTrafficSplitToTrafficSplitDescription(
-              loadBalancer.split,
-            );
+            this.loadBalancer.splitDescription =
+              AppengineLoadBalancerUpsertDescription.convertTrafficSplitToTrafficSplitDescription(loadBalancer.split);
           } else {
             this.loadBalancer.splitDescription = loadBalancer.splitDescription;
           }

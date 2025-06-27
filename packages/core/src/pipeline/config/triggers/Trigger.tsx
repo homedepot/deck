@@ -80,10 +80,10 @@ function TriggerForm(triggerFormProps: ITriggerProps & { formik: FormikProps<ITr
 
   const { type } = trigger;
   const triggerTypes = React.useMemo(() => Registry.pipeline.getTriggerTypes(), []);
-  const triggerConfig = React.useMemo(() => triggerTypes.find((x) => x.key === trigger.type), [
-    triggerTypes,
-    trigger.type,
-  ]);
+  const triggerConfig = React.useMemo(
+    () => triggerTypes.find((x) => x.key === trigger.type),
+    [triggerTypes, trigger.type],
+  );
   const disableAutoTriggering = SETTINGS.disableAutoTriggering || [];
 
   // Clear out all non-common fields when the type is changed

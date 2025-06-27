@@ -24,15 +24,8 @@ export const manifestExecutionDetails = (stageName: string) => {
 
     public render() {
       const { stage, current, name } = this.props;
-      const {
-        account,
-        manifestName,
-        location,
-        cluster,
-        criteria,
-        labelSelectors,
-        manifestNamesByNamespace,
-      } = stage.context;
+      const { account, manifestName, location, cluster, criteria, labelSelectors, manifestNamesByNamespace } =
+        stage.context;
       return (
         <ExecutionDetailsSection name={name} current={current}>
           <div className="row">

@@ -14,9 +14,7 @@ export interface IEvaluateCloudFormationChangeSetExecutionProps {
   executionMarker: boolean;
 }
 
-export class EvaluateCloudFormationChangeSetExecutionLabel extends React.Component<
-  IEvaluateCloudFormationChangeSetExecutionProps
-> {
+export class EvaluateCloudFormationChangeSetExecutionLabel extends React.Component<IEvaluateCloudFormationChangeSetExecutionProps> {
   public render() {
     if (!this.props.executionMarker) {
       return <ExecutionBarLabel {...this.props} />;

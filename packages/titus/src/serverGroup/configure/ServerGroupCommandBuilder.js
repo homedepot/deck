@@ -104,8 +104,8 @@ angular.module(TITUS_SERVERGROUP_CONFIGURE_SERVERGROUPCOMMANDBUILDER, []).factor
       const assignIPv6Address = isIPv6Set
         ? serverGroup.containerAttributes['titusParameter.agent.assignIPv6Address']
         : isTestEnv
-        ? 'true'
-        : 'false';
+          ? 'true'
+          : 'false';
 
       const containerAttributes = {
         ...serverGroup.containerAttributes,

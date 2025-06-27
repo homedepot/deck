@@ -10,7 +10,10 @@ import { CLOUDRUN_LOAD_BALANCER_CHOICE_MODAL_CTRL } from './loadBalancerChoice.m
 
 class CloudrunEditLoadBalancerStageCtrl implements IController {
   public static $inject = ['$scope', '$uibModal'];
-  constructor(public $scope: any, private $uibModal: IModalService) {
+  constructor(
+    public $scope: any,
+    private $uibModal: IModalService,
+  ) {
     $scope.stage.loadBalancers = $scope.stage.loadBalancers || [];
     $scope.stage.cloudProvider = 'cloudrun';
   }

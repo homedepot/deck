@@ -9,7 +9,7 @@ import { useLogEvent } from '../utils/logging';
 const STORAGE_KEY = 'MD_environmentsDirection';
 
 const DIRECTIONS = ['listView', 'gridView'] as const;
-type Direction = typeof DIRECTIONS[number];
+type Direction = (typeof DIRECTIONS)[number];
 
 const isDirection = (value: string | null): value is Direction => {
   return Boolean(value && DIRECTIONS.includes(value as Direction));

@@ -51,7 +51,8 @@ export interface IWizardModalApi {
 
 export class WizardModal<T = {}>
   extends React.Component<IWizardModalProps<T>, IWizardModalState<T>>
-  implements IWizardModalApi {
+  implements IWizardModalApi
+{
   private stepsElement = React.createRef<HTMLDivElement>();
   private formikRef = React.createRef<Formik<any>>();
   public state: IWizardModalState<T> = { pages: [], initialized: false, currentPage: null };
@@ -122,16 +123,8 @@ export class WizardModal<T = {}>
   public revalidate = () => this.formik && this.formik.validateForm();
 
   public render() {
-    const {
-      formClassName,
-      heading,
-      initialValues,
-      loading,
-      submitButtonLabel,
-      taskMonitor,
-      closeModal,
-      dismissModal,
-    } = this.props;
+    const { formClassName, heading, initialValues, loading, submitButtonLabel, taskMonitor, closeModal, dismissModal } =
+      this.props;
     const { currentPage, initialized, pages } = this.state;
 
     const spinner = (

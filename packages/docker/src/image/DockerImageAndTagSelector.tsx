@@ -123,10 +123,13 @@ export class DockerImageAndTagSelector extends React.Component<
   }
 
   private getRegistryMap(images: IDockerImage[]) {
-    return images.reduce((m: { [key: string]: string }, image: IDockerImage) => {
-      m[image.account] = image.registry;
-      return m;
-    }, {} as { [key: string]: string });
+    return images.reduce(
+      (m: { [key: string]: string }, image: IDockerImage) => {
+        m[image.account] = image.registry;
+        return m;
+      },
+      {} as { [key: string]: string },
+    );
   }
 
   private getOrganizationMap(images: IDockerImage[]): { [key: string]: string[] } {

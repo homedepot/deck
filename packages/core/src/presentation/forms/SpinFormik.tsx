@@ -49,4 +49,4 @@ function SpinFormikImpl<Values extends {}>(props: FormikConfig<Values>, ref?: Re
   );
 }
 
-export const SpinFormik = (React.forwardRef(SpinFormikImpl) as any) as typeof Formik;
+export const SpinFormik = React.forwardRef(SpinFormikImpl) as any as typeof Formik;

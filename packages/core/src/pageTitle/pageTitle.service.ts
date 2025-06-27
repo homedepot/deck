@@ -37,7 +37,11 @@ export class PageTitleService {
   private routeCount = 0;
 
   public static $inject = ['$rootScope', '$stateParams', '$transitions'];
-  constructor(private $rootScope: IScope, private $stateParams: StateParams, $transitions: TransitionService) {
+  constructor(
+    private $rootScope: IScope,
+    private $stateParams: StateParams,
+    $transitions: TransitionService,
+  ) {
     document.title = 'Spinnaker: Loading...';
     $transitions.onStart({}, (transition) => {
       this.handleRoutingStart();

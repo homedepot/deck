@@ -16,7 +16,10 @@ class V2InstanceArchetypeSelectorController implements IComponentController {
   public onTypeChanged: any;
 
   public static $inject = ['$scope', 'instanceTypeService'];
-  public constructor(public $scope: IScope, private instanceTypeService: InstanceTypeService) {}
+  public constructor(
+    public $scope: IScope,
+    private instanceTypeService: InstanceTypeService,
+  ) {}
 
   public $onInit(): void {
     const { $scope } = this;

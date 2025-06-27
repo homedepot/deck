@@ -54,13 +54,11 @@ class CloudrunLoadBalancerWizardController implements IController {
       this.cloudrunLoadBalancerTransformer
         .convertLoadBalancerForEditing(loadBalancer, application)
         .then((convertedLoadBalancer) => {
-          this.loadBalancer = this.cloudrunLoadBalancerTransformer.convertLoadBalancerToUpsertDescription(
-            convertedLoadBalancer,
-          );
+          this.loadBalancer =
+            this.cloudrunLoadBalancerTransformer.convertLoadBalancerToUpsertDescription(convertedLoadBalancer);
           if (loadBalancer.split && !this.loadBalancer.splitDescription) {
-            this.loadBalancer.splitDescription = CloudrunLoadBalancerUpsertDescription.convertTrafficSplitToTrafficSplitDescription(
-              loadBalancer.split,
-            );
+            this.loadBalancer.splitDescription =
+              CloudrunLoadBalancerUpsertDescription.convertTrafficSplitToTrafficSplitDescription(loadBalancer.split);
           } else {
             this.loadBalancer.splitDescription = loadBalancer.splitDescription;
           }

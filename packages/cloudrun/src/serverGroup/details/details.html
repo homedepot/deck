@@ -28,7 +28,11 @@
         <li ng-if="ctrl.canDeleteServerGroup()">
           <a href ng-click="ctrl.destroyServerGroup()">Destroy</a>
         </li>
-        <li ng-if="!ctrl.canDeleteServerGroup()" class="disabled" uib-tooltip="Destroy is disabled for PR server groups.">
+        <li
+          ng-if="!ctrl.canDeleteServerGroup()"
+          class="disabled"
+          uib-tooltip="Destroy is disabled for PR server groups."
+        >
           <a href>Destroy</a>
         </li>
       </div>

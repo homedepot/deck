@@ -17,16 +17,16 @@ module(CANARY_CANARY_CANARYSTATUS_DIRECTIVE, []).directive('canaryStatus', funct
           scope.status === 'LAUNCHED'
             ? 'launched'
             : scope.status === 'RUNNING'
-            ? 'running'
-            : scope.status === 'SUCCEEDED'
-            ? 'succeeded'
-            : scope.status === 'FAILED'
-            ? 'failed'
-            : scope.status === 'TERMINATED'
-            ? 'terminated'
-            : scope.status === 'CANCELED'
-            ? 'canceled'
-            : 'unknown';
+              ? 'running'
+              : scope.status === 'SUCCEEDED'
+                ? 'succeeded'
+                : scope.status === 'FAILED'
+                  ? 'failed'
+                  : scope.status === 'TERMINATED'
+                    ? 'terminated'
+                    : scope.status === 'CANCELED'
+                      ? 'canceled'
+                      : 'unknown';
       }
       scope.$watch('status', applyLabel);
     },

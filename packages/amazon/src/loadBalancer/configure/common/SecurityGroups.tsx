@@ -27,7 +27,8 @@ export interface ISecurityGroupsState {
 
 export class SecurityGroups
   extends React.Component<ISecurityGroupsProps, ISecurityGroupsState>
-  implements IWizardPageComponent<IAmazonLoadBalancerUpsertCommand> {
+  implements IWizardPageComponent<IAmazonLoadBalancerUpsertCommand>
+{
   private destroy$ = new Subject<void>();
   private props$ = new Subject<ISecurityGroupsProps>();
   private refresh$ = new Subject<void>();

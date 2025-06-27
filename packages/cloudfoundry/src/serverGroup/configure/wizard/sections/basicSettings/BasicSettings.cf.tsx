@@ -30,7 +30,8 @@ export interface ICloudFoundryServerGroupLocationSettingsState {
 
 export class CloudFoundryServerGroupBasicSettings
   extends React.Component<ICloudFoundryServerGroupBasicSettingsProps, ICloudFoundryServerGroupLocationSettingsState>
-  implements IWizardPageComponent<ICloudFoundryCreateServerGroupCommand> {
+  implements IWizardPageComponent<ICloudFoundryCreateServerGroupCommand>
+{
   private destroy$ = new Subject();
   public state: ICloudFoundryServerGroupLocationSettingsState = {
     accounts: [],

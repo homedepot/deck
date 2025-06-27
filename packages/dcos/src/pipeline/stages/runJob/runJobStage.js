@@ -85,8 +85,8 @@ module(DCOS_PIPELINE_STAGES_RUNJOB_RUNJOBSTAGE, [
         stage.account = defaultAccountIsValid
           ? defaultAccount
           : firstDcosAccount
-          ? firstDcosAccount
-          : 'my-dcos-account';
+            ? firstDcosAccount
+            : 'my-dcos-account';
 
         attemptToSetValidDcosCluster(accountsByName, stage);
       }
@@ -101,8 +101,8 @@ module(DCOS_PIPELINE_STAGES_RUNJOB_RUNJOBSTAGE, [
           stage.dcosCluster = defaultDcosClusterIsValid
             ? defaultDcosCluster
             : clusterNames.length == 1
-            ? clusterNames[0]
-            : null;
+              ? clusterNames[0]
+              : null;
           stage.region = stage.dcosCluster;
         }
       }

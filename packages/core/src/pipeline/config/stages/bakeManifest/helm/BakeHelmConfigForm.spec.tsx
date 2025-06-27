@@ -43,9 +43,9 @@ describe('<BakeHelmConfigForm />', () => {
   );
 
   it('renders the helm chart file path element when the template artifact is from an account that handles git/repo artifacts', async () => {
-    const stage = ({
+    const stage = {
       inputArtifacts: [{ account: 'gitrepo' }],
-    } as unknown) as IStage;
+    } as unknown as IStage;
 
     const props = getProps();
 
@@ -65,9 +65,9 @@ describe('<BakeHelmConfigForm />', () => {
   });
 
   it('does not render the helm chart file path element when the template artifact is from an account that does not handle git/repo artifacts', async () => {
-    const stage = ({
+    const stage = {
       inputArtifacts: [{ account: 'notgitrepo' }],
-    } as unknown) as IStage;
+    } as unknown as IStage;
 
     const props = getProps();
 
@@ -106,9 +106,9 @@ describe('<BakeHelmConfigForm />', () => {
       useDefaultArtifact: false,
       usePriorArtifact: false,
     };
-    const stage = ({
+    const stage = {
       inputArtifacts: [{ id: expectedArtifactId }],
-    } as unknown) as IStage;
+    } as unknown as IStage;
 
     spyOn(ExpectedArtifactService, 'getExpectedArtifactsAvailableToStage').and.returnValue([expectedGitArtifact]);
 
@@ -131,9 +131,9 @@ describe('<BakeHelmConfigForm />', () => {
   });
 
   it('render the include crds checkbox if the template render is HELM3', async () => {
-    const stage = ({
+    const stage = {
       templateRenderer: 'HELM3',
-    } as unknown) as IStage;
+    } as unknown as IStage;
 
     const props = getProps();
 
@@ -153,9 +153,9 @@ describe('<BakeHelmConfigForm />', () => {
   });
 
   it('does not render the include crds checkbox if the template render is HELM2', async () => {
-    const stage = ({
+    const stage = {
       templateRenderer: 'HELM2',
-    } as unknown) as IStage;
+    } as unknown as IStage;
 
     const props = getProps();
 

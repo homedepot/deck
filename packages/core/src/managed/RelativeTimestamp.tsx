@@ -35,8 +35,8 @@ const toDateTime = (timestamp: DateTime | string | number) =>
   typeof timestamp === 'number'
     ? DateTime.fromMillis(timestamp)
     : typeof timestamp === 'string'
-    ? DateTime.fromISO(timestamp)
-    : timestamp;
+      ? DateTime.fromISO(timestamp)
+      : timestamp;
 
 export const formatToRelativeTimestamp = (timestamp: DateTime, withSuffix: boolean) => {
   const distance = getDistanceFromNow(timestamp);

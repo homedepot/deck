@@ -18,7 +18,7 @@ export function ManifestYaml({ linkName, modalTitle, manifestText, manifestUri }
     if (manifestUri) {
       ArtifactService.getArtifactByContentReference(manifestUri)
         .then((manifest) => setFetchedManifestText(decodeUnicodeBase64(manifest.reference)))
-        .catch((e) => setError(`Error: ${typeof e !== 'string' ? e.data?.message ?? JSON.stringify(e) : e}`));
+        .catch((e) => setError(`Error: ${typeof e !== 'string' ? (e.data?.message ?? JSON.stringify(e)) : e}`));
     }
   }, []);
 

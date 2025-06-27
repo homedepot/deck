@@ -8,7 +8,7 @@
           ng-show="listener.stackName.$dirty || listener.detailName.$dirty || !$ctrl.listener.created"
           ng-class="{
             'alert-danger': listener.listenerName.$error.validateUnique,
-            'alert-info': !listener.listenerName.$error.validateUnique
+            'alert-info': !listener.listenerName.$error.validateUnique,
           }"
         >
           <strong>Your listener will be named:</strong>

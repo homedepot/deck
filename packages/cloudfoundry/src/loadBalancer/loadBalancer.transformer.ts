@@ -16,7 +16,8 @@ import type {
 } from '../domain';
 
 export class CloudFoundryLoadBalancerUpsertDescription
-  implements ILoadBalancerUpsertCommand, ICloudFoundryLoadBalancer {
+  implements ILoadBalancerUpsertCommand, ICloudFoundryLoadBalancer
+{
   public id: string;
   public credentials: string;
   public account: string;

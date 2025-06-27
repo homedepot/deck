@@ -22,7 +22,8 @@ export interface IPipelinesState {
 
 export class Pipelines
   extends React.Component<IPipelinesProps, IPipelinesState>
-  implements IWizardPageComponent<IProject> {
+  implements IWizardPageComponent<IProject>
+{
   private static readonly pipelineConfigsPath = 'config.pipelineConfigs';
 
   public state: IPipelinesState = {

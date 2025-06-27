@@ -47,7 +47,8 @@ export interface INetworkState {
 
 export class Network
   extends React.Component<INetworkProps, INetworkState>
-  implements IWizardPageComponent<IAmazonFunctionUpsertCommand> {
+  implements IWizardPageComponent<IAmazonFunctionUpsertCommand>
+{
   constructor(props: INetworkProps) {
     super(props);
     this.getAllVpcs();

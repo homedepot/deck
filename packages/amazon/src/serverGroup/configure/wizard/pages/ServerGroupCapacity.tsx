@@ -14,7 +14,8 @@ export interface IServerGroupCapacityProps {
 
 export class ServerGroupCapacity
   extends React.Component<IServerGroupCapacityProps>
-  implements IWizardPageComponent<IAmazonServerGroupCommand> {
+  implements IWizardPageComponent<IAmazonServerGroupCommand>
+{
   public validate(values: IServerGroupCommand): { [key: string]: string } {
     const errors: { [key: string]: string } = {};
 

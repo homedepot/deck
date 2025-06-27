@@ -129,7 +129,7 @@ export function overridableComponent<P extends IOverridableProps, T extends Reac
           />
         );
 
-        return (Component as any) as T;
+        return Component as any as T;
       }
 
       return null;
@@ -156,7 +156,7 @@ export function overridableComponent<P extends IOverridableProps, T extends Reac
           />
         );
 
-        return (Component as any) as T;
+        return Component as any as T;
       }
 
       return null;
@@ -186,9 +186,9 @@ export function overridableComponent<P extends IOverridableProps, T extends Reac
     }
   }
 
-  const forwardRef = (React.forwardRef<T, P>((props, ref) => (
+  const forwardRef = React.forwardRef<T, P>((props, ref) => (
     <OverridableComponent {...props} forwardedRef={ref} />
-  )) as unknown) as T;
+  )) as unknown as T;
 
   // Copy static properties
   Object.getOwnPropertyNames(OriginalComponent)

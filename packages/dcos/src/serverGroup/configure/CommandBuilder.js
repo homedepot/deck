@@ -29,8 +29,8 @@ angular.module(DCOS_SERVERGROUP_CONFIGURE_COMMANDBUILDER, []).factory('dcosServe
         command.account = defaultAccountIsValid
           ? defaultAccount
           : firstDcosAccount
-          ? firstDcosAccount
-          : 'my-dcos-account';
+            ? firstDcosAccount
+            : 'my-dcos-account';
 
         attemptToSetValidDcosCluster(dcosAccountsByName, defaultDcosCluster, command);
       });
@@ -44,8 +44,8 @@ angular.module(DCOS_SERVERGROUP_CONFIGURE_COMMANDBUILDER, []).factory('dcosServe
         command.dcosCluster = defaultDcosClusterIsValid
           ? defaultDcosCluster
           : clusterNames.length == 1
-          ? clusterNames[0]
-          : null;
+            ? clusterNames[0]
+            : null;
         command.region = command.dcosCluster;
       }
     }

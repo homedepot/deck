@@ -7,9 +7,7 @@ export interface ICloudFoundryLoadBalancerStatusSectionProps {
   loadBalancer: ICloudFoundryLoadBalancer;
 }
 
-export class CloudFoundryLoadBalancerStatusSection extends React.Component<
-  ICloudFoundryLoadBalancerStatusSectionProps
-> {
+export class CloudFoundryLoadBalancerStatusSection extends React.Component<ICloudFoundryLoadBalancerStatusSectionProps> {
   constructor(props: ICloudFoundryLoadBalancerStatusSectionProps) {
     super(props);
   }

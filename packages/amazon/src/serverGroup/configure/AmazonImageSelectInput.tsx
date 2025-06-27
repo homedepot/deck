@@ -297,14 +297,8 @@ export class AmazonImageSelectInput extends React.Component<IAmazonImageSelector
 
   public render() {
     const { value, credentials, region, onChange } = this.props;
-    const {
-      isLoadingPackageImages,
-      isSearching,
-      selectionMode,
-      packageImages,
-      searchResults,
-      searchString,
-    } = this.state;
+    const { isLoadingPackageImages, isSearching, selectionMode, packageImages, searchResults, searchString } =
+      this.state;
     const isPackageImagesLoaded = !!packageImages;
 
     const ImageOptionRenderer = (image: IAmazonImage) => {
@@ -345,8 +339,8 @@ export class AmazonImageSelectInput extends React.Component<IAmazonImageSelector
       const searchNoResultsText = lessThanThreeChars
         ? 'Please enter at least 3 characters'
         : isSearching
-        ? 'Searching...'
-        : noResultsText;
+          ? 'Searching...'
+          : noResultsText;
 
       return (
         <div className="col-md-9">

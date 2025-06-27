@@ -73,14 +73,8 @@ export class PipelineOptions extends React.Component<IPipelineOptionsProps, IPip
   };
 
   private setPipelineSelectedValues = (pipeline: IPipeline) => {
-    const {
-      formatParameterConfig,
-      formatTriggers,
-      formik,
-      pipelineChanged,
-      triggerChanged,
-      updateTriggerOptions,
-    } = this.props;
+    const { formatParameterConfig, formatTriggers, formik, pipelineChanged, triggerChanged, updateTriggerOptions } =
+      this.props;
     const parameters = formatParameterConfig(pipeline.parameterConfig || []);
     const triggers: ITrigger[] = pipeline.triggers || [];
     const manualExecutionTriggers: ITrigger[] = formatTriggers(triggers);

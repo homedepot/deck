@@ -12,7 +12,8 @@ const offeredArtifactTypes: RegExp[] = [ArtifactTypePatterns.GCE_MACHINE_IMAGE];
 
 export class NgGCEImageArtifactDelegate
   extends ExpectedArtifactSelectorViewControllerAngularDelegate<IArtifactSource<IStage | IPipeline>>
-  implements IExpectedArtifactSelectorViewControllerDelegate {
+  implements IExpectedArtifactSelectorViewControllerDelegate
+{
   // TODO(sbws): Add UI components for a gce/image expected artifact kind, currently user must define custom.
   protected kinds: IArtifactKindConfig[] = [Registry.pipeline.getCustomArtifactKind()];
 

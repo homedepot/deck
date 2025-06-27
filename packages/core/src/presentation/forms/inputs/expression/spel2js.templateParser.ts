@@ -29,7 +29,10 @@ class Bracket {
     return ')';
   }
 
-  constructor(public bracket: string, public pos: number) {}
+  constructor(
+    public bracket: string,
+    public pos: number,
+  ) {}
 
   public compatibleWithCloseBracket(closeBracket: string): boolean {
     if (this.bracket === '{') {

@@ -15,7 +15,8 @@ export interface IFunctionEnvironmentVariablesProps {
 
 export class FunctionEnvironmentVariables
   extends React.Component<IFunctionEnvironmentVariablesProps>
-  implements IWizardPageComponent<IAmazonFunctionUpsertCommand> {
+  implements IWizardPageComponent<IAmazonFunctionUpsertCommand>
+{
   public validate = (values: IAmazonFunctionUpsertCommand) => {
     const validator = new FormValidator(values);
     validator.field('kmskeyArn', 'KMS Key ARN').optional().withValidators(awsArnValidator);

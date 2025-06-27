@@ -6,7 +6,10 @@ import type { IFormValidatorField, IValidator } from './validation';
  * By default a ValidatableField is optional.
  */
 export class FormValidatorField implements IFormValidatorField {
-  constructor(public name: string, public label: string) {}
+  constructor(
+    public name: string,
+    public label: string,
+  ) {}
 
   public isSpelAware: boolean;
   public isRequired: boolean;

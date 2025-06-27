@@ -24,10 +24,11 @@ export const EntitySource = ({ metadata, relativePath = '^.^.^' }: IEntitySource
     return new Promise(() => {});
   };
 
-  const { result: execution, status, error } = useData(fetchExecution, undefined, [
-    executionType,
-    metadata?.value?.executionId,
-  ]);
+  const {
+    result: execution,
+    status,
+    error,
+  } = useData(fetchExecution, undefined, [executionType, metadata?.value?.executionId]);
   const isLoading = status !== 'RESOLVED';
 
   const srefPath =

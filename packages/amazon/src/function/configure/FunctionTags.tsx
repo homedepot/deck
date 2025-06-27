@@ -15,7 +15,8 @@ export interface IFunctionTagsProps {
 
 export class FunctionTags
   extends React.Component<IFunctionTagsProps>
-  implements IWizardPageComponent<IAmazonFunctionUpsertCommand> {
+  implements IWizardPageComponent<IAmazonFunctionUpsertCommand>
+{
   public validate = (values: IAmazonFunctionUpsertCommand) => {
     const validator = new FormValidator(values);
     validator.field('tags', 'Tag').required().withValidators(awsTagsValidator);

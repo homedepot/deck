@@ -130,8 +130,8 @@ class CloudrunServerGroupDetailsController implements IController {
     return this.serverGroup && !this.serverGroup.name.endsWith('-pr');
   }
 
-public canDeleteServerGroup(): boolean {
-  return this.serverGroup && !this.serverGroup.name.endsWith('-pr');
+  public canDeleteServerGroup(): boolean {
+    return this.serverGroup && !this.serverGroup.name.endsWith('-pr');
   }
 }
 export const CLOUDRUN_SERVER_GROUP_DETAILS_CTRL = 'spinnaker.cloudrun.serverGroup.details.controller';
