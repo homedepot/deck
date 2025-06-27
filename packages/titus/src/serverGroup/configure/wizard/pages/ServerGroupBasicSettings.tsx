@@ -43,8 +43,7 @@ export interface IServerGroupBasicSettingsState {
 
 export class ServerGroupBasicSettings
   extends React.Component<IServerGroupBasicSettingsProps, IServerGroupBasicSettingsState>
-  implements IWizardPageComponent<ITitusServerGroupCommand>
-{
+  implements IWizardPageComponent<ITitusServerGroupCommand> {
   constructor(props: IServerGroupBasicSettingsProps) {
     super(props);
 
