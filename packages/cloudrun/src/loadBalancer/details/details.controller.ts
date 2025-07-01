@@ -133,7 +133,7 @@ class CloudrunLoadBalancerDetailsController implements IController {
   }
 
   public canEditLoadBalancer(): boolean {
-    return !this.loadBalancer.name.endsWith('-pr');
+    return this.loadBalancer.name !== 'default' && !this.loadBalancer.name.endsWith('-pr');
   }
 }
 
