@@ -148,7 +148,6 @@ class AppengineLoadBalancerDetailsController implements IController {
     const name = this.loadBalancer.name || '';
     return name !== 'default' && !name.endsWith('-pr');
   }
-
 }
 
 export const APPENGINE_LOAD_BALANCER_DETAILS_CTRL = 'spinnaker.appengine.loadBalancerDetails.controller';
