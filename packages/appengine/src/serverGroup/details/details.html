@@ -46,18 +46,6 @@
           >
             <a href> Disable </a>
           </li>
-          <li ng-if="ctrl.canEditServerGroup()">
-            <a href ng-click="ctrl.cloneServerGroup()">Clone</a>
-          </li>
-          <li
-            ng-if="!ctrl.canEditServerGroup()"
-            class="disabled"
-            uib-tooltip="Editing this server group is restricted."
-          >
-            <a href>Clone</a>
-          </li>
-
-          <!-- Destroy (Delete) Server Group -->
           <li ng-if="ctrl.canDeleteServerGroup()">
             <a href ng-click="ctrl.destroyServerGroup()">Destroy</a>
           </li>
@@ -68,7 +56,15 @@
           >
             <a href>Destroy</a>
           </li>
-          <li>
+
+          <li ng-if="ctrl.canEditServerGroup()">
+            <a href ng-click="ctrl.cloneServerGroup()">Clone</a>
+          </li>
+          <li
+            ng-if="!ctrl.canEditServerGroup()"
+            class="disabled"
+            uib-tooltip="Editing this server group is restricted."
+          >
             <a href>Clone</a>
           </li>
         </ul>
