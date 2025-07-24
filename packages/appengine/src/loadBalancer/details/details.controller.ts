@@ -145,7 +145,7 @@ class AppengineLoadBalancerDetailsController implements IController {
   }
 
   public canEditLoadBalancer(): boolean {
-    onst account = (this.loadBalancer.account || '').toLowerCase();
+    const account = (this.loadBalancer.account || '').toLowerCase();
     return account !== 'default' && !account.endsWith('-pr');
   }
 }
