@@ -46,7 +46,11 @@
           <li ng-if="ctrl.canEditServerGroup()">
             <a href ng-click="ctrl.editServerGroup()"> Edit </a>
           </li>
-          <li ng-if="!ctrl.canEditServerGroup()" class="disabled" uib-tooltip="Editing a production server group through Spinnaker is disabled due to THD policy.">
+          <li
+            ng-if="!ctrl.canEditServerGroup()"
+            class="disabled"
+            uib-tooltip="Editing a production server group through Spinnaker is disabled due to THD policy."
+          >
             <a href> Edit </a>
           </li>
           <li ng-if="ctrl.canScaleServerGroup()">
