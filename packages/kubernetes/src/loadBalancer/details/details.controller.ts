@@ -94,11 +94,11 @@ class KubernetesLoadBalancerDetailsController implements IController {
   }
 
   public canEditLoadBalancer(): boolean {
-    return !this.loadBalancer.name.endsWith('-pr');
-  }
+    return !this.loadBalancer.account.toLowerCase().endsWith('-pr');
+    }
 
   public canDeleteLoadBalancer(): boolean {
-    return !this.loadBalancer.name.endsWith('-pr');
+    return !this.loadBalancer.account.toLowerCase().endsWith('-pr');
   }
 }
 

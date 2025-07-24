@@ -50,7 +50,7 @@
           <li
             ng-if="!ctrl.canDeleteServerGroupManager()"
             class="disabled"
-            uib-tooltip="Deleting a server group manager is restricted."
+            uib-tooltip="Deleting a production load balancer through Spinnaker is disabled due to THD policy."
           >
             <a href>Delete</a>
           </li>
@@ -60,7 +60,7 @@
           <li
             ng-if="!ctrl.canEditServerGroupManager()"
             class="disabled"
-            uib-tooltip="Editing a server group manager is restricted."
+            uib-tooltip="Editing a production load balancer through Spinnaker is disabled due to THD policy."
           >
             <a href>Edit</a>
           </li>

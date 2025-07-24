@@ -183,11 +183,11 @@ class KubernetesServerGroupManagerDetailsController implements IController {
   }
 
   public canEditServerGroupManager(): boolean {
-    return !this.serverGroupManager.name.endsWith('-pr');
-  }
+    return !this.serverGroupManager.account.toLowerCase().endsWith('-pr');
+}
 
   public canDeleteServerGroupManager(): boolean {
-    return !this.serverGroupManager.name.endsWith('-pr');
+    return !this.serverGroupManager.account.toLowerCase().endsWith('-pr');
   }
 }
 

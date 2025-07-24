@@ -177,11 +177,11 @@ class KubernetesInstanceDetailsController implements IController {
     }
   }
   public canEditInstance(): boolean {
-    return !this.instance.name.endsWith('-pr');
+    return !this.instance.account.toLowerCase().endsWith('-pr');
   }
 
   public canDeleteInstance(): boolean {
-    return !this.instance.name.endsWith('-pr');
+    return !this.instance.account.toLowerCase().endsWith('-pr');
   }
 }
 

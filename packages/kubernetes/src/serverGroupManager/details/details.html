@@ -67,7 +67,7 @@
           <li
             ng-if="!ctrl.canEditServerGroupManager()"
             class="disabled"
-            uib-tooltip="Editing a server group is restricted."
+            uib-tooltip="Editing a production server group through Spinnaker is disabled due to THD policy."
           >
             <a href>Edit</a>
           </li>
@@ -77,7 +77,7 @@
           <li
             ng-if="!ctrl.canDeleteServerGroupManager()"
             class="disabled"
-            uib-tooltip="Deleting a server group is restricted."
+            uib-tooltip="Deleting a production server group through Spinnaker is disabled due to THD policy."
           >
             <a href>Delete</a>
           </li>

@@ -248,13 +248,13 @@ angular
       };
 
       this.canDeleteLoadBalancer = function canDeleteLoadBalancer() {
-        const name = $scope.loadBalancer.name || '';
-        return !name.endsWith('-pr');
+        const account = ($scope.loadBalancer.account || '').toLowerCase();
+        return account !== 'default' && !account.endsWith('-pr');
       };
 
       this.canEditLoadBalancer = function canEditLoadBalancer() {
-        const name = $scope.loadBalancer.name || '';
-        return !name.endsWith('-pr');
+        const account = ($scope.loadBalancer.account || '').toLowerCase();
+        return account !== 'default' && !account.endsWith('-pr');
       };
 
       this.isHttpLoadBalancer = (lb) => gceHttpLoadBalancerUtils.isHttpLoadBalancer(lb);

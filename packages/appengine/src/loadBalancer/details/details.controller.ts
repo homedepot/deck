@@ -140,13 +140,13 @@ class AppengineLoadBalancerDetailsController implements IController {
   }
 
   public canDeleteLoadBalancer(): boolean {
-    const name = this.loadBalancer.name || '';
-    return name !== 'default' && !name.endsWith('-pr');
+    const account = (this.loadBalancer.account || '').toLowerCase();
+    return account !== 'default' && !account.endsWith('-pr');
   }
 
   public canEditLoadBalancer(): boolean {
-    const name = this.loadBalancer.name || '';
-    return name !== 'default' && !name.endsWith('-pr');
+    onst account = (this.loadBalancer.account || '').toLowerCase();
+    return account !== 'default' && !account.endsWith('-pr');
   }
 }
 

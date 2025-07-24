@@ -195,11 +195,12 @@ class KubernetesServerGroupDetailsController implements IController {
   }
 
   public canEditServerGroup(): boolean {
-    return this.manifestController() === null && !this.serverGroup.name.endsWith('-pr');
+    return this.manifestController() === null &&
+         !this.serverGroup.account.toLowerCase().endsWith('-pr');
   }
 
-  public canDeleteServerGroup(): boolean {
-    return !this.serverGroup.name.endsWith('-pr');
+public canDeleteServerGroup(): boolean {
+  return !this.serverGroup.account.toLowerCase().endsWith('-pr');
   }
 }
 
