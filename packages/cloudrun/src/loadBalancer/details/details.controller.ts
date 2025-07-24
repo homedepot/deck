@@ -129,11 +129,15 @@ class CloudrunLoadBalancerDetailsController implements IController {
   }
 
   public canDeleteLoadBalancer(): boolean {
-    return this.loadBalancer.account !== 'default' && !this.loadBalancer.account.endsWith('-pr');
+    return (
+      this.loadBalancer.account.toLowerCase() !== 'default' && !this.loadBalancer.account.toLowerCase().endsWith('-pr')
+    );
   }
 
   public canEditLoadBalancer(): boolean {
-    return this.loadBalancer.account !== 'default' && !this.loadBalancer.account.endsWith('-pr');
+    return (
+      this.loadBalancer.account.toLowerCase() !== 'default' && !this.loadBalancer.account.toLowerCase().endsWith('-pr')
+    );
   }
 }
 
