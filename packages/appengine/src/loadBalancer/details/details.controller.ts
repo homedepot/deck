@@ -74,10 +74,6 @@ class AppengineLoadBalancerDetailsController implements IController {
     });
   }
 
-  public canDeleteLoadBalancer(): boolean {
-    return this.loadBalancer.name !== 'default';
-  }
-
   private extractLoadBalancer(): void {
     this.loadBalancer = this.app.getDataSource('loadBalancers').data.find((test: ILoadBalancer) => {
       return test.name === this.loadBalancerFromParams.name && test.account === this.loadBalancerFromParams.accountId;
@@ -141,6 +137,16 @@ class AppengineLoadBalancerDetailsController implements IController {
       this.$state.params.allowModalToStayOpen = true;
       this.$state.go('^', null, { location: 'replace' });
     }
+  }
+
+  public canDeleteLoadBalancer(): boolean {
+    const account = (this.loadBalancer.account || '').toLowerCase();
+    return account !== 'default' && !account.endsWith('-pr');
+  }
+
+  public canEditLoadBalancer(): boolean {
+    const account = (this.loadBalancer.account || '').toLowerCase();
+    return account !== 'default' && !account.endsWith('-pr');
   }
 }
 

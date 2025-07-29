@@ -25,11 +25,16 @@
         <button type="button" class="btn btn-sm btn-primary dropdown-toggle" uib-dropdown-toggle>
           Server Group Actions <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-          <li uib-tooltip="Destroying a server group through Spinnaker is disabled due to THD policy." class="disabled">
-            <a href>Destroy</a>
-          </li>
-        </ul>
+        <li ng-if="ctrl.canDeleteServerGroup()">
+          <a href ng-click="ctrl.destroyServerGroup()">Destroy</a>
+        </li>
+        <li
+          ng-if="!ctrl.canDeleteServerGroup()"
+          class="disabled"
+          uib-tooltip="Destroying a production server group through Spinnaker is disabled due to THD policy."
+        >
+          <a href>Destroy</a>
+        </li>
       </div>
     </div>
   </div>

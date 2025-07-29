@@ -125,6 +125,14 @@ class CloudrunServerGroupDetailsController implements IController {
       },
     );
   }
+
+  public canEditServerGroup(): boolean {
+    return this.serverGroup && !this.serverGroup.account.toLowerCase().endsWith('-pr');
+  }
+
+  public canDeleteServerGroup(): boolean {
+    return this.serverGroup && !this.serverGroup.account.toLowerCase().endsWith('-pr');
+  }
 }
 export const CLOUDRUN_SERVER_GROUP_DETAILS_CTRL = 'spinnaker.cloudrun.serverGroup.details.controller';
 

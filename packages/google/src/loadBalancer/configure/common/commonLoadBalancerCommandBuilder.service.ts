@@ -60,7 +60,9 @@ export class GceCommonLoadBalancerCommandBuilder {
 
   public groupHealthChecksByAccountAndType(
     healthChecks: IGceHealthCheck[],
-  ): { [account: string]: { [healthCheckType: string]: IGceHealthCheck[] } } {
+  ): {
+    [account: string]: { [healthCheckType: string]: IGceHealthCheck[] };
+  } {
     return _.chain(healthChecks)
       .groupBy('account')
       .mapValues((grouped: IGceHealthCheck[]) => _.groupBy(grouped, 'healthCheckType'))

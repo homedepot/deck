@@ -453,6 +453,14 @@ class AppengineServerGroupDetailsController implements IController {
       this.state.loading = false;
     });
   }
+
+  public canEditServerGroup(): boolean {
+    return this.serverGroup.name && this.serverGroup.account && !this.serverGroup.account.toLowerCase().endsWith('-pr');
+  }
+
+  public canDeleteServerGroup(): boolean {
+    return this.serverGroup.name && this.serverGroup.account && !this.serverGroup.account.toLowerCase().endsWith('-pr');
+  }
 }
 
 export const APPENGINE_SERVER_GROUP_DETAILS_CTRL = 'spinnaker.appengine.serverGroup.details.controller';
