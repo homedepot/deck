@@ -22,9 +22,17 @@
             Actions <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-            <li><a href ng-click="vm.destroyServerGroups()">Destroy</a></li>
-            <li><a href ng-click="vm.disableServerGroups()" ng-if="vm.canDisable()">Disable</a></li>
-            <li><a href ng-click="vm.enableServerGroups()" ng-if="vm.canEnable()">Enable</a></li>
+            <li class="disabled" uib-tooltip="Destroying multiple server groups at once is disabled by policy.">
+              <a href>Destroy</a>
+            </li>
+
+            <li class="disabled" uib-tooltip="Disabling multiple server groups at once is disabled by policy.">
+              <a href>Disable</a>
+            </li>
+
+            <li class="disabled" uib-tooltip="Enabling multiple server groups at once is disabled by policy.">
+              <a href>Enable</a>
+             </li>
           </ul>
         </div>
       </div>
