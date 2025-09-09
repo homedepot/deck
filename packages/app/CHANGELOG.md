@@ -3,40 +3,129 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/spinnaker/deck/compare/deck-app@2.6.0...deck-app@2.7.0) (2023-12-07)
+
+
+### Features
+
+* Add feature flag for multi block failure messages. ([#10061](https://github.com/spinnaker/deck/issues/10061)) ([374f724](https://github.com/spinnaker/deck/commit/374f724de221d68030a86e1f6452e3303390339a))
+
+
+
+
+
+# [2.6.0](https://github.com/spinnaker/deck/compare/deck-app@2.5.7...deck-app@2.6.0) (2023-10-16)
+
+
+### Features
+
+* **helm/bake:** Add additional input fields where we can fill in details of the APIs versions ([#10036](https://github.com/spinnaker/deck/issues/10036)) ([d968183](https://github.com/spinnaker/deck/commit/d9681830244ecd1c70cc02459f148d0822b7187e))
+
+
+
+
+
+## [2.5.7](https://github.com/spinnaker/deck/compare/deck-app@2.5.6...deck-app@2.5.7) (2023-09-06)
+
+**Note:** Version bump only for package deck-app
+
+
+
+
+
 ## [2.5.6](https://github.com/spinnaker/deck/compare/deck-app@2.5.5...deck-app@2.5.6) (2023-07-20)
 
 **Note:** Version bump only for package deck-app
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> remotes/upstream/release-1.33.x
 ## [2.5.5](https://github.com/spinnaker/deck/compare/deck-app@2.5.4...deck-app@2.5.5) (2023-06-02)
 
 **Note:** Version bump only for package deck-app
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> remotes/upstream/release-1.33.x
 ## [2.5.4](https://github.com/spinnaker/deck/compare/deck-app@2.5.3...deck-app@2.5.4) (2023-05-11)
 
 **Note:** Version bump only for package deck-app
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> remotes/upstream/release-1.33.x
 ## [2.5.3](https://github.com/spinnaker/deck/compare/deck-app@2.5.2...deck-app@2.5.3) (2023-05-03)
 
 **Note:** Version bump only for package deck-app
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> remotes/upstream/release-1.33.x
 ## [2.5.2](https://github.com/spinnaker/deck/compare/deck-app@2.5.1...deck-app@2.5.2) (2023-05-01)
 
 **Note:** Version bump only for package deck-app
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> remotes/upstream/release-1.33.x
 ## [2.5.1](https://github.com/spinnaker/deck/compare/deck-app@2.5.0...deck-app@2.5.1) (2023-04-03)
 
 **Note:** Version bump only for package deck-app
 
+<<<<<<< HEAD
 # [2.5.0](https://github.com/spinnaker/deck/compare/deck-app@2.4.3...deck-app@2.5.0) (2023-03-15)
 
 ### Features
 
 - **provider/cloudrun:** Added cloudrun functionality to deck ([#9931](https://github.com/spinnaker/deck/issues/9931)) ([3611e95](https://github.com/spinnaker/deck/commit/3611e9520b2294454a8b5dddc85cb3190722ffc7))
+=======
+
+
+
+
+# [2.5.0](https://github.com/spinnaker/deck/compare/deck-app@2.4.3...deck-app@2.5.0) (2023-03-15)
+
+
+### Features
+
+* **provider/cloudrun:** Added cloudrun functionality to deck ([#9931](https://github.com/spinnaker/deck/issues/9931)) ([3611e95](https://github.com/spinnaker/deck/commit/3611e9520b2294454a8b5dddc85cb3190722ffc7))
+
+
+
+
+>>>>>>> remotes/upstream/release-1.33.x
 
 ## [2.4.3](https://github.com/spinnaker/deck/compare/deck-app@2.4.2...deck-app@2.4.3) (2023-02-20)
 
 **Note:** Version bump only for package deck-app
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> remotes/upstream/release-1.33.x
 ## [2.4.2](https://github.com/spinnaker/deck/compare/deck-app@2.4.1...deck-app@2.4.2) (2023-02-07)
 
 **Note:** Version bump only for package deck-app
