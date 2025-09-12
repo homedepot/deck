@@ -138,7 +138,7 @@ window.spinnakerSettings = {
     slack: false,
     snapshots: false,
     functions: functionsEnabled,
-    helmApiVersions: true,//helmApiVersionsEnabled,
+    helmApiVersions: helmApiVersionsEnabled,
     kubernetesRawResources: k8sRawResourcesEnabled,
   },
   gateUrl: apiHost,
