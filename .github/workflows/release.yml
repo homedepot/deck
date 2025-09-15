@@ -95,6 +95,7 @@ jobs:
       - name: Build
         run: |
           export API_VERSIONS_ENABLED=true
+          export MULTI_BLOCK_FAILURE_MESSAGES_ENABLED=true
           env | grep -i 'API_VERSIONS_ENABLED'
           ./gradlew --info build
 
