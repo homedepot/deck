@@ -87,6 +87,11 @@ jobs:
           distribution: 'zulu'
           cache: 'gradle'
 
+      - name: debugging
+        run: |
+          export API_VERSIONS_ENABLED=true
+          env | grep -i 'API_VERSIONS_ENABLED'
+
       - name: Build
         run: |
           export API_VERSIONS_ENABLED=true
