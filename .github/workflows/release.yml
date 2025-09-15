@@ -90,6 +90,7 @@ jobs:
       - name: Build
         run: |
           export API_VERSIONS_ENABLED=true
+          env | grep -i 'API_VERSIONS_ENABLED'
           ./gradlew --info build
 
       - name: Login
