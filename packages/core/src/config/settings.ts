@@ -40,6 +40,7 @@ export interface IFeatures {
   managedServiceAccounts?: boolean;
   managedResources?: boolean;
   multiBlockFailureMessages?: boolean;
+  helmApiVersionsEnabled?: boolean;
   notifications?: boolean;
   pagerDuty?: boolean;
   pipelines?: boolean;
