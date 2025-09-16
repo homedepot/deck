@@ -51,18 +51,18 @@ const managedServiceAccountsEnabled =
 const managedResourcesEnabled =
   import.meta.env.VITE_MANAGED_RESOURCES_ENABLED === 'true' || process.env.MANAGED_RESOURCES_ENABLED === 'true';
 const manualJudgmentParentPipelineEnabled = import.meta.env.MJ_PARENTPIPELINE_ENABLED !== 'false';
-const multiBlockFailureMessagesEnabled =
-  import.meta.env.MULTI_BLOCK_FAILURE_MESSAGES_ENABLED === 'true' ||
+const multiBlockFailureMessagesEnabled = true
+  /* import.meta.env.MULTI_BLOCK_FAILURE_MESSAGES_ENABLED === 'true' ||
   process.env.MULTI_BLOCK_FAILURE_MESSAGES_ENABLED === 'true' ||
-  false;
+  false; */
 const onDemandClusterThreshold =
   import.meta.env.VITE_ON_DEMAND_CLUSTER_THRESHOLD || process.env.ON_DEMAND_CLUSTER_THRESHOLD || '350';
 const reduxLoggerEnabled = import.meta.env.VITE_REDUX_LOGGER === 'true' || process.env.REDUX_LOGGER === 'true';
 const templatesEnabled = import.meta.env.VITE_TEMPLATES_ENABLED === 'true' || process.env.TEMPLATES_ENABLED === 'true';
 const useClassicFirewallLabels =
   import.meta.env.VITE_USE_CLASSIC_FIREWALL_LABELS === 'true' || process.env.USE_CLASSIC_FIREWALL_LABELS === 'true';
-const helmApiVersionsEnabled =
-  import.meta.env.VITE_API_VERSIONS_ENABLED === 'true' || process.env.API_VERSIONS_ENABLED === 'true' || true;
+const helmApiVersionsEnabled = true
+  //import.meta.env.VITE_API_VERSIONS_ENABLED === 'true' || process.env.API_VERSIONS_ENABLED === 'true' || true;
 const functionsEnabled =
   import.meta.env.VITE_FUNCTIONS_ENABLED === 'true' || process.env.FUNCTIONS_ENABLED === 'true' || false;
 const k8sRawResourcesEnabled =
