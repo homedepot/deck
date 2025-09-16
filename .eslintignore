@@ -3,3 +3,5 @@
 node_modules
 packages/*/dist/**
 packages/*/lib/**
+
+packages/core/src/pipeline/config/stages/bakeManifest/helm/BakeHelmConfigForm.tsx
