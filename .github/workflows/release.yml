@@ -89,7 +89,6 @@ jobs:
 
       - name: Build
         run: |
-          export API_VERSIONS_ENABLED=true
           ./gradlew --info build
 
       - name: Login
