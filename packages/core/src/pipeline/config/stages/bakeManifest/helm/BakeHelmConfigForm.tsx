@@ -154,10 +154,10 @@ export class BakeHelmConfigForm extends React.Component<IFormikStageConfigInject
   public render() {
     const stage = this.props.formik.values;
     const enableApiVersions = SETTINGS.feature.helmApiVersions;
-    const enableMultiBlockFailurMessages = SETTINGS.feature.multiBlockFailureMessages
+    const enableMultiBlockFailurMessages = SETTINGS.feature.multiBlockFailureMessages;
 
-    console.log(`api versions enabled: ${enableApiVersions}`)
-    console.log(`multi block failure messages: ${enableMultiBlockFailurMessages}`)
+    console.log(`api versions enabled: ${enableApiVersions}`);
+    console.log(`multi block failure messages: ${enableMultiBlockFailurMessages}`);
     return (
       <>
         <h4>Helm Options</h4>
