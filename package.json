@@ -19,7 +19,7 @@
   "scripts": {
     "clean": "lerna run clean --parallel",
     "fixup": "scripts/monorepo_fixup.sh",
-    "build": "NODE_OPTIONS=--max_old_space_size=8192 webpack --bail --mode=production --config packages/app/webpack.config.js",
+    "build": "NODE_OPTIONS=--max_old_space_size=8192 webpack --bail --mode=production --config packages/app/webpack.config.js --env API_VERSIONS_ENABLED",
     "lint": "eslint --max-warnings=0 --ext js,jsx,ts,tsx packages",
     "start": "sh ./start.sh",
     "start-dev-server": "webpack-dev-server --config packages/app/webpack.config.js --mode=development",
