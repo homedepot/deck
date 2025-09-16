@@ -62,7 +62,7 @@ const templatesEnabled = import.meta.env.VITE_TEMPLATES_ENABLED === 'true' || pr
 const useClassicFirewallLabels =
   import.meta.env.VITE_USE_CLASSIC_FIREWALL_LABELS === 'true' || process.env.USE_CLASSIC_FIREWALL_LABELS === 'true';
 const helmApiVersionsEnabled =
-  import.meta.env.VITE_API_VERSIONS_ENABLED === 'true' || process.env.API_VERSIONS_ENABLED === 'true' || true;
+  import.meta.env.VITE_API_VERSIONS_ENABLED === 'true' || process.env.API_VERSIONS_ENABLED === 'true' || false;
 const functionsEnabled =
   import.meta.env.VITE_FUNCTIONS_ENABLED === 'true' || process.env.FUNCTIONS_ENABLED === 'true' || false;
 const k8sRawResourcesEnabled =
