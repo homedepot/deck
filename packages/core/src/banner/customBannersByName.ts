@@ -1,4 +1,6 @@
 import type { Application } from '../application';
+import { LocksmithProMigrationBanner } from './LocksmithProMigrationBanner';
+
 /**
  * Import all custom banner components here.
  * The exported component's key should correlate to the banner key in the config from IBannerSettings.
@@ -22,4 +24,6 @@ export interface ICustomBannersByName {
   [key: string]: ({ app }: IBannerProps) => JSX.Element;
 }
 
-export const customBannersByName = {} as ICustomBannersByName;
+export const customBannersByName: ICustomBannersByName = {
+  locksmithProMigration: LocksmithProMigrationBanner,
+};
