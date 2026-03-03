@@ -8,28 +8,12 @@ import './LocksmithProMigrationBanner.less';
 
 const DOCS_URL =
   'https://docs.spinnaker.homedepot.com/instructions/locksmith-services/locksmith-pro/';
+const TRACKER_URL =
+  'https://onedrive.homedepot.com/:x:/g/personal/abel_a_rodriguez_homedepot_com/IQAQ75vLlPJMQ7W2mIpbusaOAc5xgM_Uj4xLTGaACavkpPk?e=0qT4dc';
 const STORAGE_KEY = 'locksmithProMigrationBannerDismissed';
 
-const MIGRATION_TIMELINE = [
-  { 
-    range: 'Now – Mar 3', 
-    description: 'Self-migration window (highly encouraged!)' },
-  { 
-    range: 'Mar 4 – 13', 
-    description: 'Automated migrations (Locksmith stage only)' },
-  {
-    range: 'Mar 14 – Apr 5',
-    description: 'Catch-up window for pipelines managed outside Spinnaker',
-  },
-  {
-    range: 'Apr 1',
-    description: 'Locksmith Pro enforced — legacy stages removed; pipelines will fail',
-  },
-];
-
 /**
- * System-wide banner informing users about the Locksmith → Locksmith Pro pipeline migration.
- * TODO: Replace placeholder body copy below once final approved text is confirmed.
+ * System-wide banner informing users about the active Locksmith → Locksmith Pro pipeline migration.
  * To permanently hide after migration completes, set `active: false` in settings.js.
  */
 export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
@@ -55,24 +39,30 @@ export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
         aria-hidden="true"
       />
       <div className="locksmith-pro-migration-banner__content">
-        <strong>Locksmith Pro Migration: </strong>
-        We are migrating pipelines from the legacy Locksmith stage to the new Locksmith Pro stage.
-        Please review the timeline and take action during the self-migration window.
-        <ul className="locksmith-pro-migration-banner__timeline">
-          {MIGRATION_TIMELINE.map(({ range, description }) => (
-            <li key={range}>
-              <strong>{range}:</strong> {description}
-            </li>
-          ))}
-        </ul>
+        <strong>Locksmith Pro Migration in Progress: </strong>
+        We are actively migrating pipelines to Locksmith Pro. Check the{' '}
+        <a
+          className="locksmith-pro-migration-banner__link"
+          href={TRACKER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Spinnaker Pipeline Locksmith Migration Tracker
+        </a>{' '}
+        to see if your pipeline is impacted, its migration status, and what actions you need to
+        take. If your pipeline has been migrated, you can review the changes made by clicking{' '}
+        <strong>Configure</strong> on the pipeline, then opening the{' '}
+        <strong>Pipeline Actions</strong> dropdown and selecting{' '}
+        <strong>Show Revision History</strong>. For more information, see the{' '}
         <a
           className="locksmith-pro-migration-banner__link"
           href={DOCS_URL}
           target="_blank"
           rel="noopener noreferrer"
         >
-          View Locksmith Pro migration docs →
+          Locksmith Pro: Complete Migration Guide &amp; FAQ
         </a>
+        .
       </div>
       <button
         className="locksmith-pro-migration-banner__dismiss"
