@@ -48,8 +48,7 @@ export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
         </a>
         . If your pipeline has been migrated, you can review the changes by clicking <strong>Configure</strong> on the
         pipeline, then opening the <strong>Pipeline Actions</strong> dropdown and selecting{' '}
-        <strong>Show Revision History</strong>
-        .
+        <strong>Show Revision History</strong>.
       </div>
       <button
         className="locksmith-pro-migration-banner__dismiss"
