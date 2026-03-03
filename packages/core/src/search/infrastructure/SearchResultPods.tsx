@@ -37,7 +37,7 @@ export class SearchResultPods extends React.Component<ISearchResultPodsProps> {
     return (
       <div className="infrastructure-section container">
         <div className="recent-items">
-          <h3>Recently viewed</h3>
+          <h3>Recently vieweddd</h3>
 
           <div className="row">
             {projects && (
