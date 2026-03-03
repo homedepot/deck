@@ -1,5 +1,5 @@
-import type { Application } from '../application';
 import { LocksmithProMigrationBanner } from './LocksmithProMigrationBanner';
+import type { Application } from '../application';
 
 /**
  * Import all custom banner components here.
