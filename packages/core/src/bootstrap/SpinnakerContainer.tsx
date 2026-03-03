@@ -3,9 +3,9 @@ import { UIRouterContextComponent } from '@uirouter/react-hybrid';
 import * as React from 'react';
 import { RecoilRoot } from 'recoil';
 
+import { LocksmithProMigrationBanner } from '../banner/LocksmithProMigrationBanner';
 import { SpinnakerHeader } from '../header/SpinnakerHeader';
 import { CustomBanner } from '../header/customBanner/CustomBanner';
-import { LocksmithProMigrationBanner } from '../banner/LocksmithProMigrationBanner';
 import { SpinErrorBoundary } from '../presentation/SpinErrorBoundary';
 import { Notifier } from '../widgets/notifier/Notifier';
 import { Spinner } from '../widgets/spinners/Spinner';
