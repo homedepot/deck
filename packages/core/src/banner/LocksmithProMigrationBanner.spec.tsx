@@ -38,24 +38,36 @@ describe('<LocksmithProMigrationBanner />', () => {
   });
 
   describe('content', () => {
-    it('renders all four migration timeline items', () => {
+    it('renders the migration tracker link with the correct href', () => {
       const wrapper = shallow(<LocksmithProMigrationBanner app={null} />);
-      expect(wrapper.find('.locksmith-pro-migration-banner__timeline li').length).toEqual(4);
+      const links = wrapper.find('.locksmith-pro-migration-banner__link');
+      const trackerLink = links.filterWhere((l) =>
+        l.text().includes('Spinnaker Pipeline Locksmith Migration Tracker'),
+      );
+      expect(trackerLink.prop('href')).toBe(
+        'https://onedrive.homedepot.com/:x:/g/personal/abel_a_rodriguez_homedepot_com/IQAQ75vLlPJMQ7W2mIpbusaOAc5xgM_Uj4xLTGaACavkpPk?e=0qT4dc',
+      );
     });
 
     it('renders the docs link with the correct href', () => {
       const wrapper = shallow(<LocksmithProMigrationBanner app={null} />);
-      const link = wrapper.find('.locksmith-pro-migration-banner__link');
-      expect(link.prop('href')).toBe(
+      const links = wrapper.find('.locksmith-pro-migration-banner__link');
+      const docsLink = links.filterWhere((l) =>
+        l.text().includes('Locksmith Pro: Complete Migration Guide'),
+      );
+      expect(docsLink.prop('href')).toBe(
         'https://docs.spinnaker.homedepot.com/instructions/locksmith-services/locksmith-pro/',
       );
     });
 
-    it('renders the docs link that opens in a new tab safely', () => {
+    it('renders both links opening in a new tab safely', () => {
       const wrapper = shallow(<LocksmithProMigrationBanner app={null} />);
-      const link = wrapper.find('.locksmith-pro-migration-banner__link');
-      expect(link.prop('target')).toBe('_blank');
-      expect(link.prop('rel')).toBe('noopener noreferrer');
+      const links = wrapper.find('.locksmith-pro-migration-banner__link');
+      expect(links.length).toEqual(2);
+      links.forEach((link) => {
+        expect(link.prop('target')).toBe('_blank');
+        expect(link.prop('rel')).toBe('noopener noreferrer');
+      });
     });
 
     it('has accessible dismiss button label', () => {
