@@ -16,14 +16,14 @@ const STORAGE_KEY = 'locksmithProMigrationBannerDismissed';
  * To permanently hide after migration completes, set `active: false` in settings.js.
  */
 export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
-  const [dismissed, setDismissed] = React.useState(() => localStorage.getItem(STORAGE_KEY) === 'true');
+  const [dismissed, setDismissed] = React.useState(() => sessionStorage.getItem(STORAGE_KEY) === 'true');
 
   if (dismissed) {
     return null;
   }
 
   const handleDismiss = () => {
-    localStorage.setItem(STORAGE_KEY, 'true');
+    sessionStorage.setItem(STORAGE_KEY, 'true');
     setDismissed(true);
   };
 
@@ -41,13 +41,14 @@ export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
         >
           Spinnaker Pipeline Locksmith Migration Tracker
         </a>{' '}
-        to see if your pipeline is impacted, its migration status, and what actions you need to take. If your pipeline
-        has been migrated, you can review the changes made by clicking <strong>Configure</strong> on the pipeline, then
-        opening the <strong>Pipeline Actions</strong> dropdown and selecting <strong>Show Revision History</strong>. For
-        more information, see the{' '}
+        to see if your pipeline is impacted, its scheduled migration date, and whether it has been completed. To learn
+        more about the migration and upcoming deadlines, see the{' '}
         <a className="locksmith-pro-migration-banner__link" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
           Locksmith Pro: Complete Migration Guide &amp; FAQ
         </a>
+        . If your pipeline has been migrated, you can review the changes by clicking <strong>Configure</strong> on the
+        pipeline, then opening the <strong>Pipeline Actions</strong> dropdown and selecting{' '}
+        <strong>Show Revision History</strong>
         .
       </div>
       <button

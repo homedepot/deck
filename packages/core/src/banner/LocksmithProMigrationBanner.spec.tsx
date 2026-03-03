@@ -7,7 +7,7 @@ const STORAGE_KEY = 'locksmithProMigrationBannerDismissed';
 
 describe('<LocksmithProMigrationBanner />', () => {
   beforeEach(() => {
-    localStorage.clear();
+    sessionStorage.clear();
   });
 
   describe('visibility', () => {
@@ -17,7 +17,7 @@ describe('<LocksmithProMigrationBanner />', () => {
     });
 
     it('renders nothing when the user previously dismissed it', () => {
-      localStorage.setItem(STORAGE_KEY, 'true');
+      sessionStorage.setItem(STORAGE_KEY, 'true');
       const wrapper = shallow(<LocksmithProMigrationBanner app={null} />);
       expect(wrapper.find('.locksmith-pro-migration-banner').length).toEqual(0);
     });
@@ -30,10 +30,10 @@ describe('<LocksmithProMigrationBanner />', () => {
       expect(wrapper.find('.locksmith-pro-migration-banner').length).toEqual(0);
     });
 
-    it('persists dismissal to localStorage when dismissed', () => {
+    it('persists dismissal to sessionStorage when dismissed', () => {
       const wrapper = mount(<LocksmithProMigrationBanner app={null} />);
       wrapper.find('.locksmith-pro-migration-banner__dismiss').simulate('click');
-      expect(localStorage.getItem(STORAGE_KEY)).toBe('true');
+      expect(sessionStorage.getItem(STORAGE_KEY)).toBe('true');
     });
   });
 
