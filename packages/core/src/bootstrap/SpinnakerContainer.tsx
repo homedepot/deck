@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil';
 
 import { SpinnakerHeader } from '../header/SpinnakerHeader';
 import { CustomBanner } from '../header/customBanner/CustomBanner';
+import { LocksmithProMigrationBanner } from '../banner/LocksmithProMigrationBanner';
 import { SpinErrorBoundary } from '../presentation/SpinErrorBoundary';
 import { Notifier } from '../widgets/notifier/Notifier';
 import { Spinner } from '../widgets/spinners/Spinner';
@@ -29,6 +30,7 @@ export const SpinnakerContainer = ({ authenticating, routing }: ISpinnakerContai
             <SpinnakerHeader />
           </UIRouterContextComponent>
         </div>
+        <LocksmithProMigrationBanner app={null} />
         <div className="spinnaker-content grid-contents">{!authenticating && <UIView name="main" />}</div>
       </div>
       <Notifier />
