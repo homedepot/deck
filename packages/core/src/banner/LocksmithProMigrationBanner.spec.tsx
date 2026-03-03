@@ -41,9 +41,7 @@ describe('<LocksmithProMigrationBanner />', () => {
     it('renders the migration tracker link with the correct href', () => {
       const wrapper = shallow(<LocksmithProMigrationBanner app={null} />);
       const links = wrapper.find('.locksmith-pro-migration-banner__link');
-      const trackerLink = links.filterWhere((l) =>
-        l.text().includes('Spinnaker Pipeline Locksmith Migration Tracker'),
-      );
+      const trackerLink = links.filterWhere((l) => l.text().includes('Spinnaker Pipeline Locksmith Migration Tracker'));
       expect(trackerLink.prop('href')).toBe(
         'https://onedrive.homedepot.com/:x:/g/personal/abel_a_rodriguez_homedepot_com/IQAQ75vLlPJMQ7W2mIpbusaOAc5xgM_Uj4xLTGaACavkpPk?e=0qT4dc',
       );
@@ -52,9 +50,7 @@ describe('<LocksmithProMigrationBanner />', () => {
     it('renders the docs link with the correct href', () => {
       const wrapper = shallow(<LocksmithProMigrationBanner app={null} />);
       const links = wrapper.find('.locksmith-pro-migration-banner__link');
-      const docsLink = links.filterWhere((l) =>
-        l.text().includes('Locksmith Pro: Complete Migration Guide'),
-      );
+      const docsLink = links.filterWhere((l) => l.text().includes('Locksmith Pro: Complete Migration Guide'));
       expect(docsLink.prop('href')).toBe(
         'https://docs.spinnaker.homedepot.com/instructions/locksmith-services/locksmith-pro/',
       );
