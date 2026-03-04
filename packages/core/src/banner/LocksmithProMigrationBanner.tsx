@@ -27,10 +27,8 @@ export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
     <div className="locksmith-pro-migration-banner" role="alert" aria-live="polite">
       <Icon className="locksmith-pro-migration-banner__icon" name="formWarning" size="medium" aria-hidden="true" />
       <div className="locksmith-pro-migration-banner__content">
-        <strong>Locksmith Pro Migration in Progress:</strong> We are currently migrating pipelines to Locksmith Pro.
-        <br />
-        {' • '}
-        <strong>Status &amp; Schedule:</strong> Check the{' '}
+        <strong>Locksmith Pro Migration in Progress:</strong> We are currently migrating pipelines to Locksmith Pro.{' '}
+        &bull; <strong>Status &amp; Schedule:</strong> Check the{' '}
         <a
           className="locksmith-pro-migration-banner__link"
           href={TRACKER_URL}
@@ -39,17 +37,11 @@ export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
         >
           Migration Tracker
         </a>{' '}
-        to see if your pipeline is impacted.
-        <br />
-        {' • '}
-        <strong>Documentation:</strong> Read the{' '}
+        to see if your pipeline is impacted. &bull; <strong>Documentation:</strong> Read the{' '}
         <a className="locksmith-pro-migration-banner__link" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
           Complete Migration Guide &amp; FAQ
         </a>
-        .
-        <br />
-        {' • '}
-        <strong>Reviewing Changes:</strong> To view your pipeline changes post-migration, navigate to{' '}
+        . &bull; <strong>Reviewing Changes:</strong> To view your pipeline changes post-migration, navigate to{' '}
         <em>Configure &gt; Pipeline Actions &gt; Show Revision History</em>.
       </div>
       <button
