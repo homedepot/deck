@@ -31,24 +31,30 @@ export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
     <div className="locksmith-pro-migration-banner" role="alert" aria-live="polite">
       <Icon className="locksmith-pro-migration-banner__icon" name="formWarning" size="medium" aria-hidden="true" />
       <div className="locksmith-pro-migration-banner__content">
-        <strong>Locksmith Pro Migration in Progress: </strong>
-        We are actively migrating pipelines to Locksmith Pro. Check the{' '}
+        <strong>Locksmith Pro Migration in Progress:</strong> We are currently migrating pipelines to Locksmith Pro.
+        <br />
+        {' • '}
+        <strong>Status &amp; Schedule:</strong> Check the{' '}
         <a
           className="locksmith-pro-migration-banner__link"
           href={TRACKER_URL}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Spinnaker Pipeline Locksmith Migration Tracker
+          Migration Tracker
         </a>{' '}
-        to see if your pipeline is impacted, its scheduled migration date, and whether it has been completed. To learn
-        more about the migration and upcoming deadlines, see the{' '}
+        to see if your pipeline is impacted.
+        <br />
+        {' • '}
+        <strong>Documentation:</strong> Read the{' '}
         <a className="locksmith-pro-migration-banner__link" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
-          Locksmith Pro: Complete Migration Guide &amp; FAQ
+          Complete Migration Guide &amp; FAQ
         </a>
-        . If your pipeline has been migrated, you can review the changes by clicking <strong>Configure</strong> on the
-        pipeline, then opening the <strong>Pipeline Actions</strong> dropdown and selecting{' '}
-        <strong>Show Revision History</strong>.
+        .
+        <br />
+        {' • '}
+        <strong>Reviewing Changes:</strong> To view your pipeline changes post-migration, navigate to{' '}
+        <em>Configure &gt; Pipeline Actions &gt; Show Revision History</em>.
       </div>
       <button
         className="locksmith-pro-migration-banner__dismiss"
