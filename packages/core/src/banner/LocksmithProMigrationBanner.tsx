@@ -37,12 +37,13 @@ export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
         >
           Migration Tracker
         </a>{' '}
-        to see if your pipeline is impacted. Read the{' '}
+        to see if your pipeline is impacted and review the expected timeline. Read the{' '}
         <a className="locksmith-pro-migration-banner__link" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
           Complete Migration Guide &amp; FAQ
         </a>{' '}
-        for full details. To view your pipeline changes post-migration, navigate to{' '}
-        <em>Configure &gt; Pipeline Actions &gt; Show Revision History</em>.
+        for full details on what changes to expect and how to prepare. To view your pipeline changes post-migration,
+        navigate to <em>Configure &gt; Pipeline Actions &gt; Show Revision History</em>. Thank you for your patience as
+        we work through this transition.
       </div>
       <button
         className="locksmith-pro-migration-banner__dismiss"
