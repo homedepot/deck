@@ -41,9 +41,8 @@ export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
         <a className="locksmith-pro-migration-banner__link" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
           Complete Migration Guide &amp; FAQ
         </a>{' '}
-        for full details on what changes to expect and how to prepare. To view your pipeline changes post-migration,
-        navigate to <em>Configure &gt; Pipeline Actions &gt; Show Revision History</em>. Thank you for your patience as
-        we work through this transition.
+        for full details on what changes to expect. To view your pipeline changes post-migration, navigate to{' '}
+        <em>Configure &gt; Pipeline Actions &gt; Show Revision History</em>.
       </div>
       <button
         className="locksmith-pro-migration-banner__dismiss"
