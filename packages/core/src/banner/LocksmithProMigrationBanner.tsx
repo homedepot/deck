@@ -11,10 +11,6 @@ const TRACKER_URL =
   'https://onedrive.homedepot.com/:x:/g/personal/abel_a_rodriguez_homedepot_com/IQAQ75vLlPJMQ7W2mIpbusaOAc5xgM_Uj4xLTGaACavkpPk?e=0qT4dc';
 const STORAGE_KEY = 'locksmithProMigrationBannerDismissed';
 
-/**
- * System-wide banner informing users about the active Locksmith → Locksmith Pro pipeline migration.
- * To permanently hide after migration completes, set `active: false` in settings.js.
- */
 export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
   const [dismissed, setDismissed] = React.useState(() => sessionStorage.getItem(STORAGE_KEY) === 'true');
 
