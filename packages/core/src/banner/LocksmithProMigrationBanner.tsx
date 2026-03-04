@@ -1,0 +1,57 @@
+import React from 'react';
+
+import { Icon } from '@spinnaker/presentation';
+
+import type { IBannerProps } from './customBannersByName';
+
+import './LocksmithProMigrationBanner.less';
+
+const DOCS_URL = 'https://docs.spinnaker.homedepot.com/instructions/locksmith-services/locksmith-pro/';
+const TRACKER_URL =
+  'https://onedrive.homedepot.com/:x:/g/personal/abel_a_rodriguez_homedepot_com/IQAQ75vLlPJMQ7W2mIpbusaOAc5xgM_Uj4xLTGaACavkpPk?e=0qT4dc';
+const STORAGE_KEY = 'locksmithProMigrationBannerDismissed';
+
+export const LocksmithProMigrationBanner = (_props: IBannerProps) => {
+  const [dismissed, setDismissed] = React.useState(() => sessionStorage.getItem(STORAGE_KEY) === 'true');
+
+  if (dismissed) {
+    return null;
+  }
+
+  const handleDismiss = () => {
+    sessionStorage.setItem(STORAGE_KEY, 'true');
+    setDismissed(true);
+  };
+
+  return (
+    <div className="locksmith-pro-migration-banner" role="alert" aria-live="polite">
+      <Icon className="locksmith-pro-migration-banner__icon" name="formWarning" size="medium" aria-hidden="true" />
+      <div className="locksmith-pro-migration-banner__content">
+        <strong>Locksmith Pro Migration in Progress:</strong> We are currently migrating pipelines to Locksmith Pro.
+        Check the{' '}
+        <a
+          className="locksmith-pro-migration-banner__link"
+          href={TRACKER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Migration Tracker
+        </a>{' '}
+        to see if your pipeline is impacted and review the expected timeline. Read the{' '}
+        <a className="locksmith-pro-migration-banner__link" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
+          Complete Migration Guide &amp; FAQ
+        </a>{' '}
+        for full details on what changes to expect. To view your pipeline changes post-migration, navigate to your
+        pipeline, then select <em>Configure &gt; Pipeline Actions &gt; Show Revision History</em>.
+      </div>
+      <button
+        className="locksmith-pro-migration-banner__dismiss"
+        onClick={handleDismiss}
+        aria-label="Dismiss migration banner"
+        type="button"
+      >
+        ×
+      </button>
+    </div>
+  );
+};

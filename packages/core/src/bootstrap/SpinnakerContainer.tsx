@@ -3,6 +3,7 @@ import { UIRouterContextComponent } from '@uirouter/react-hybrid';
 import * as React from 'react';
 import { RecoilRoot } from 'recoil';
 
+import { LocksmithProMigrationBanner } from '../banner/LocksmithProMigrationBanner';
 import { SpinnakerHeader } from '../header/SpinnakerHeader';
 import { CustomBanner } from '../header/customBanner/CustomBanner';
 import { SpinErrorBoundary } from '../presentation/SpinErrorBoundary';
@@ -29,6 +30,7 @@ export const SpinnakerContainer = ({ authenticating, routing }: ISpinnakerContai
             <SpinnakerHeader />
           </UIRouterContextComponent>
         </div>
+        <LocksmithProMigrationBanner app={null} />
         <div className="spinnaker-content grid-contents">{!authenticating && <UIView name="main" />}</div>
       </div>
       <Notifier />

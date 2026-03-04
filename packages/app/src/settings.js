@@ -76,7 +76,13 @@ window.spinnakerSettings = {
   authEndpoint: authEndpoint,
   authTtl: 600000,
   bakeryDetailUrl: bakeryDetailUrl,
-  banners: [],
+  banners: [
+    {
+      key: 'locksmithProMigration',
+      active: true,
+      routes: [''],
+    },
+  ],
   canary: {
     atlasWebComponentsUrl: atlasWebComponentsUrl,
     defaultJudge: 'NetflixACAJudge-v1.0',
