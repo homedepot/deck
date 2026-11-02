@@ -78,7 +78,7 @@ window.spinnakerSettings = {
   bakeryDetailUrl: bakeryDetailUrl,
   banners: [
     {
-      key: 'locksmithProMigration',
+      key: 'secureFlowEnforcement',
       active: true,
       routes: [''],
     },
