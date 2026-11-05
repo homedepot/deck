@@ -1,4 +1,4 @@
-import { LocksmithProMigrationBanner } from './LocksmithProMigrationBanner';
+import { SecureFlowEnforcementBanner } from './SecureFlowEnforcementBanner';
 import type { Application } from '../application';
 
 /**
@@ -25,5 +25,5 @@ export interface ICustomBannersByName {
 }
 
 export const customBannersByName: ICustomBannersByName = {
-  locksmithProMigration: LocksmithProMigrationBanner,
+  secureFlowEnforcement: SecureFlowEnforcementBanner,
 };
